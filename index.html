@@ -10,6 +10,7 @@
             --primary: #2c3e50;
             --accent: #e67e22;
             --light: #f4f7f6;
+            --success: #27ae60;
         }
 
         body {
@@ -43,38 +44,42 @@
             gap: 10px;
             margin-bottom: 30px;
             flex-wrap: wrap;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .filter-btn {
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
             background: white;
-            border-radius: 25px;
+            border-radius: 20px;
             cursor: pointer;
             transition: 0.3s;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             font-weight: bold;
+            font-size: 0.9em;
         }
 
-        .filter-btn:hover {
+        .filter-btn:hover,
+        .filter-btn.active {
             background: var(--accent);
             color: white;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
         .card {
             background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            position: relative;
-            border-top: 5px solid var(--accent);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            border-top: 6px solid var(--accent);
             animation: fadeIn 0.5s ease;
         }
 
@@ -90,24 +95,49 @@
             }
         }
 
+        .badge {
+            background: #e8f0fe;
+            color: #1a73e8;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 5px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .rating {
+            color: #f1c40f;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
         .contact-btn {
             display: block;
             margin-top: 15px;
-            padding: 10px;
+            padding: 12px;
             background: var(--primary);
             color: white;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: bold;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: var(--success);
+            transform: scale(1.02);
         }
 
         .add-profile {
             background: #fff;
             padding: 30px;
             border-radius: 15px;
-            max-width: 500px;
+            max-width: 550px;
             margin: 40px auto;
-            border: 2px dashed var(--accent);
+            border: 2px solid #ddd;
         }
 
         input,
@@ -118,7 +148,7 @@
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 8px;
-            box-sizing: border-box;
+            font-size: 1em;
         }
 
         .submit-btn {
@@ -130,11 +160,7 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #d35400;
+            font-size: 1.1em;
         }
     </style>
 </head>
@@ -144,32 +170,69 @@
     <div class="header">
         <img src="New DOC Document.jpg" alt="Logo" class="logo">
         <h1>ჩვენ აქ ვართ</h1>
-        <p>ოსტატებისა და სერვისების საერთო ბაზა</p>
+        <p>ოსტატებისა და სერვისების ერთიანი ბაზა</p>
     </div>
 
     <div class="filters">
-        <button class="filter-btn" onclick="filterProfiles('ყველა')">ყველა</button>
-        <button class="filter-btn" onclick="filterProfiles('მშენებელი')">მშენებელი</button>
-        <button class="filter-btn" onclick="filterProfiles('ხელოსანი')">ხელოსანი</button>
-        <button class="filter-btn" onclick="filterProfiles('სპეც-ტექნიკა')">სპეც-ტექნიკა</button>
-        <button class="filter-btn" onclick="filterProfiles('მძღოლი')">მძღოლი</button>
+        <button class="filter-btn active" onclick="filterCards('ყველა', this)">ყველა</button>
+        <button class="filter-btn" onclick="filterCards('თბილისი', this)">თბილისი</button>
+        <button class="filter-btn" onclick="filterCards('ბათუმი', this)">ბათუმი</button>
+        <button class="filter-btn" onclick="filterCards('ქუთაისი', this)">ქუთაისი</button>
+        <button class="filter-btn" onclick="filterCards('რუსთავი', this)">რუსთავი</button>
+        <button class="filter-btn" onclick="filterCards('ზუგდიდი', this)">ზუგდიდი</button>
+        <button class="filter-btn" onclick="filterCards('ფოთი', this)">ფოთი</button>
+        <button class="filter-btn" onclick="filterCards('გორი', this)">გორი</button>
     </div>
 
     <div class="grid" id="profileGrid"></div>
 
     <div class="add-profile">
-        <h2 style="text-align: center; color: var(--accent);">დაამატე შენი პროფილი</h2>
+        <h2 style="text-align: center; color: var(--primary);">რეგისტრაცია</h2>
         <form id="regForm">
             <input type="text" id="userName" placeholder="სახელი და გვარი" required>
-            <select id="userCategory">
+
+            <select id="userCity" required>
+                <option value="" disabled selected>აირჩიე ქალაქი/რეგიონი</option>
+                <option value="თბილისი">თბილისი</option>
+                <option value="ბათუმი">ბათუმი</option>
+                <option value="ქუთაისი">ქუთაისი</option>
+                <option value="რუსთავი">რუსთავი</option>
+                <option value="გორი">გორი</option>
+                <option value="ზუგდიდი">ზუგდიდი</option>
+                <option value="ფოთი">ფოთი</option>
+                <option value="თელავი">თელავი</option>
+                <option value="მცხეთა">მცხეთა</option>
+                <option value="ახალციხე">ახალციხე</option>
+                <option value="ამბროლაური">ამბროლაური</option>
+                <option value="ოზურგეთი">ოზურგეთი</option>
+                <option value="ხაშური">ხაშური</option>
+                <option value="სამტრედია">სამტრედია</option>
+                <option value="სენაკი">სენაკი</option>
+                <option value="ზესტაფონი">ზესტაფონი</option>
+                <option value="მარნეული">მარნეული</option>
+            </select>
+
+            <select id="userCategory" required>
+                <option value="" disabled selected>საქმიანობის სფერო</option>
                 <option value="მშენებელი">მშენებელი</option>
                 <option value="ხელოსანი">ხელოსანი</option>
                 <option value="სპეც-ტექნიკა">სპეც-ტექნიკა</option>
                 <option value="მძღოლი">მძღოლი</option>
+                <option value="სხვა">სხვა სერვისი</option>
             </select>
-            <input type="number" id="userExp" placeholder="გამოცდილება (წლები)">
-            <input type="tel" id="userPhone" placeholder="ტელეფონის ნომერი" required>
-            <textarea id="userInfo" placeholder="დამატებითი ინფორმაცია..."></textarea>
+
+            <div style="display:flex; gap:10px;">
+                <input type="number" id="userExp" placeholder="გამოცდილება (წელი)">
+                <select id="userRating">
+                    <option value="⭐⭐⭐⭐⭐">5 ვარსკვლავი</option>
+                    <option value="⭐⭐⭐⭐">4 ვარსკვლავი</option>
+                    <option value="⭐⭐⭐">3 ვარსკვლავი</option>
+                </select>
+            </div>
+
+            <input type="tel" id="userPhone" placeholder="ტელეფონი (მაგ: 599...)" required>
+            <textarea id="userInfo" rows="3" placeholder="დამატებითი ინფორმაცია..."></textarea>
+
             <button type="submit" class="submit-btn">ბაზაში დამატება</button>
         </form>
     </div>
@@ -178,7 +241,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        // შენი პირადი კონფიგურაცია Screenshot (72)-დან
         const firebaseConfig = {
             apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
             authDomain: "chven-aq-vart.firebaseapp.com",
@@ -193,48 +255,50 @@
         const db = getDatabase(app);
         const profilesRef = ref(db, 'profiles');
 
-        // ბაზიდან მონაცემების ავტომატური წამოღება
         onValue(profilesRef, (snapshot) => {
             const grid = document.getElementById('profileGrid');
             grid.innerHTML = "";
             const data = snapshot.val();
             if (data) {
-                Object.values(data).forEach(p => {
+                Object.values(data).reverse().forEach(p => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
           <h3>${p.name}</h3>
-          <p><strong>კატეგორია:</strong> ${p.category}</p>
+          <div class="rating">${p.rating || '⭐⭐⭐⭐⭐'}</div>
+          <div><span class="badge">📍 ${p.city}</span> <span class="badge">🛠️ ${p.category}</span></div>
           <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
-          <p>${p.info}</p>
-          <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
+          <p style="color: #555;">${p.info}</p>
+          <a href="tel:${p.phone}" class="contact-btn">📞 დაკავშირება</a>
         `;
                     grid.appendChild(card);
                 });
             }
         });
 
-        // ფორმის გაგზავნა ბაზაში
         document.getElementById('regForm').onsubmit = function (e) {
             e.preventDefault();
             const newProfile = {
                 name: document.getElementById('userName').value,
+                city: document.getElementById('userCity').value,
                 category: document.getElementById('userCategory').value,
                 exp: document.getElementById('userExp').value,
+                rating: document.getElementById('userRating').value,
                 phone: document.getElementById('userPhone').value,
                 info: document.getElementById('userInfo').value
             };
             push(profilesRef, newProfile);
             this.reset();
-            alert("თქვენი პროფილი წარმატებით დაემატა!");
         };
 
-        // ფილტრაციის ფუნქცია
-        window.filterProfiles = function (category) {
+        window.filterCards = function (term, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {
-                const cardText = card.innerText;
-                card.style.display = (category === 'ყველა' || cardText.includes(category)) ? 'block' : 'none';
+                const text = card.innerText;
+                card.style.display = (term === 'ყველა' || text.includes(term)) ? 'block' : 'none';
             });
         };
     </script>
