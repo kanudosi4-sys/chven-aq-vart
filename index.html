@@ -1,1581 +1,217 @@
-Gemini-სთან საუბარი
-თქვენ თქვით
-ჩვენ გვააქვს ეს რასაც ხედავ
-
-Gemini-მ თქვა
-სურათების მიხედვით ჩანს, რომ მუშაობ სამშენებლო კალკულატორზე "ორი ნაპირი", რომელიც GitHub Pages-ზე გაქვს ატვირთული.
-პროექტი დაწერილია HTML-სა და JavaScript-ზე.
-
-კოდის სკრინშოტიდან (Screenshot 50.jpg) ჩანს, რომ გაქვს ფუნქციები updateTotals() და updateGrand(), რომლებიც ითვლიან
-ცხრილში დამატებული მასალების ჯამურ ღირებულებას.
-
-აქ არის რამდენიმე დაკვირვება და რჩევა შენი კოდის გასაუმჯობესებლად:
-
-1. JavaScript-ის პოტენციური ხარვეზი
-კოდში იყენებ parseInt()-ს:
-
-JavaScript
-currentTotal += parseInt(rows[i].cells[4].innerText);
-რჩევა: თუ ფასებში გაქვს თეთრები (ათწილადები, მაგალითად: 2100.50 ₾), parseInt მას დაამრგვალებს მთელ რიცხვამდე და სიზუსტე
-დაიკარგება. უმჯობესია გამოიყენო parseFloat().
-
-2. კოდის სტრუქტურა
-HTML: სკრინშოტზე ჩანს, რომ სკრიპტი პირდაპირ index.html-ში გაქვს (ხაზი 431-დან). თუ პროექტი გაიზრდება, აჯობებს JavaScript
-ცალკე script.js ფაილში გადაიტანო.
-
-GitHub: პროექტი წარმატებით არის გაშვებული github-pages-ზე, რაც ძალიან კარგია.
-
-3. დიზაინი და ფუნქციონალი
-როგორც ვხედავ, არმატურის გაანგარიშება უკვე მუშაობს (1000 კგ - 2100 ₾).
-
-ქვემოთ ჩანს "ბეტონის" სექციაც, რომელიც ალბათ ანალოგიურად უნდა დაემატოს საერთო ჯამს.
-
-რით შემიძლია დაგეხმარო ახლა?
-
-გსურს, რომ ბეტონის ან სხვა მასალის გაანგარიშების ლოგიკა დაგიწერო?
-
-გინდა დავამატოთ PDF-ად შენახვის ან ამობეჭდვის ფუნქცია, რომ მომხმარებელმა ინვოისივით გამოიყენოს?
-
-თუ გაქვს რაიმე კონკრეტული შეცდომა (Error) კოდში, რომელსაც ვერ ასწორებ?
-
-მითხარი, რა არის შენი შემდეგი ნაბიჯი ამ პროექტში და დაგეხმარები კოდის დაწერაში.
-
-თქვენ თქვით
-ამ ეტაპისთვის ეს ორი ნაპირი კალკულატ. რაც მააქვს საკმარისია. ფლეშკაზე უნდა შევინახო საქაღალდე შენახულია ორი ფაილი (new
-dok და index) რაც სეივის დროს ინახავდა . ვორდის ფაილებში კოდი მაქვს შენახული ყოველიშემთხვევისთვის და github. სხვა უნდა
-გადავიტანო კიდე რამე ფლეშკაზე?
-
-Gemini-მ თქვა
-სურათის მიხედვით, შენს ფლეშკაზე (Local Disk G:) უკვე გაქვს პროექტის ძირითადი ფაილები. იმისათვის, რომ დარწმუნებული იყო
-ყველაფრის უსაფრთხოებაში, აი, რა უნდა გადაამოწმო:
-
-1. რა გაქვს უკვე გადატანილი
-index (.html) – ეს არის შენი საიტის მთავარი ფაილი, სადაც კოდი წერია.
-
-New DOC Document.jpg – სურათი, რომელსაც საიტზე ლოგოდ იყენებ.
-
-Word-ის ფაილები – როგორც ახსენე, აქ კოდის ასლები გაქვს შენახული.
-
-2. კიდევ რა შეიძლება დაგჭირდეს?
-თუ საიტზე მუშაობისას იყენებდი დამატებით რესურსებს, რომლებიც index.html-ში გაქვს მითითებული, ისინიც აუცილებლად უნდა
-ჩააგდო ფლეშკაზე იმავე საქაღალდეში:
-
-CSS ფაილები: თუ სტილები ცალკე ფაილში გაქვს (მაგალითად: style.css).
-
-JS ფაილები: თუ JavaScript კოდი ცალკე გაქვს გამოტანილი (მაგალითად: script.js).
-
-სხვა სურათები: თუ საიტზე კიდევ სხვა ფოტოებს იყენებ (მაგალითად, ბეტონის ან არმატურის იკონკები).
-
-3. როგორ შევამოწმოთ, ყველაფერი მუშაობს თუ არა?
-ფლეშკაზე შენახული ფაილებიდან ყველაფერი რომ სწორად გადავიდა, მარტივი ტესტი ჩაატარე:
-
-გამოაძრე ფლეშკა და სხვა კომპიუტერზე შეაერთე (ან შენსავე კომპიუტერზე გახსენი პირდაპირ ფლეშკიდან).
-
-ორჯერ დააჭირე index ფაილს.
-
-თუ საიტი ჩაიტვირთა, ყველა ღილაკი მუშაობს და ლოგოც ჩანს, ესე იგი ყველაფერი გადაგიტანია.
-
-მნიშვნელოვანია: რადგან პროექტი GitHub-ზე გაქვს ატვირთული, ეს შენი ყველაზე საიმედო "ბექაპია". ფლეშკაზე Custom Office
-Templates საქაღალდეში რაც გაქვს, ისიც შეინახე, რადგან იქ შეიძლება იყოს შენი VS Code-ის სამუშაო გარემო.
-
-გსურს, დაგეხმარო იმის შემოწმებაში, შენი კოდი გარე (External) ფაილებს ითხოვს თუ ყველაფერი ერთ index ფაილშია მოქცეული?
-
-თქვენ თქვით
-კი
-
-Gemini-მ თქვა
-ძალიან კარგი. იმისათვის, რომ დარწმუნდე, ყველაფერი ერთ ფაილში გაქვს თუ არა, გადახედე შენს კოდს VS Code-ში (როგორც
-Screenshot (50).jpg-ში ჩანს):
-
-როგორ შეამოწმო კოდში:
-JavaScript: თუ შენი კოდი იწყება
-<script> თეგით და იქვე წერია ფუნქციები(მაგალითად: function updateTotals()), ეს ნიშნავს, რომ ლოგიკა index.html - შია ჩაშენებული და ცალკე.js ფაილი არ გჭირდება.
-
-        CSS(დიზაინი): მოძებნე კოდის დასაწყისში < style > თეგი.თუ სტილები იქ წერია, მაშინ დიზაინიც ამავე ფაილშია.თუ ხედავ ხაზს < link rel = "stylesheet" href = "style.css" >, მაშინ style.css ფაილიც აუცილებლად უნდა გადაიტანო ფლეშკაზე.
-
-            სურათები: შენს ფლეშკაზე უკვე დევს New DOC Document.jpg.დარწმუნდი, რომ კოდში სურათის სახელი ზუსტად ასე წერია(დიდი და პატარა ასოების გათვალისწინებით), რათა საიტმა მისი აღქმა შეძლოს.
-
-                რეკომენდაცია:
-    ვხედავ, რომ GitHub Desktop გაქვს დაინსტალირებული.საუკეთესო გზაა, ფლეშკაზე მთლიანი საქაღალდე "alika" დააკოპირო(რომელიც GitHub - ის რეპოზიტორიაა).ასე ყველა დამხმარე ფაილი(მათ შორის.git საქაღალდეც) შენთან იქნება.
-
-        გინდა, გადავხედოთ შენი კოდის დასაწყისს, რომ ზუსტად გითხრა, გაკლია თუ არა რაიმე ფაილი ? თუ კი, შეგიძლია index.html - ში კოდის ზედა ნაწილის(Header - ის) სკრინშოტიც გამომიგზავნო.
-
-თქვენ თქვით
-საქაღალდე alika შცვლილია ეხლს აქ ინახავს Custom Office Templates
-
-    Gemini - მ თქვა
-    გასაგებია.როგორც ჩანს, შენს კომპიუტერზე ფაილების მდებარეობა შეიცვალა და ახლა პროექტზე მუშაობ Custom Office Templates საქაღალდიდან.
-
-თუ გინდა დარწმუნდე, რომ ყველაფერი სწორად გაქვს, გააკეთე შემდეგი:
-
-    1. შეამოწმე ფაილების კავშირი
-სკრინშოტის მიხედვით, ფლეშკაზე(G: დისკი) გაქვს index ფაილი და New DOC Document.jpg.იმისათვის, რომ საიტზე სურათი გამოჩნდეს, შენს HTML კოდში სურათის გზა ასე უნდა ეწეროს:
-    src = "New DOC Document.jpg".
-
-2. რატომაა Custom Office Templates საქაღალდეში ?
-        როგორც წესი, VS Code და GitHub Desktop ამ საქაღალდეს ავტომატურად არ ირჩევენ.სავარაუდოდ, ფაილის შენახვისას(Save As) შემთხვევით მიეთითა ეს მისამართი.
-
-            რჩევა: თუ მომავალში GitHub - ზე ატვირთვა(Push) დაგჭირდება, GitHub Desktop - მა შეიძლება "ვერ დაინახოს" ცვლილებები, თუ ის ისევ ძველ alika საქაღალდეს ეძებს.
-
-3. საბოლოო შემოწმება ფლეშკისთვის
-    იმისათვის, რომ დარწმუნდე, ყველაფერი ერთ ფაილშია(Internal), გახსენი შენი index.html VS Code - ში და ნახე:
-
-თუ ხედავ < style > თეგს ბევრი კოდით — დიზაინი შიგნითაა.
-
-თუ ხედავ < script > თეგს(როგორც 50 - ე სკრინშოტზე) — ლოგიკაც შიგნითაა.
-
-        დასკვნა: თუ ამ ორ პუნქტს ხედავ და ფლეშკაზე index ფაილთან ერთად ის ერთი jpg სურათიც გაქვს, მაშინ სხვა არაფრის გადატანა არ გჭირდება, საიტი სრულყოფილად იმუშავებს ნებისმიერ კომპიუტერზე.
-
-გინდა დაგეხმარო GitHub Desktop - ში მისამართის გასწორებაში, რომ ისევ alika საქაღალდეს დაუკავშირდეს ?
-
-        თქვენ თქვით
-            < !DOCTYPE html >
-
-                <html lang="ka">
-
-                    <head>
-
-                        <meta charset="UTF-8">
-
-                            <title>ორი ნაპირი - საინჟინრო კალკულატორი</title>
-
-                            <style>
-
-                                body {font - family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
-
-                                .container {max - width: 1000px; margin: auto; }
-
-                                .card {background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; position: relative; border-top: 5px solid #2c3e50; }
-
-                                #clock {font - size: 20px; font-weight: bold; color: #e67e22; position: absolute; top: 20px; right: 25px; border: 2px solid #e67e22; padding: 5px 10px; border-radius: 8px; }
-
-                                .logo-section {text - align: center; margin-bottom: 20px; }
-
-                                .logo-img {width: 150px; border-radius: 10px; }
-
-                                .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-bottom: 15px; }
-
-                                label {font - weight: bold; font-size: 11px; color: #555; display: block; margin-bottom: 5px; text-transform: uppercase; }
-
-                                input, select {width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; background: #fff; }
-
-                                .res-box {padding: 15px; border-radius: 8px; background: #f8f9fa; border-left: 5px solid #3498db; margin-top: 10px; }
-
-                                .mat-row {display: flex; justify-content: space-between; font-weight: bold; font-size: 13px; padding: 5px 0; border-bottom: 1px dashed #ddd; }
-
-                                .total-line {font - size: 17px; font-weight: bold; color: #c0392b; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
-
-                                .add-btn {background: #27ae60; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-
-                                table {width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-
-                                th, td {padding: 12px; text-align: left; border-bottom: 1px solid #eee; font-size: 13px; }
-
-                                th {background: #2c3e50; color: white; }
-
-                                .grand-total {background: #2c3e50; color: white; padding: 20px; text-align: right; border-radius: 8px; margin-top: 10px; font-size: 22px; }
-
-                                .trans-box {margin - top: 15px; background: #ecf0f1; padding: 15px; border-radius: 8px; display: flex; align-items: center; justify-content: flex-end; gap: 15px; }
-
-                                @media print { .no - print {display: none; } }
-
-                            </style>
-
-                    </head>
-
-                    <body>
-
-
-
-                        <div class="container">
-
-                            <div class="card">
-
-                                <div id="clock">00:00:00</div>
-
-                                <div class="logo-section">
-
-                                    <img src="New DOC Document.jpg" alt="ორინაპირი" class="logo-img">
-
-                                        <p style="font-weight: bold; color: #7f8c8d; margin-top:10px;">სამშენებლო კალკულატორი - სრული ვერსია</p>
-
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="card no-print">
-
-                                <h3 style="color:#2980b9; margin-top:0;">�� არმატურა</h3>
-
-        <div class="grid">
-
-            <div><label>დიამეტრი (Ø)</label>
-
-                <select id="rDia" onchange="calc()">
-
-                    <option value="0.222">6 მმ</option><option value="0.395">8 მმ</option>
-
-                    <option value="0.617">10 მმ</option><option value="0.888" selected>12 მმ</option>
-
-                    <option value="1.21">14 მმ</option><option value="1.58">16 მმ</option>
-
-                    <option value="2.47">20 მმ</option><option value="3.85">25 მმ</option>
-
-                </select>
-
-            </div>
-
-            <div><label>წონა (კგ)</label><input type="number" id="rKG_input" value="1000" oninput="calc()"></div>
-
-            <div><label>1 ტონის ფასი (₾)</label><input type="number" id="rPriceT" value="2100" oninput="calc()"></div>
-
-        </div>
-
-        <div class="res-box">
-
-            <div class="mat-row"><span>გამოთვლილი მეტრაჟი:</span> <span><span id="rLen_res">0</span> გრძ.მ</span></div>
-
-            <div class="total-line">
-
-                <span>ჯამი: <span id="rSum">0</span> ₾</span>
-
-                <button class="add-btn" onclick="add('არმატურა', 'rKG_input', 'rSum', '0', 'კგ')">დამატება</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
- 
-
-    <div class="card no-print">
-
-        <h3 style="color:#e67e22; margin-top:0;">⚪ ბეტონი</h3>
-
-        <div class="grid">
-
-            <div><label>მოცულობა (მ³)</label><input type="number" id="cV" value="1" oninput="calc()"></div>
-
-            <div><label>მარკა</label>
-
-                <select id="cMark" onchange="calc()">
-
-                    <option value="220" data-sand="800" data-grav="1100">M100</option>
-
-                    <option value="260" data-sand="750" data-grav="1150">M150</option>
-
-                    <option value="320" data-sand="700" data-grav="1200">M200</option>
-
-                    <option value="360" data-sand="650" data-grav="1250">M250</option>
-
-                    <option value="400" data-sand="600" data-grav="1300" selected>M300</option>
-
-                    <option value="450" data-sand="550" data-grav="1350">M350/400</option>
-
-                </select>
-
-            </div>
-
-            <div><label>ხელობა (1მ³/₾)</label><input type="number" id="cWP" value="170" oninput="calc()"></div>
-
-        </div>
-
-        <div class="res-box" style="border-left-color: #e67e22;">
-
-            <div class="mat-row"><span>ცემენტი:</span> <span><span id="c_cem">0</span> კგ</span></div>
-
-            <div class="mat-row"><span>ქვიშა:</span> <span><span id="c_sand">0</span> კგ</span></div>
-
-            <div class="mat-row"><span>ღორღი:</span> <span><span id="c_grav">0</span> კგ</span></div>
-
-            <div class="total-line">
-
-                <div style="font-size: 13px;">მასალა: <span id="cMatSum">0</span> ₾ | ხელობა: <span id="cWorkSum">0</span> ₾</div>
-
-                <button class="add-btn" style="background:#e67e22" onclick="add('ბეტონი', 'cV', 'cMatSum', 'cWorkSum', 'მ³')">დამატება</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
- 
-
-    <div class="card no-print">
-
-        <h3 style="color:#8e44ad; margin-top:0;">�� ბლოკი</h3>
-
-        <div class="grid">
-
-            <div><label>ფართობი (მ²)</label><input type="number" id="bS" value="10" oninput="calc()"></div>
-
-            <div><label>ზომა</label>
-
-                <select id="bSize" onchange="updateBlockData(); calc();">
-
-                    <option value="10" data-p="1.10" data-w="1.20">10-იანი</option>
-
-                    <option value="20" data-p="1.60" data-w="1.50" selected>20-იანი</option>
-
-                    <option value="30" data-p="2.40" data-w="2.00">30-იანი</option>
-
-                </select>
-
-            </div>
-
-            <div><label>ბლოკის ფასი</label><input type="number" id="bPrice" value="1.60" oninput="calc()"></div>
-
-            <div><label>ხელობა (ცალზე)</label><input type="number" id="bWork" value="1.50" oninput="calc()"></div>
-
-        </div>
-
-        <div class="res-box" style="border-left-color: #8e44ad;">
-
-            <div class="mat-row"><span>რაოდენობა:</span> <span><span id="bCount">0</span> ცალი</span></div>
-
-            <div class="mat-row"><span>ცემენტი (წყობის):</span> <span><span id="bCem">0</span> კგ</span></div>
-
-            <div class="mat-row"><span>ქვიშა (წყობის):</span> <span><span id="bSand">0</span> მ³</span></div>
-
-            <div class="total-line">
-
-                <div style="font-size: 13px;">მასალა: <span id="bMatSum">0</span> ₾ | ხელობა: <span id="bWorkSum">0</span> ₾</div>
-
-                <button class="add-btn" style="background:#8e44ad" onclick="add('ბლოკი', 'bS', 'bMatSum', 'bWorkSum', 'მ²')">დამატება</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
- 
-
-    <div class="card no-print">
-
-        <h3 style="color:#34495e; margin-top:0;">�� კარ-ფანჯარა</h3>
-
-        <div class="grid">
-
-            <div><label>სახეობა</label>
-
-                <select id="wdType" onchange="updateWDPrice(); calc();">
-
-                    <optgroup label="ფანჯრები (მ²)">
-
-                        <option value="216">მეტალოპლასმასი თეთრი</option>
-
-                        <option value="245">მეტალოპლასმასი ფერადი</option>
-
-                        <option value="325">ალუმინი</option>
-
-                        <option value="375">იზოალუმინი</option>
-
-                    </optgroup>
-
-                    <optgroup label="კარები (ცალი)">
-
-                        <option value="900">ლითონის უბრალო</option>
-
-                        <option value="1200">ლითონის საშუალო</option>
-
-                        <option value="1650">ლითონის მაღალი ხარისხის</option>
-
-                    </optgroup>
-
-                </select>
-
-            </div>
-
-            <div><label id="wdLabel">რაოდენობა (მ²)</label><input type="number" id="wdQty" value="1" oninput="calc()"></div>
-
-            <div><label>ფასი (1 ერთეული)</label><input type="number" id="wdPrice" value="216" oninput="calc()"></div>
-
-        </div>
-
-        <div class="res-box" style="border-left-color: #34495e;">
-
-            <div class="mat-row"><span>შენიშვნა:</span> <span>ფასი მოიცავს სრულ მონტაჟს</span></div>
-
-            <div class="total-line">
-
-                <span>ჯამი: <span id="wdSum">0</span> ₾</span>
-
-                <button class="add-btn" style="background:#34495e" onclick="addWD()">დამატება</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
- 
-
-    <div class="card no-print">
-
-        <h3 style="color:#27ae60; margin-top:0;">�� ლესვა</h3>
-
-        <div class="grid">
-
-            <div><label>ფართობი (მ²)</label><input type="number" id="pS" value="50" oninput="calc()"></div>
-
-            <div><label>სისქე (სმ)</label>
-
-                <select id="pThick" onchange="calc()">
-
-                    <option value="2">2 სმ</option><option value="2.5" selected>2.5 სმ</option><option value="3">3 სმ</option>
-
-                </select>
-
-            </div>
-
-            <div><label>ხელობა (1მ²)</label><input type="number" id="pWork" value="20" oninput="calc()"></div>
-
-        </div>
-
-        <div class="res-box" style="border-left-color: #27ae60;">
-
-            <div class="mat-row"><span>ცემენტი:</span> <span><span id="pCem">0</span> კგ</span></div>
-
-            <div class="mat-row"><span>ქვიშა:</span> <span><span id="pSand">0</span> მ³</span></div>
-
-            <div class="total-line">
-
-                <div style="font-size: 13px;">მასალა: <span id="pMatSum">0</span> ₾ | ხელობა: <span id="pWorkSum">0</span> ₾</div>
-
-                <button class="add-btn" style="background:#27ae60" onclick="add('ლესვა', 'pS', 'pMatSum', 'pWorkSum', 'მ²')">დამატება</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
- 
-
-    <div class="card no-print">
-
-        <h3 style="color:#c0392b; margin-top:0;">�� სახურავი</h3>
-
-        <div class="grid">
-
-            <div><label>ფართობი (მ²)</label><input type="number" id="rfS" value="100" oninput="calc()"></div>
-
-            <div><label>ხის ფასი (1მ³)</label><input type="number" id="rfWoodP" value="900" oninput="calc()"></div>
-
-            <div><label>თუნუქი (1მ²)</label><input type="number" id="rfTinP" value="18.60" oninput="calc()"></div>
-
-            <div><label>ხელობა (1მ²)</label><input type="number" id="rfWorkP" value="40" oninput="calc()"></div>
-
-        </div>
-
-        <div class="res-box" style="border-left-color: #c0392b;">
-
-            <div class="mat-row"><span>ხის მასალა:</span> <span><span id="rfWoodQty">0</span> მ³</span></div>
-
-            <div class="total-line">
-
-                <div style="font-size: 13px;">მასალა: <span id="rfMatSum">0</span> ₾ | ხელობა: <span id="rfWorkSum">0</span> ₾</div>
-
-                <button class="add-btn" style="background:#c0392b" onclick="add('სახურავი', 'rfS', 'rfMatSum', 'rfWorkSum', 'მ²')">დამატება</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
- 
-
-    <div class="card no-print">
-
-        <h3 style="color:#16a085; margin-top:0;">�� იატაკის მოჭიმვა</h3>
-
-        <div class="grid">
-
-            <div><label>ფართობი (მ²)</label><input type="number" id="fS" value="100" oninput="calc()"></div>
-
-            <div><label>სისქე (სმ)</label><input type="number" id="fThick" value="5" oninput="calc()"></div>
-
-            <div><label>ხელობა (1მ²)</label><input type="number" id="fWorkP" value="12" oninput="calc()"></div>
-
-        </div>
-
-        <div class="res-box" style="border-left-color: #16a085;">
-
-            <div class="mat-row"><span>ცემენტი (250კგ/მ³):</span> <span><span id="fCemQty">0</span> კგ</span></div>
-
-            <div class="mat-row"><span>ქვიშა (კოეფ. 1.2):</span> <span><span id="fSandQty">0</span> მ³</span></div>
-
-            <div class="total-line">
-
-                <div style="font-size: 13px;">მასალა: <span id="fMatSum">0</span> ₾ | ხელობა: <span id="fWorkSum">0</span> ₾</div>
-
-                <button class="add-btn" style="background:#16a085" onclick="add('მოჭიმვა', 'fS', 'fMatSum', 'fWorkSum', 'მ²')">დამატება</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
- 
-
-    <div class="card">
-
-        <table id="mainTable">
-
-            <thead>
-
-                <tr><th>დასახელება</th><th>რაოდენობა</th><th>მასალა (₾)</th><th>ხელობა (₾)</th><th>ჯამი (₾)</th><th class="no-print"></th></tr>
-
-            </thead>
-
-            <tbody id="list"></tbody>
-
-        </table>
-
-        <div class="trans-box">
-
-            <label>�� ტრანსპორტირება (₾):</label>
-
-            <input type="number" id="transport" value="0" style="width:100px;" oninput="updateGrand()">
-
-        </div>
-
-        <div class="grand-total">სულ: <span id="grand">0</span> ₾</div>
-
-        <button class="no-print" onclick="window.print()" style="width:100%; padding:15px; margin-top:10px; cursor:pointer; font-weight:bold; background:#2c3e50; color:white; border:none; border-radius:5px;">��️ ბეჭდვა</button>
-
-    </div>
-
-</div>
-
- 
-
-<script>
-
-    function updateClock() { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }
-
-    setInterval(updateClock, 1000);
-
- 
-
-    function updateBlockData() {
-
-        let bS = document.getElementById('bSize');
-
-        let sel = bS.options[bS.selectedIndex];
-
-        document.getElementById('bPrice').value = sel.getAttribute('data-p');
-
-        document.getElementById('bWork').value = sel.getAttribute('data-w');
-
-    }
-
- 
-
-    function updateWDPrice() {
-
-        let wd = document.getElementById('wdType');
-
-        let sel = wd.options[wd.selectedIndex];
-
-        document.getElementById('wdPrice').value = sel.value;
-
-        document.getElementById('wdLabel').innerText = sel.parentElement.label === "კარები (ცალი)" ? "რაოდენობა (ცალი)" : "რაოდენობა (მ²)";
-
-    }
-
- 
-
-    function calc() {
-
-        // არმატურა
-
-        let rDia = parseFloat(document.getElementById('rDia').value);
-
-        let rKG = parseFloat(document.getElementById('rKG_input').value) || 0;
-
-        let rPT = parseFloat(document.getElementById('rPriceT').value) || 0;
-
-        document.getElementById('rLen_res').innerText = (rKG / rDia).toFixed(1);
-
-        document.getElementById('rSum').innerText = Math.round((rKG / 1000) * rPT);
-
- 
-
-        // ბეტონი
-
-        let cv = parseFloat(document.getElementById('cV').value) || 0;
-
-        let cS = document.getElementById('cMark');
-
-        let sel = cS.options[cS.selectedIndex];
-
-        let cK = parseFloat(sel.value), sK = parseFloat(sel.getAttribute('data-sand')), gK = parseFloat(sel.getAttribute('data-grav'));
-
-        document.getElementById('c_cem').innerText = Math.round(cv * cK);
-
-        document.getElementById('c_sand').innerText = Math.round(cv * sK);
-
-        document.getElementById('c_grav').innerText = Math.round(cv * gK);
-
-        let mCP = (cK * 0.32) + (sK * 0.06) + (gK * 0.032);
-
-        document.getElementById('cMatSum').innerText = Math.round(cv * mCP);
-
-        document.getElementById('cWorkSum').innerText = Math.round(cv * parseFloat(document.getElementById('cWP').value));
-
- 
-
-        // ბლოკი
-
-        let bs = parseFloat(document.getElementById('bS').value) || 0;
-
-        let bc = Math.ceil(bs * 12.5);
-
-        document.getElementById('bCount').innerText = bc;
-
-        let bCem = bc * 1.2; document.getElementById('bCem').innerText = Math.round(bCem);
-
-        let bSand = bc * 0.003; document.getElementById('bSand').innerText = bSand.toFixed(2);
-
-        let bWp = parseFloat(document.getElementById('bWork').value) || 0;
-
-        let bMp = parseFloat(document.getElementById('bPrice').value) || 0;
-
-        document.getElementById('bMatSum').innerText = Math.round((bc * bMp) + (bCem * 0.32) + (bSand * 60));
-
-        document.getElementById('bWorkSum').innerText = Math.round(bc * bWp);
-
- 
-
-        // კარ-ფანჯარა
-
-        let wdQ = parseFloat(document.getElementById('wdQty').value) || 0;
-
-        let wdP = parseFloat(document.getElementById('wdPrice').value) || 0;
-
-        document.getElementById('wdSum').innerText = Math.round(wdQ * wdP);
-
- 
-
-        // ლესვა
-
-        let ps = parseFloat(document.getElementById('pS').value) || 0;
-
-        let pt = parseFloat(document.getElementById('pThick').value);
-
-        let pCem = ps * pt * 3.6; document.getElementById('pCem').innerText = Math.round(pCem);
-
-        let pSand = ps * pt * 0.012; document.getElementById('pSand').innerText = pSand.toFixed(2);
-
-        document.getElementById('pMatSum').innerText = Math.round((pCem * 0.32) + (pSand * 60));
-
-        document.getElementById('pWorkSum').innerText = Math.round(ps * parseFloat(document.getElementById('pWork').value));
-
- 
-
-        // სახურავი
-
-        let rfs = parseFloat(document.getElementById('rfS').value) || 0;
-
-        let rfWq = rfs * 0.06;
-
-        document.getElementById('rfWoodQty').innerText = rfWq.toFixed(2);
-
-        let rfMc = (rfWq * parseFloat(document.getElementById('rfWoodP').value)) + (rfs * parseFloat(document.getElementById('rfTinP').value));
-
-        document.getElementById('rfMatSum').innerText = Math.round(rfMc);
-
-        document.getElementById('rfWorkSum').innerText = Math.round(rfs * parseFloat(document.getElementById('rfWorkP').value));
-
- 
-
-        // მოჭიმვა
-
-        let fs = parseFloat(document.getElementById('fS').value) || 0;
-
-        let ft = parseFloat(document.getElementById('fThick').value) || 0;
-
-        let fNetVolume = (fs * ft) / 100;
-
-        let fCem = fNetVolume * 250;
-
-        let fSand = fNetVolume * 1.2;
-
-        document.getElementById('fCemQty').innerText = Math.round(fCem);
-
-        document.getElementById('fSandQty').innerText = fSand.toFixed(1);
-
-        let fMatCost = (fCem * 0.32) + (fSand * 60);
-
-        document.getElementById('fMatSum').innerText = Math.round(fMatCost);
-
-        document.getElementById('fWorkSum').innerText = Math.round(fs * parseFloat(document.getElementById('fWorkP').value));
-
-    }
-
- 
-
-    let itemsTotal = 0;
-
-    function add(name, qtyId, matSumId, workSumId, unit) {
-
-        let q = document.getElementById(qtyId).value;
-
-        let mat = parseInt(document.getElementById(matSumId).innerText) || 0;
-
-        let work = workSumId === '0' ? 0 : (parseInt(document.getElementById(workSumId).innerText) || 0);
-
-        let rowSum = mat + work;
-
-        document.getElementById('list').innerHTML += `<tr><td><b>${name}</b></td><td>${q} ${unit}</td><td>${mat} ₾</td><td>${work} ₾</td><td><b>${rowSum} ₾</b></td><td class="no-print" onclick="this.parentElement.remove(); updateTotals();" style="color:red; cursor:pointer;">✕</td></tr>`;
-
-        updateTotals();
-
-    }
-
- 
-
-    function addWD() {
-
-        let sel = document.getElementById('wdType').options[document.getElementById('wdType').selectedIndex];
-
-        let name = sel.text;
-
-        let unit = document.getElementById('wdLabel').innerText.includes("ცალი") ? "ცალი" : "მ²";
-
-        let qty = document.getElementById('wdQty').value;
-
-        let total = parseInt(document.getElementById('wdSum').innerText);
-
-        // კარ-ფანჯარაში მასალა და ხელობა ერთადაა, ამიტომ მასალაში ვწერ მთლიან ფასს, ხელობაში - 0
-
-        document.getElementById('list').innerHTML += `<tr><td><b>${name}</b></td><td>${qty} ${unit}</td><td>${total} ₾</td><td>0 ₾</td><td><b>${total} ₾</b></td><td class="no-print" onclick="this.parentElement.remove(); updateTotals();" style="color:red; cursor:pointer;">✕</td></tr>`;
-
-        updateTotals();
-
-    }
-
- 
-
-    function updateTotals() {
-
-        let rows = document.getElementById('list').rows;
-
-        let currentTotal = 0;
-
-        for (let i = 0; i < rows.length; i++) {
-
-            currentTotal += parseInt(rows[i].cells[4].innerText.replace(' ₾', ''));
-
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ჩვენ აქ ვართ - ოსტატების ბაზა</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e67e22;
+            --light: #f4f7f6;
         }
 
-        itemsTotal = currentTotal;
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--light);
+            margin: 0;
+            padding: 20px;
+        }
 
-        updateGrand();
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
 
-    }
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
 
- 
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
 
-    function updateGrand() {
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-        let trans = parseInt(document.getElementById('transport').value) || 0;
+        .filter-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
 
-        document.getElementById('grand').innerText = itemsTotal + trans;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
 
-    }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+        }
 
-    window.onload = calc;
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            background: #ddd;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+        }
 
-</script>
+        .contact-btn {
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
 
-</body>
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: red;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: bold;
+        }
 
-</html>
+        .add-profile {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 40px auto;
+            border: 2px dashed var(--accent);
+        }
 
-Gemini-მ თქვა
-მშვენიერია! რადგან მთლიანი კოდი გამომიგზავნე, შემიძლია დანამდვილებით გითხრა: შენი პროექტი სრულად ავტონომიურია.
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
 
-აი, რატომ არის შენი ფაილები უსაფრთხოდ და რას ნიშნავს ეს კოდი პრაქტიკაში:
-
-1. ყველაფერი ერთ ფაილშია (Internal)
-შენი HTML კოდი შეიცავს როგორც სტილებს (<style>
-    თეგებს შორის),
-    ისე ლოგიკას (<script> თეგებს შორის). ეს ნიშნავს,
-    რომ: არ გჭირდება ცალკე style.css ფაილი. არ გჭირდება ცალკე script.js ფაილი. ერთადერთი გარე რესურსი,
-    რომელსაც კოდი ითხოვს,
-    არის სურათი: <img src="New DOC Document.jpg" ...>. 2. ფლეშკაზე შესანახი ფაილების სია იმისათვის,
-    რომ კალკულატორმა სხვა კომპიუტერზეც ზუსტად ისე იმუშაოს,
-    როგორც შენთან,
-    ფლეშკაზე (ან ნებისმიერ საქაღალდეში) მხოლოდ ეს ორი ფაილი უნდა გქონდეს: index.html (ან უბრალოდ index, როგორც სკრინშოტზე ჩანს). New DOC Document.jpg (შენი ლოგო). მნიშვნელოვანია: ეს ორი ფაილი უნდა იდოს გვერდიგვერდ,
-    ერთსა და იმავე ადგილას. თუ სურათს სხვა საქაღალდეში ჩააგდებ,
-    კალკულატორი მას ვეღარ დაინახავს. 3. მცირე შესწორება კოდში (უსაფრთხოებისთვის) შენს კოდში,
-    updateTotals ფუნქციაში,
-    გაქვს ხაზი: currentTotal+=parseInt(rows[i].cells[4].innerText.replace(' ₾', ''));
-
-    თუ მომავალში რომელიმე ფასი ათწილადი იქნება (მაგალითად 2100.5 ₾),
-    parseInt მას მაინც დაამრგვალებს. თუ გინდა,
-    რომ კალკულატორი თეთრებშიც ზუსტი იყოს,
-    შეგიძლია parseInt შეცვალო parseFloat-ით. თუმცა,
-    რადგან სამშენებლო მასალებში ძირითადად მთელ რიცხვებს იყენებ,
-    ახლანდელი ვერსიაც მშვენივრად იმუშავებს. რა შეგვიძლია გავაკეთოთ შემდეგ? ვხედავ,
-    რომ ბეჭდვის ღილაკი უკვე გაქვს. გსურს,
-    დავამატოთ ფუნქცია,
-    რომელიც ავტომატურად შეინახავს გათვლებს Excel-ის ფაილად,
-    თუ ბეჭდვა შენთვის საკმარისია? თქვენ თქვით საკმარისია. ეხლა რისი კითხვა მინდა სხვა საიტი რომ გავაკეთოთ როგორ მოვიქცეთ? Gemini-მ თქვა ახალი საიტის შექმნა ძალიან მარტივია,
-    მით უმეტეს,
-    როცა უკვე გაქვს გამოცდილება. პროცესი თითქმის იგივეა,
-    რაც „ორი ნაპირის“ შემთხვევაში გაიარე. აი,
-    ნაბიჯ-ნაბიჯ ინსტრუქცია,
-    როგორ დაიწყო ახალი პროექტი: 1. ახალი საქაღალდის შექმნა პირველ რიგში,
-    შენს კომპიუტერში შექმენი სულ ახალი საქაღალდე (მაგალითად, დაარქვი „ახალი-პროექტი“). არ აურიო ის „Custom Office Templates“-ში ან ძველ საქაღალდეებში. 2. ფაილების მომზადება ამ ახალ საქაღალდეში შექმენი ცარიელი ტექსტური ფაილი და დაარქვი index.html. ეს იქნება შენი ახალი საიტის „გული“. 3. GitHub-ზე ახალი რეპოზიტორიის (Repository) შექმნა თუ გინდა,
-    რომ ეს საიტიც ინტერნეტში იყოს ხელმისაწვდომი (როგორც kanudosi4-sys.github.io/alika/): შედი შენს GitHub პროფილზე. დააჭირე ღილაკს New (Repository-ებთან). დაარქვი სახელი (მაგალითად: proeqti2). GitHub Desktop-ის საშუალებით ეს ახალი რეპოზიტორია გადმოწერე (Clone) შენს კომპიუტერში. 4. კოდის წერა გახსენი VS Code,
-    აირჩიე ეს ახალი საქაღალდე და დაიწყე წერა. თუ ძველი კალკულატორის სტრუქტურა მოგწონს,
-    შეგიძლია საწყისისთვის შენივე კოდი დააკოპირო და მერე შეცვალო შინაარსი. 5. გამოქვეყნება (Deploy) როცა კოდს მორჩები: GitHub Desktop-ში გააკეთე Commit და Push. GitHub-ის Settings-ში ჩართე GitHub Pages. რა ტიპის საიტის გაკეთებას აპირებ? თუ მეტყვი იდეას (მაგალითად: მაღაზია, პორტფოლიო თუ სხვა ტიპის კალკულატორი),
-    შემიძლია დაგიწერო საწყისი "ჩონჩხი"(Starter Code),
-    რომელსაც პირდაპირ ჩასვამ ახალ ფაილში და იქიდან გააგრძელებ მუშაობას. გინდა,
-    დაგიმზადო ახალი საიტის საწყისი კოდი? თქვენ თქვით ესეთი რაღაც მინდა: არის საიტები შექმნილი სადაც იტვიტთება ვაკანსიები და ხალხი ეძებს გამოცხადებულ ვაკანსიას შესაფერისი დასაქმებისთვის. მე მინდა გავაკეთო პირიქით საიტი ბაზა სადაც ვისაც სამსახური უნდა იქნება რამდენიმე ძირითადი ცხრილი სადაც პირობითად ძირითად მონაცემებს შეავსებს და ატვირთავს თავის სივს. და დაინტერესებული პირები ვთქვათ რამე აქვს გასაკეთებელი ან ასაშენებელი,
-    გასარემონტებელი,
-    ან დღიური მუშა ჭირდება ან რამე მომსახურება უნდა თუნდაც მანქანით დიდი ან სპეც ტექნიკით ან კომპანიები თვითონ შევლენ და შესაფერის კანდიდატურას აარჩევენ და დაუკავშირდებიან ნუ შინაარსი ესეთია დანარჩენი ნელნელა გზა და გზა გვიჩვენებს. რას იქრობ? ჩემო მეგობარო Gemini-მ თქვა ეს არაჩვეულებრივი იდეაა,
-    ჩემო მეგობარო ! ფაქტობრივად,
-    შენ გინდა შექმნა "კადრებისა და სერვისების ბაზა" . ტრადიციული საიტები (მაგალითად, jobs.ge) დამსაქმებელზეა ორიენტირებული,
-    შენი იდეა კი დასაქმების მსურველს და ხელოსანს აყენებს ცენტრში. ეს განსაკუთრებით აქტუალურია მშენებლობის,
-    რემონტის და სპეც-ტექნიკის სფეროში. ასეთი საიტის აწყობა ცოტა უფრო რთულია,
-    ვიდრე კალკულატორისა,
-    რადგან აქ მონაცემების შენახვა (Database) და გაფილტვრა დაგჭირდება. აი,
-    როგორ წარმოვიდგენ ამ პროექტის სტრუქტურას: 1. საიტის ძირითადი სექციები საიტი რომ მოსახერხებელი იყოს,
-    უნდა დაიყოს კატეგორიებად: ხელოსნები: (ელექტრიკოსი, მლესავი, სანტექნიკი). მძიმე ტექნიკა: (ამწე, ექსკავატორი, თვითმცლელი). დღიური მუშები: (ვისაც სწრაფად სჭირდება დამხმარე ძალა). სპეციალისტები: (ინჟინრები, არქიტექტორები). 2. რეგისტრაციის ფორმა (რა მონაცემები უნდა შეავსონ?) იმისათვის,
-    რომ "ბაზა" შეივსოს,
-    ადამიანმა უნდა შეავსოს ასეთი ცხრილი: სახელი/გვარი (ან ბრიგადის დასახელება). სპეციალობა (მაგ: "ექსკავატორის ოპერატორი"). გამოცდილება (წლები). ტექნიკის ფოტო/CV (ატვირთვის ღილაკი). საკონტაქტო ნომერი. 3. ტექნიკური მხარე (რა დაგვჭირდება?) აქ არის ერთი მთავარი განსხვავება: კალკულატორი მუშაობს მხოლოდ შენს ბრაუზერში,
-    "ბაზის" საიტს კი სჭირდება ადგილი,
-    სადაც ამ ხალხის მონაცემები დაიწერება და სხვები დაინახავენ. Frontend (HTML/CSS/JS): ამას უკვე კარგად ართმევ თავს. ეს იქნება საიტის ვიზუალი. Backend & Database: რადგან ჯერ დამწყები ხარ,
-    შეგვიძლია გამოვიყენოთ უფასო და მარტივი "Backend" სისტემები (მაგალითად: Firebase ან Supabase). ისინი საშუალებას მოგცემს,
-    რომ მომხმარებლის მიერ შევსებული ფორმა სადმე შეინახოს. 4. პირველი ნაბიჯი (საწყისი გეგმა) მოდი,
-    ჯერ გავაკეთოთ სადემონსტრაციო გვერდი (Landing Page),
-    სადაც: იქნება ლამაზი ცხრილი,
-    სადაც "ვითომ" უკვე წერია რამდენიმე ხელოსანი. იქნება ღილაკი "დაამატე შენი მონაცემები" . იქნება ფილტრი (მაგალითად: აირჩიე "მშენებელი" და მხოლოდ მშენებლები დატოვოს). რას იტყვი,
-    დავიწყოთ ამ ახალი პროექტის "ჩონჩხის" აწყობა? შეგვიძლია დავარქვათ,
-    მაგალითად,
-    "ოსტატების ბაზა" ან რამე მსგავსი. თუ გინდა,
-    პირველადი HTML სტრუქტურა მოგიმზადო,
-    სადაც ეს კატეგორიები იქნება გათვალისწინებული. თქვენ თქვით დავიწყოთ და დავარქვათ ჩვენ აქ ვართ Gemini-მ თქვა შესანიშნავი სახელია ! „ჩვენ აქ ვართ“ ზუსტად გამოხატავს საიტის არსს — ადამიანები ამბობენ,
-    რომ ისინი მზად არიან სამუშაოსთვის და დამკვეთს შეუძლია მათი აქ პოვნა. რადგან ეს პროექტი მონაცემთა ბაზაზეა ორიენტირებული,
-    პირველ ეტაპზე აუცილებელია შევქმნათ გამართული ვიზუალური ჩონჩხი,
-    სადაც იქნება: ფილტრები (კატეგორიების მიხედვით). ოსტატების ბარათები (პროფილის სურათით და ინფორმაციით). რეგისტრაციის ფორმა (საიდანაც მომხმარებელი მონაცემებს გამოგიგზავნის). აი,
-    საწყისი კოდი შენი ახალი პროექტისთვის. შექმენი ახალი ფაილი index.html და ჩასვი ეს კოდი: HTML < !DOCTYPE html><html lang="ka"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ჩვენ აქ ვართ - ოსტატების ბაზა</title><style> :root {
-        --primary: #2c3e50;
-        --accent: #e67e22;
-        --light: #f4f7f6;
-    }
-
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background: var(--light);
-        margin: 0;
-        padding: 20px;
-    }
-
-    .header {
-        text-align: center;
-        padding: 40px 20px;
-        background: var(--primary);
-        color: white;
-        border-radius: 15px;
-        margin-bottom: 30px;
-    }
-
-    /* ფილტრების სექცია */
-    .filters {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 30px;
-        flex-wrap: wrap;
-    }
-
-    .filter-btn {
-        padding: 10px 20px;
-        border: none;
-        background: white;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: 0.3s;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-        background: var(--accent);
-        color: white;
-    }
-
-    /* ბარათების ბადე */
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
-    }
-
-    .card {
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        text-align: center;
-    }
-
-    .profile-img {
-        width: 80px;
-        height: 80px;
-        background: #ddd;
-        border-radius: 50%;
-        margin: 0 auto 15px;
-        overflow: hidden;
-    }
-
-    .profile-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .status {
-        font-size: 12px;
-        color: green;
-        font-weight: bold;
-    }
-
-    .contact-btn {
-        display: block;
-        margin-top: 15px;
-        padding: 10px;
-        background: var(--primary);
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-    }
-
-    /* ფორმის სექცია */
-    .add-profile {
-        background: #fff;
-        padding: 30px;
-        border-radius: 15px;
-        max-width: 600px;
-        margin: 40px auto;
-        border: 2px dashed var(--accent);
-    }
-
-    input,
-    select,
-    textarea {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-sizing: border-box;
-    }
-
-    .submit-btn {
-        width: 100%;
-        padding: 15px;
-        background: var(--accent);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-</style>
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="header">
+        <img src="New DOC Document.jpg" alt="Logo" class="logo">
         <h1>ჩვენ აქ ვართ</h1>
-        <p>იპოვე საჭირო სპეციალისტი ან დაამატე შენი პროფილი ბაზაში</p>
-    </div>
-
-    <div class="filters">
-        <button class="filter-btn active">ყველა</button>
-        <button class="filter-btn">მშენებელი</button>
-        <button class="filter-btn">ხელოსანი</button>
-        <button class="filter-btn">სპეც-ტექნიკა</button>
-        <button class="filter-btn">მძღოლი</button>
+        <p>ოსტატებისა და სერვისების მონაცემთა ბაზა</p>
     </div>
 
     <div class="grid" id="profileGrid">
-        <div class="card">
-            <div class="profile-img">
-                <img src="https://via.placeholder.com/80" alt="პროფილი">
-            </div>
-            <h3>გიორგი კ.</h3>
-            <p><strong>სპეციალობა:</strong> მლესავი</p>
-            <p><strong>გამოცდილება:</strong> 8 წელი</p>
-            <span class="status">● ხელმისაწვდომია</span>
-            <a href="tel:555123456" class="contact-btn">დაკავშირება</a>
-        </div>
     </div>
 
     <div class="add-profile">
         <h2 style="text-align: center; color: var(--accent);">დაამატე შენი პროფილი</h2>
         <form id="regForm">
-            <input type="text" placeholder="სახელი და გვარი" required>
-            <select>
-                <option value="">აირჩიე კატეგორია</option>
-                <option value="msh">მშენებელი</option>
-                <option value="xel">ხელოსანი</option>
-                <option value="tech">სპეც-ტექნიკა</option>
+            <input type="text" id="name" placeholder="სახელი და გვარი" required>
+            <select id="category">
+                <option value="ხელოსანი">ხელოსანი</option>
+                <option value="მშენებელი">მშენებელი</option>
+                <option value="სპეც-ტექნიკა">სპეც-ტექნიკა</option>
+                <option value="მძღოლი">მძღოლი</option>
             </select>
-            <input type="number" placeholder="გამოცდილება (წლები)">
-            <input type="tel" placeholder="ტელეფონის ნომერი" required>
-            <textarea placeholder="მოკლე ინფორმაცია შენს შესახებ (რა ტექნიკა გაქვს, რა სამუშაოს ასრულებ)"></textarea>
-            <p style="font-size: 12px; color: #666;">ატვირთეთ CV ან ფოტო (მალე დაემატება)</p>
+            <input type="number" id="exp" placeholder="გამოცდილება (წლები)">
+            <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required>
+            <textarea id="info" placeholder="მოკლე ინფორმაცია..."></textarea>
             <button type="submit" class="submit-btn">ბაზაში დამატება</button>
         </form>
     </div>
 
     <script>
-                            // მომავალში აქ დავწერთ ლოგიკას, რომელიც ფორმიდან მონაცემებს აიღებს 
-                            // და ცხრილში (ან ბაზაში) დაამატებს
-                            document.getElementById('regForm').onsubmit = function(e) {
-                                e.preventDefault();
-                            alert('მადლობა! თქვენი მონაცემები მიღებულია (სადემონსტრაციო რეჟიმი)');
-    };
-    </script>
-
-</body>
-
-</html>
-რას ვაკეთებთ შემდეგ?
-ეს არის მხოლოდ საიტის „სახე“. რომ გახდეს ნამდვილი ბაზა, დაგვჭირდება ორი რამ:
-
-მონაცემთა შენახვა: როცა ვინმე ფორმას შეავსებს, ის არ უნდა დაიკარგოს გვერდის განახლებისას.
-
-ძებნის ფუნქცია: რომ დამკვეთმა მარტივად იპოვოს, მაგალითად, „ექსკავატორი“.
-
-როგორ ფიქრობ, პირველ ეტაპზე რომელი კატეგორიებია ყველაზე პრიორიტეტული დასამატებლად? (შეგვიძლია კატეგორიების სია უფრო
-დავაკონკრეტოთ).
-
-თქვენ თქვით
-აქ ვქმნით ახალ საქაღალდეს ?თავიდან უველაფერი ისე დავიწყოთ რამე არ გავაფუჭოთ
-
-Gemini-მ თქვა
-სავსებით მართალი ხარ, სიფრთხილეს თავი არ ტკივა. მოდი, ყველაფერი ნულიდან, სუფთა ფურცლიდან დავიწყოთ, რომ შენი არსებული
-კალკულატორი („ორი ნაპირი“) ხელუხლებელი და დაცული დარჩეს.
-
-აი, ზუსტი ნაბიჯები, როგორ შევქმნათ ახალი სივრცე პროექტისთვის „ჩვენ აქ ვართ“:
-
-1. შექმენი ახალი საქაღალდე
-შენს კომპიუტერში (მაგალითად, Desktop-ზე ან Documents-ში) შექმენი სულ ახალი საქაღალდე.
-
-დაარქვი მას: chven-aq-vart (უმჯობესია გამოიყენო ლათინური ასოები, რომ შემდეგ GitHub-ზე პრობლემა არ შეიქმნას).
-
-არავითარ შემთხვევაში არ ჩაწერო ახალი კოდი alika საქაღალდეში ან Custom Office Templates-ში.
-
-2. გახსენი ეს საქაღალდე VS Code-ში
-გახსენი Visual Studio Code.
-
-ზედა მენიუში აირჩიე: File -> Open Folder.
-
-მოძებნე და მონიშნე შენი ახლად შექმნილი საქაღალდე chven-aq-vart.
-
-3. შექმენი მთავარი ფაილი
-VS Code-ის მარცხენა პანელში (Explorer) დააჭირე ფაილის დამატების ღილაკს (New File) და დაარქვი:
-
-index.html
-
-4. ჩასვი საწყისი კოდი
-გახსენი ეს ცარიელი index.html და ჩასვი ის კოდი, რომელიც წინა წერილში გამოგიგზავნე (სადაც ფორმა და ოსტატების ბარათებია).
-
-5. სურათების მომზადება
-თუ ამ საიტისთვისაც გინდა ლოგოს გამოყენება, დააკოპირე შენი სურათი (მაგალითად, New DOC Document.jpg) და ჩააგდე ამავე ახალ
-საქაღალდეში.
-
-რატომ ვაკეთებთ ასე?
-ამით ჩვენ ვქმნით სრულიად დამოუკიდებელ სამყაროს. თუ რამეს „გავაფუჭებთ“ ახალ პროექტში, შენი ძველი კალკულატორი, რომელიც
-უკვე მუშაობს GitHub-ზე, დარჩება უსაფრთხოდ.
-
-მზად ხარ? როგორც კი ამ საქაღალდეს შექმნი და კოდს ჩასვამ, მითხარი და დავიწყოთ ფორმის ფუნქციონალზე მუშაობა — რომ „ბაზაში
-დამატება“ რეალურად მუშაობდეს.
-
-გინდა, რომ GitHub-ზეც ეხლავე შევქმნათ ამისთვის ახალი ადგილი (Repository), თუ ჯერ ადგილობრივად, შენს კომპიუტერში
-დავხვეწოთ?
-
-Gemini-მ თქვა
-სწორია, ზუსტად ასე უნდა მოვიქცეთ. სკრინშოტიდან (Screenshot 57.jpg) ჩანს, რომ შენ უკვე გააკეთე ყველაზე მნიშვნელოვანი
-ნაბიჯი:
-
-ახალი საქაღალდე: შექმენი საქაღალდე სახელად CHVEN-AQ-VART.
-
-ფაილების იზოლაცია: ამ საქაღალდეში უკვე გაქვს ცალკე index.html და New DOC Document.jpg.
-
-ამით შენმა კომპიუტერმა უკვე „იცის“, რომ ეს სულ სხვა პროექტია და ძველ კალკულატორს არაფერი დაემართება.
-
-რა უნდა გავაკეთოთ ახლა?
-იმისათვის, რომ საიტი „გაცოცხლდეს“ და ფორმამ მუშაობა დაიწყოს, მოდი, კოდში დავამატოთ ლოგიკა, რომელიც მომხმარებლის მიერ
-შეყვანილ მონაცემებს ეკრანზე გამოაჩენს.
-
-გახსენი შენი ახალი index.html და </script> თეგის წინ ჩაამატე ეს კოდი:
-
-JavaScript
-// ფორმის დამუშავება
-document.getElementById('regForm').onsubmit = function(e) {
-e.preventDefault();
-
-// მონაცემების წამოღება ინპუტებიდან
-const name = this.querySelectorAll('input')[0].value;
-const category = this.querySelector('select').selectedOptions[0].text;
-const exp = this.querySelectorAll('input')[1].value;
-const phone = this.querySelectorAll('input')[2].value;
-const info = this.querySelector('textarea').value;
-
-// ახალი ბარათის შექმნა
-const newCard = document.createElement('div');
-newCard.className = 'card';
-newCard.innerHTML = `
-<div class="profile-img">
-    <img src="https://via.placeholder.com/80" alt="პროფილი">
-</div>
-<h3>${name}</h3>
-<p><strong>სპეციალობა:</strong> ${category}</p>
-<p><strong>გამოცდილება:</strong> ${exp} წელი</p>
-<p style="font-size: 12px; color: #666;">${info}</p>
-<span class="status">● ხელმისაწვდომია</span>
-<a href="tel:${phone}" class="contact-btn">დაკავშირება</a>
-`;
-
-// ბარათის დამატება გვერდზე
-document.getElementById('profileGrid').appendChild(newCard);
-
-// ფორმის გასუფთავება
-this.reset();
-alert('თქვენი პროფილი წარმატებით დაემატა!');
-};
-შემდეგი ნაბიჯები:
-ტესტირება: შეინახე ფაილი (Ctrl+S), გახსენი ბრაუზერში და სცადე ფორმის შევსება. ნახე, თუ დაემატება ახალი ბარათი ქვედა
-სიაში.
-
-მონაცემთა შენახვა: ახლა ეს მონაცემები მხოლოდ გვერდის განახლებამდე რჩება. შემდეგ ეტაპზე გასწავლი, როგორ გამოვიყენოთ
-localStorage, რომ შენს კომპიუტერში მონაცემები არ დაიკარგოს.
-
-გინდა, რომ ახლავე დავამატოთ მონაცემების შენახვის ფუნქცია, თუ ჯერ ვიზუალურად დავხვეწოთ ბარათები?
-
-თქვენ თქვით
-დავასეივე აქ არაფერი ჩანს?
-
-Gemini-მ თქვა
-სკრინშოტიდან (Screenshot 57.jpg) ჩანს, რომ VS Code-ში ფაილები სწორად გაქვს გახსნილი და საქაღალდეც CHVEN-AQ-VART
-იზოლირებულია. თუმცა, თუ კითხულობ, რატომ არ ჩანს ცვლილებები GitHub Desktop-ში (როგორც Screenshot 58.jpg-ზეა), ამას თავისი
-მიზეზი აქვს:
-
-რატომ არ ჩანს ცვლილებები GitHub Desktop-ში?
-შენი GitHub Desktop ამჟამად ისევ ძველ რეპოზიტორიას, „alika“-ს უყურებს. რადგან შენ ახალი პროექტი სულ სხვა საქაღალდეში
-(CHVEN-AQ-VART) შექმენი, პროგრამა მას ვერ ხედავს, სანამ ახალ რეპოზიტორიად არ დაამატებ.
-
-როგორ გამოვაჩინოთ?
-თუ გინდა, რომ ეს ახალი პროექტიც GitHub-ზე აიტვირთოს, მიჰყევი ამ ნაბიჯებს GitHub Desktop-ში:
-
-ზედა მარცხენა კუთხეში დააჭირე File -> Add Local Repository.
-
-აირჩიე შენი ახალი საქაღალდე CHVEN-AQ-VART.
-
-პროგრამა გეტყვის, რომ ეს არ არის რეპოზიტორია და შემოგთავაზებს: "create a repository here" — დააჭირე ამას.
-
-ამის შემდეგ, შენი index.html გამოჩნდება მარცხენა პანელში და შეძლებ მის ატვირთვას (Publish).
-
-ვიზუალური ნაწილი
-ბრაუზერში რომ გახსნი შენს ახალ index.html-ს, უნდა ხედავდე სათაურს „ჩვენ აქ ვართ“ და სარეგისტრაციო ფორმას.
-
-მოდი, ჯერ ასე მოვიქცეთ:
-
-გახსენი შენი ახალი საქაღალდე ჩვეულებრივად (Folder-იდან).
-
-ორჯერ დააჭირე index.html-ს.
-
-დამიწერე, გამოჩნდა თუ არა საიტი ბრაუზერში?
-
-თუ გამოჩნდა, შემდეგ ერთად დავამატებთ მონაცემების შენახვის ფუნქციას (localStorage), რომ რაც ჩაწერ, კომპიუტერმა
-დაიმახსოვროს. გინდა დავიწყოთ შენახვის ლოგიკის აწყობა?
-
-Gemini-მ თქვა
-სკრინშოტიდან (Screenshot 59.jpg) ჩანს, რომ ზუსტად იქ ხარ, სადაც საჭიროა! GitHub Desktop-მა დაინახა შენი ახალი საქაღალდე
-chven-aq-vart, მაგრამ გეუბნება, რომ ის ჯერ არ არის Git რეპოზიტორია.
-
-აი, როგორ დავასრულოთ ეს პროცესი, რომ საიტი ინტერნეტში გამოჩნდეს:
-
-1. GitHub-ზე ახალი "სახლის" შექმნა
-ფანჯარაში, რომელიც სკრინშოტზე გაქვს, დააჭირე ლურჯ ტექსტს: "create a repository here".
-
-გამოსულ ფანჯარაში სახელი (Name) უკვე ეწერება: chven-aq-vart.
-
-დააჭირე Create Repository.
-
-2. კოდის პირველი ატვირთვა (Push)
-ახლა GitHub Desktop-ის მარცხენა პანელში გამოჩნდება შენი index.html და სურათი.
-
-ქვედა მარცხენა კუთხეში, Summary-ში ჩაწერე სიტყვა: დაწყება.
-
-დააჭირე ლურჯ ღილაკს Commit to main.
-
-ზედა მენიუში გამოჩნდება ღილაკი Publish repository — დააჭირე მას, რომ კოდი ინტერნეტში (GitHub-ის სერვერზე) გადავიდეს.
-
-3. როგორ ვნახოთ საიტი ბრაუზერში?
-როგორც კი ატვირთავ, შედი შენს GitHub პროფილზე ბრაუზერში:
-
-გახსენი ახალი რეპოზიტორია chven-aq-vart.
-
-გადადი Settings -> Pages.
-
-Build and deployment სექციაში აირჩიე main ბრენჩი და დააჭირე Save.
-
-დაახლოებით 1-2 წუთში მოგცემს ბმულს, სადაც შენი ახალი საიტი „ჩვენ აქ ვართ“ უკვე ყველასთვის ხელმისაწვდომი იქნება.
-
-რა ხდება ბრაუზერში?
-ახლა, როცა შენს კომპიუტერში index.html-ს ორჯერ დააჭერ და გახსნი, უნდა ხედავდე იმ სარეგისტრაციო ფორმას, რომელიც ერთად
-დავწერეთ.
-
-გინდა, რომ დაგეხმარო კოდის იმ ნაწილის დაწერაში, რომელიც ამ ფორმას "ჭკვიანს" გახდის და მონაცემებს შენს ბრაუზერშივე
-შეინახავს? (რომ გვერდის გადატვირთვისას ხალხის სია არ წაიშალოს).
-
-თქვენ თქვით
-არ ქნა
-
-Gemini-მ თქვა
-ყველაფერი რიგზეა, არ ინერვიულო! სკრინშოტიდან (Screenshot 60.png) ჩანს, რომ GitHub Desktop-მა უკვე აღიქვა შენი ახალი
-რეპოზიტორია სახელად chven-aq-vart.
-
-მიზეზი, რის გამოც მარცხენა მხარეს ფაილები არ ჩანს, არის ის, რომ შენ უკვე გააკეთე საწყისი „Commit“. ახლა უბრალოდ უნდა
-დაასრულო პროცესი, რომ საიტი ინტერნეტში გაეშვას.
-
-მიჰყევი ამ ნაბიჯებს:
-
-1. საიტის ინტერნეტში გაშვება (Publish)
-GitHub Desktop-ის ზედა ზოლში დაინახავ ღილაკს Publish repository (ან თუ უკვე დააჭირე, ეწერება Push origin). დააჭირე მას.
-ეს შენს კოდს კომპიუტერიდან GitHub-ის სერვერზე გადაიტანს.
-
-2. GitHub Pages-ის ჩართვა
-როგორც კი აიტვირთება, გააკეთე შემდეგი:
-
-შედი ბრაუზერში შენს GitHub გვერდზე.
-
-გახსენი რეპოზიტორია chven-aq-vart.
-
-გადადი Settings (ზედა მენიუში) -> მარცხნივ აირჩიე Pages.
-
-Branch სექციაში აირჩიე main და დააჭირე Save.
-
-3. როგორ შევამოწმოთ მუშაობს თუ არა?
-დაახლოებით 1 წუთში შენი საიტი ხელმისაწვდომი იქნება ბმულზე:
-https://kanudosi4-sys.github.io/chven-aq-vart/
-
-რატომ არის VS Code-ში "სიცარიელე"?
-შენს Screenshot (57).jpg-ში ჩანს, რომ VS Code-ში გახსნილი გაქვს index.html, მაგრამ კოდი თითქოს დამალულია.
-
-დააჭირე index.html ფაილს მარცხენა პანელში, რომ კოდი ეკრანზე გამოჩნდეს.
-
-თუ კოდი მაინც არ ჩანს, დარწმუნდი, რომ ჩასვი ის „ჩონჩხი“, რომელიც წინა წერილში გამოგიგზავნე.
-
-გინდა, რომ ერთად შევამოწმოთ, გამოჩნდა თუ არა საიტი ინტერნეტში? როგორც კი Publish-ს დააჭერ, მითხარი და ვნახოთ შედეგი.
-
-Gemini-მ თქვა
-სკრინშოტიდან (Screenshot 61.png) ჩანს ერთი პატარა შეფერხება, რის გამოც საიტი ჯერ არ ირთვება: შენი ახალი რეპოზიტორია
-Private (პირადი) რეჟიმშია. უფასო ვერსიაში GitHub Pages მხოლოდ Public (საჯარო) პროექტებზე მუშაობს.
-
-არ ინერვიულო, ამის გამოსწორება ძალიან მარტივია:
-
-1. გახადე საიტი საჯარო (Public)
-ბრაუზერში, სადაც ახლა ხარ (Settings გვერდზე), მარცხენა მენიუში ჩამოწიე ბოლომდე და დააჭირე General-ს.
-
-ჩადი გვერდის სულ ბოლოში, "Danger Zone" სექციაში.
-
-დააჭირე ღილაკს Change visibility.
-
-აირჩიე Change to public.
-
-GitHub გთხოვს დაადასტურო (შეიძლება პაროლი ან სპეციალური კოდის ჩაწერა მოგთხოვოს, რომელიც ეკრანზე ეწერება).
-
-2. ჩართე GitHub Pages
-როგორც კი რეპოზიტორია გახდება საჯარო:
-
-ისევ შედი Settings -> Pages.
-
-ახლა უკვე დაინახავ Branch სექციას (რომელიც ადრე არ ჩანდა).
-
-აირჩიე main და დააჭირე Save.
-
-რა ვქნათ, თუ VS Code-ში კოდი მაინც არ ჩანს?
-შენს Screenshot (57).jpg-ში ჩანს, რომ ფაილი გახსნილია, მაგრამ ეკრანი ცარიელია.
-
-დარწმუნდი, რომ კოდი, რომელიც წინა წერილებში მოგწერე, მართლა ჩააკოპირე და დაასეივე (Ctrl + S).
-
-თუ მაინც არ ჩანს, ხელახლა ჩასვი კოდი index.html-ში.
-
-როგორც კი რეპოზიტორიას "Public"-ად გადააკეთებ, Pages-ის ჩართვას შეძლებ. გინდა, რომ ერთად დაველოდოთ საიტის გაშვებას, თუ
-უკვე გადავიდეთ კოდში მონაცემების შენახვის ნაწილზე?
-
-Gemini-მ თქვა
-ყოჩაღ! სკრინშოტიდან (Screenshot 62.png) ჩანს, რომ ყველაფერი იდეალურად გააკეთე: რეპოზიტორია საჯაროა, GitHub Pages
-ჩართულია და საიტი უკვე იწყებს "შენებას" main ბრენჩიდან.
-
-ახლა, სანამ GitHub სერვერზე საიტს საბოლოოდ გაუშვებს, მოდი მოვაგვაროთ ის "სიცარიელე", რომელიც VS Code-ში გქონდა.
-
-1. კოდის "გაცოცხლება" VS Code-ში
-თუ VS Code-ში index.html ისევ ცარიელი ჩანს, მიჰყევი ამ ნაბიჯებს:
-
-დარწმუნდი, რომ გახსნილი გაქვს ფაილი CHVEN-AQ-VART საქაღალდიდან.
-
-თუ შიგნით არაფერი წერია, ხელახლა ჩასვი ის კოდი, რომელიც წინა წერილებში გამოგიგზავნე.
-
-მნიშვნელოვანი: დააჭირე Ctrl + S, რომ ცვლილება შეინახოს.
-
-2. მონაცემების შენახვის დამატება (რომ არაფერი წაიშალოს)
-რომ არ "გაგიფუჭდეს" ბაზა გვერდის განახლებისას, მოდი, კოდის ბოლოში,
-<script> თეგებში, არსებული ლოგიკა ამით შევცვალოთ. ეს კოდი მონაცემებს შენს ბრაუზერშივე შეინახავს:
-
-                            JavaScript
-                            // გვერდის ჩატვირთვისას შენახული მონაცემების გამოტანა
-                            window.onload = function() {
-    const savedProfiles = JSON.parse(localStorage.getItem('profiles')) || [];
-    savedProfiles.forEach(profile => displayCard(profile));
-};
-
-                            document.getElementById('regForm').onsubmit = function(e) {
-                                e.preventDefault();
-
-                            const profile = {
-                                name: this.querySelectorAll('input')[0].value,
-                            category: this.querySelector('select').selectedOptions[0].text,
-                            exp: this.querySelectorAll('input')[1].value,
-                            phone: this.querySelectorAll('input')[2].value,
-                            info: this.querySelector('textarea').value
-    };
-
-                            // შენახვა ლოკალურ მეხსიერებაში
-                            const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-                            profiles.push(profile);
-                            localStorage.setItem('profiles', JSON.stringify(profiles));
-
-                            displayCard(profile);
-                            this.reset();
-};
-
-                            function displayCard(p) {
-    const newCard = document.createElement('div');
-                            newCard.className = 'card';
-                            newCard.innerHTML = `
-                            <div class="profile-img"><img src="https://via.placeholder.com/80"></div>
-                            <h3>${p.name}</h3>
-                            <p><strong>სპეციალობა:</strong> ${p.category}</p>
-                            <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
-                            <p style="font-size: 12px; color: #666;">${p.info}</p>
-                            <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
-                            `;
-                            document.getElementById('profileGrid').appendChild(newCard);
-}
-                            3. ცვლილების ატვირთვა
-                            როცა კოდს ჩასვამ და დაასეივებ:
-
-                            გახსენი GitHub Desktop.
-
-                            მარცხნივ დაინახავ შეცვლილ index.html-ს.
-
-                            Summary-ში ჩაწერე "შენახვის ფუნქცია" და დააჭირე Commit to main.
-
-                            შემდეგ დააჭირე Push origin.
-
-                            ამ ნაბიჯების შემდეგ, შენი საიტი ინტერნეტშიც განახლდება და მონაცემების შენახვასაც დაიწყებს.
-
-                            გინდა, რომ საიტის თავში შენი ლოგოც გამოვაჩინოთ (ის სურათი, რომელიც საქაღალდეში გაქვს)?
-
-                            თქვენ თქვით
-                            მესამე რაღაც ჩაემატა
-
-                            Gemini-მ თქვა
-                            სკრინშოტიდან (Screenshot 63.png) ჩანს, რომ შენს საქაღალდეში მართლაც გაჩნდა მესამე ფაილი — .gitattributes.
-
-                            არ ინერვიულო, ეს ნორმალურია და ასეც უნდა იყოს. აი, რა არის ეს:
-
-                            რა არის ეს ფაილი? ეს არის ტექნიკური ფაილი, რომელიც GitHub Desktop-მა ავტომატურად შექმნა, როცა რეპოზიტორია "გააკეთე".
-
-                            რას აკეთებს? ის ეხმარება GitHub-ს, რომ სწორად აღიქვას სხვადასხვა ტიპის ფაილები (მაგალითად, სურათები და ტექსტი) ატვირთვის დროს.
-
-                            უნდა წავშალო? არა, არ წაშალო. ის ხელს არაფერში გიშლის, პირიქით — ეხმარება საიტს სტაბილურ მუშაობაში.
-
-                            როგორ შევამოწმოთ საიტი?
-                            რადგან წინა სკრინშოტში (Screenshot 62.png) ჩანდა, რომ საიტი უკვე იწყებდა შენებას, მოდი ეხლა შევამოწმოთ, გამოჩნდა თუ არა ინტერნეტში.
-
-                            გახსენი ბრაუზერი და ჩაწერე ეს მისამართი:
-                            👉 https://kanudosi4-sys.github.io/chven-aq-vart/
-
-                            თუ საიტი ჩაიტვირთა, დამიწერე და შემდეგ ეტაპზე გადავიდეთ:
-
-                            გავასწოროთ VS Code-ში კოდის გამოჩენის საკითხი (რომ სიცარიელე არ იყოს).
-
-                            ჩავსვათ შენი ლოგო (New DOC Document.jpg) საიტის თავში.
-
-                            გამოჩნდა საიტი ამ ბმულზე?
-
-                            Gemini-მ თქვა
-                            შესანიშნავი სიახლეა! სკრინშოტიდან (Screenshot 64.png) ჩანს, რომ საიტი „ჩვენ აქ ვართ“ უკვე ცოცხალია და ინტერნეტში მუშაობს. შენ წარმატებით გაიარე გზა იდეიდან რეალურ ვებსაიტამდე.
-
-                            ახლა, როცა ბაზა უკვე ონლაინშია, მოდი დავამატოთ ის ლოგო, რომელიც შენს საქაღალდეშია (New DOC Document.jpg), რომ საიტი უფრო პერსონალური გახდეს.
-
-                            როგორ ჩავსვათ ლოგო საიტზე:
-                            გახსენი VS Code-ში შენი index.html (თუ ისევ ცარიელი გიჩანს, დააჭირე ფაილის სახელს მარცხენა პანელში).
-
-                            მოძებნე კოდში <div class="header"> სექცია.
-
-                                ჩაამატე სურათის კოდი <h1>-ის თავზე, აი ასე:
-
-                                    HTML
-                                    <div class="header">
-                                        <img src="New DOC Document.jpg" alt="ლოგო" style="width: 100px; border-radius: 50%; margin-bottom: 15px;">
-                                            <h1>ჩვენ აქ ვართ</h1>
-                                            <p>იპოვე საჭირო სპეციალისტი ან დაამატე შენი პროფილი ბაზაში</p>
-                                    </div>
-                                    როგორ გამოვაჩინოთ ცვლილება ინტერნეტში:
-                                    მას შემდეგ, რაც კოდს შეინახავ (Ctrl + S):
-
-                                    გახსენი GitHub Desktop.
-
-                                    მარცხენა მხარეს დაინახავ, რომ index.html შეიცვალა.
-
-                                    ქვემოთ, Summary-ში ჩაწერე: ლოგოს დამატება.
-
-                                    დააჭირე Commit to main.
-
-                                    და ბოლოს, დააჭირე Push origin ზედა ზოლში.
-
-                                    დაახლოებით 1 წუთში, როცა საიტს დაარეფრეშებ ბრაუზერში, შენი ლოგო გამოჩნდება სათაურის თავზე.
-
-                                    შემდეგი ნაბიჯი:
-                                    ახლა საიტზე მხოლოდ ერთი "ნიმუში" ბარათი ჩანს (გიორგი კ.). გინდა, რომ დაგეხმარო იმ კოდის დაწერაში, რომელიც საშუალებას მოგცემს, რომ ფორმაში ჩაწერილი რეალური ადამიანები ავტომატურად გამოჩნდნენ სიაში?
-
-                                    გსურს ახლავე გავაქტიუროთ "ბაზაში დამატების" რეალური ფუნქცია?
-
-                                    თქვენ თქვით
-                                    მსურს
-
-                                    Gemini-მ თქვა
-                                    შესანიშნავია! მოდი, ახლა შენი საიტი მართლაც „ცოცხალ“ ბაზად ვაქციოთ. ამისთვის უნდა გამოვიყენოთ JavaScript-ის ის ნაწილი, რომელიც ბრაუზერის მეხსიერებას (localStorage) მართავს. ეს ნიშნავს, რომ როცა ვინმე მონაცემებს შეიყვანს, ისინი შენს კომპიუტერში დარჩება მაშინაც კი, თუ გვერდს დაარეფრეშებ.
-
-                                    სკრინშოტიდან (Screenshot 64.png) ჩანს, რომ საიტის ვიზუალი უკვე გამართულია. ახლა ფუნქციონალის ჯერია.
-
-                                    1. კოდის სრული განახლება
-                                    გახსენი VS Code-ში შენი index.html. წაშალე ყველაფერი, რაც იქ წერია და ჩაანაცვლე ამ სრული კოდით. აქ უკვე ჩავამატე ლოგო, შენახვის ფუნქცია და წაშლის ღილაკი (რომ ზედმეტი ბარათები მოაშორო):
-
-                                    HTML
-                                    <!DOCTYPE html>
-                                    <html lang="ka">
-                                        <head>
-                                            <meta charset="UTF-8">
-                                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                                    <title>ჩვენ აქ ვართ - ოსტატების ბაზა</title>
-                                                    <style>
-                                                        :root {--primary: #2c3e50; --accent: #e67e22; --light: #f4f7f6; }
-                                                        body {font - family: 'Segoe UI', sans-serif; background: var(--light); margin: 0; padding: 20px; }
-                                                        .header {text - align: center; padding: 40px 20px; background: var(--primary); color: white; border-radius: 15px; margin-bottom: 30px; }
-                                                        .logo {width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 15px; object-fit: cover; }
-
-                                                        .filters {display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-                                                        .filter-btn {padding: 10px 20px; border: none; background: white; border-radius: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-                                                        .filter-btn:hover {background: var(--accent); color: white; }
-
-                                                        .grid {display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-                                                        .card {background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; position: relative; }
-                                                        .profile-img {width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px; }
-                                                        .contact-btn {display: block; margin-top: 15px; padding: 10px; background: var(--primary); color: white; text-decoration: none; border-radius: 6px; }
-                                                        .delete-btn {position: absolute; top: 10px; right: 10px; color: red; cursor: pointer; border: none; background: none; font-weight: bold; }
-
-                                                        .add-profile {background: #fff; padding: 30px; border-radius: 15px; max-width: 500px; margin: 40px auto; border: 2px dashed var(--accent); }
-                                                        input, select, textarea {width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-                                                        .submit-btn {width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-                                                    </style>
-                                                </head>
-                                                <body>
-
-                                                    <div class="header">
-                                                        <img src="New DOC Document.jpg" alt="Logo" class="logo">
-                                                            <h1>ჩვენ აქ ვართ</h1>
-                                                            <p>ოსტატებისა და სერვისების მონაცემთა ბაზა</p>
-                                                    </div>
-
-                                                    <div class="grid" id="profileGrid">
-                                                    </div>
-
-                                                    <div class="add-profile">
-                                                        <h2 style="text-align: center; color: var(--accent);">დაამატე შენი პროფილი</h2>
-                                                        <form id="regForm">
-                                                            <input type="text" id="name" placeholder="სახელი და გვარი" required>
-                                                                <select id="category">
-                                                                    <option value="ხელოსანი">ხელოსანი</option>
-                                                                    <option value="მშენებელი">მშენებელი</option>
-                                                                    <option value="სპეც-ტექნიკა">სპეც-ტექნიკა</option>
-                                                                    <option value="მძღოლი">მძღოლი</option>
-                                                                </select>
-                                                                <input type="number" id="exp" placeholder="გამოცდილება (წლები)">
-                                                                    <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required>
-                                                                        <textarea id="info" placeholder="მოკლე ინფორმაცია..."></textarea>
-                                                                        <button type="submit" class="submit-btn">ბაზაში დამატება</button>
-                                                                    </form>
-                                                                </div>
-
-                                                                <script>
-    // ჩატვირთვისას მონაცემების გამოტანა
-                                                                    window.onload = function() {
-        const saved = JSON.parse(localStorage.getItem('profiles')) || [];
-        saved.forEach((p, index) => displayCard(p, index));
-    };
-
-                                                                    document.getElementById('regForm').onsubmit = function(e) {
-                                                                        e.preventDefault();
-                                                                    const profile = {
-                                                                        name: document.getElementById('name').value,
-                                                                    category: document.getElementById('category').value,
-                                                                    exp: document.getElementById('exp').value,
-                                                                    phone: document.getElementById('phone').value,
-                                                                    info: document.getElementById('info').value
+        // ჩატვირთვისას მონაცემების გამოტანა
+        window.onload = function () {
+            const saved = JSON.parse(localStorage.getItem('profiles')) || [];
+            saved.forEach((p, index) => displayCard(p, index));
         };
 
-                                                                    const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-                                                                    profiles.push(profile);
-                                                                    localStorage.setItem('profiles', JSON.stringify(profiles));
+        document.getElementById('regForm').onsubmit = function (e) {
+            e.preventDefault();
+            const profile = {
+                name: document.getElementById('name').value,
+                category: document.getElementById('category').value,
+                exp: document.getElementById('exp').value,
+                phone: document.getElementById('phone').value,
+                info: document.getElementById('info').value
+            };
 
-                                                                    displayCard(profile, profiles.length - 1);
-                                                                    this.reset();
-    };
+            const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+            profiles.push(profile);
+            localStorage.setItem('profiles', JSON.stringify(profiles));
 
-                                                                    function displayCard(p, index) {
-        const div = document.createElement('div');
-                                                                    div.className = 'card';
-                                                                    div.innerHTML = `
-                                                                    <button class="delete-btn" onclick="deleteProfile(${index})">X</button>
-                                                                    <div class="profile-img"></div>
-                                                                    <h3>${p.name}</h3>
-                                                                    <p><strong>კატეგორია:</strong> ${p.category}</p>
-                                                                    <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
-                                                                    <p style="font-size:0.9em">${p.info}</p>
-                                                                    <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
+            displayCard(profile, profiles.length - 1);
+            this.reset();
+        };
+
+        function displayCard(p, index) {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = `
+            <button class="delete-btn" onclick="deleteProfile(${index})">X</button>
+            <div class="profile-img"></div>
+            <h3>${p.name}</h3>
+            <p><strong>კატეგორია:</strong> ${p.category}</p>
+            <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
+            <p style="font-size:0.9em">${p.info}</p>
+            <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
         `;
-        document.getElementById('profileGrid').appendChild(div);
-    }
+            document.getElementById('profileGrid').appendChild(div);
+        }
 
-    function deleteProfile(index) {
-        let profiles = JSON.parse(localStorage.getItem('profiles'));
-        profiles.splice(index, 1);
-        localStorage.setItem('profiles', JSON.stringify(profiles));
-        location.reload(); // გვერდის განახლება ცვლილების სანახავად
-    }
-</script>
+        function deleteProfile(index) {
+            let profiles = JSON.parse(localStorage.getItem('profiles'));
+            profiles.splice(index, 1);
+            localStorage.setItem('profiles', JSON.stringify(profiles));
+            location.reload(); // გვერდის განახლება ცვლილების სანახავად
+        }
+    </script>
 
 </body>
 
