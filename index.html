@@ -19,7 +19,6 @@
             padding: 20px;
         }
 
-        /* ჰედერი და ლოგო */
         .header {
             text-align: center;
             padding: 40px 20px;
@@ -38,7 +37,6 @@
             object-fit: cover;
         }
 
-        /* ფილტრები */
         .filters {
             display: flex;
             justify-content: center;
@@ -63,7 +61,6 @@
             color: white;
         }
 
-        /* ბარათების ბადე */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -80,18 +77,6 @@
             border-top: 5px solid var(--accent);
         }
 
-        .profile-img {
-            width: 70px;
-            height: 70px;
-            background: #eee;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-        }
-
         .contact-btn {
             display: block;
             margin-top: 15px;
@@ -103,19 +88,6 @@
             font-weight: bold;
         }
 
-        .delete-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #e74c3c;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /* ფორმა */
         .add-profile {
             background: #fff;
             padding: 30px;
@@ -145,7 +117,6 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 16px;
         }
     </style>
 </head>
@@ -155,7 +126,7 @@
     <div class="header">
         <img src="New DOC Document.jpg" alt="Logo" class="logo">
         <h1>ჩვენ აქ ვართ</h1>
-        <p>ოსტატებისა და სერვისების მონაცემთა ბაზა</p>
+        <p>ოსტატებისა და სერვისების საერთო ბაზა</p>
     </div>
 
     <div class="filters">
@@ -166,8 +137,7 @@
         <button class="filter-btn" onclick="filterProfiles('მძღოლი')">მძღოლი</button>
     </div>
 
-    <div class="grid" id="profileGrid">
-    </div>
+    <div class="grid" id="profileGrid"></div>
 
     <div class="add-profile">
         <h2 style="text-align: center; color: var(--accent);">დაამატე შენი პროფილი</h2>
@@ -181,22 +151,53 @@
             </select>
             <input type="number" id="userExp" placeholder="გამოცდილება (წლები)">
             <input type="tel" id="userPhone" placeholder="ტელეფონის ნომერი" required>
-            <textarea id="userInfo" placeholder="მოკლე ინფორმაცია თქვენს შესახებ..."></textarea>
+            <textarea id="userInfo" placeholder="ინფორმაცია..."></textarea>
             <button type="submit" class="submit-btn">ბაზაში დამატება</button>
         </form>
     </div>
 
-    <script>
-        // 1. მონაცემების წამოღება მეხსიერებიდან ჩატვირთვისას
-        window.onload = function () {
-            const savedProfiles = JSON.parse(localStorage.getItem('myProfiles')) || [];
-            savedProfiles.forEach((profile, index) => displayCard(profile, index));
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+        // შენი პირადი მონაცემები Screenshot (72)-დან
+        const firebaseConfig = {
+            apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
+            authDomain: "chven-aq-vart.firebaseapp.com",
+            databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com",
+            projectId: "chven-aq-vart",
+            storageBucket: "chven-aq-vart.firebasestorage.app",
+            messagingSenderId: "1067834621567",
+            appId: "1:1067834621567:web:46682b816c3bce4defc94a",
+            measurementId: "G-370R8XGGC4"
         };
 
-        // 2. ფორმის დამუშავება
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const profilesRef = ref(db, 'profiles');
+
+        onValue(profilesRef, (snapshot) => {
+            const grid = document.getElementById('profileGrid');
+            grid.innerHTML = "";
+            const data = snapshot.val();
+            if (data) {
+                Object.values(data).forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+          <h3>${p.name}</h3>
+          <p><strong>კატეგორია:</strong> ${p.category}</p>
+          <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
+          <p>${p.info}</p>
+          <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
+        `;
+                    grid.appendChild(card);
+                });
+            }
+        });
+
         document.getElementById('regForm').onsubmit = function (e) {
             e.preventDefault();
-
             const newProfile = {
                 name: document.getElementById('userName').value,
                 category: document.getElementById('userCategory').value,
@@ -204,54 +205,17 @@
                 phone: document.getElementById('userPhone').value,
                 info: document.getElementById('userInfo').value
             };
-
-            const profiles = JSON.parse(localStorage.getItem('myProfiles')) || [];
-            profiles.push(newProfile);
-            localStorage.setItem('myProfiles', JSON.stringify(profiles));
-
-            displayCard(newProfile, profiles.length - 1);
+            push(profilesRef, newProfile);
             this.reset();
         };
 
-        // 3. ბარათის გამოჩენა ეკრანზე
-        function displayCard(p, index) {
-            const grid = document.getElementById('profileGrid');
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-            <button class="delete-btn" onclick="deleteProfile(${index})">×</button>
-            <div class="profile-img">👤</div>
-            <h3>${p.name}</h3>
-            <p><strong>კატეგორია:</strong> ${p.category}</p>
-            <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
-            <p style="font-size: 0.9em; color: #555;">${p.info}</p>
-            <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
-        `;
-            grid.appendChild(card);
-        }
-
-        // 4. წაშლის ფუნქცია
-        function deleteProfile(index) {
-            if (confirm('დარწმუნებული ხართ, რომ გსურთ წაშლა?')) {
-                let profiles = JSON.parse(localStorage.getItem('myProfiles'));
-                profiles.splice(index, 1);
-                localStorage.setItem('myProfiles', JSON.stringify(profiles));
-                location.reload();
-            }
-        }
-
-        // 5. ფილტრაციის ფუნქცია
-        function filterProfiles(category) {
+        window.filterProfiles = function (category) {
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {
-                const cardCategory = card.innerText;
-                if (category === 'ყველა' || cardCategory.includes(category)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                const cardText = card.innerText;
+                card.style.display = (category === 'ყველა' || cardText.includes(category)) ? 'block' : 'none';
             });
-        }
+        };
     </script>
 
 </body>
