@@ -1044,11 +1044,11 @@ Gemini-მ თქვა
     </div>
 
     <script>
-                // მომავალში აქ დავწერთ ლოგიკას, რომელიც ფორმიდან მონაცემებს აიღებს 
-                // და ცხრილში (ან ბაზაში) დაამატებს
-                document.getElementById('regForm').onsubmit = function(e) {
-                    e.preventDefault();
-                alert('მადლობა! თქვენი მონაცემები მიღებულია (სადემონსტრაციო რეჟიმი)');
+                            // მომავალში აქ დავწერთ ლოგიკას, რომელიც ფორმიდან მონაცემებს აიღებს 
+                            // და ცხრილში (ან ბაზაში) დაამატებს
+                            document.getElementById('regForm').onsubmit = function(e) {
+                                e.preventDefault();
+                            alert('მადლობა! თქვენი მონაცემები მიღებულია (სადემონსტრაციო რეჟიმი)');
     };
     </script>
 
@@ -1341,230 +1341,230 @@ Gemini-მ თქვა
 რომ არ "გაგიფუჭდეს" ბაზა გვერდის განახლებისას, მოდი, კოდის ბოლოში,
 <script> თეგებში, არსებული ლოგიკა ამით შევცვალოთ. ეს კოდი მონაცემებს შენს ბრაუზერშივე შეინახავს:
 
-                JavaScript
-                // გვერდის ჩატვირთვისას შენახული მონაცემების გამოტანა
-                window.onload = function() {
+                            JavaScript
+                            // გვერდის ჩატვირთვისას შენახული მონაცემების გამოტანა
+                            window.onload = function() {
     const savedProfiles = JSON.parse(localStorage.getItem('profiles')) || [];
     savedProfiles.forEach(profile => displayCard(profile));
 };
 
-                document.getElementById('regForm').onsubmit = function(e) {
-                    e.preventDefault();
+                            document.getElementById('regForm').onsubmit = function(e) {
+                                e.preventDefault();
 
-                const profile = {
-                    name: this.querySelectorAll('input')[0].value,
-                category: this.querySelector('select').selectedOptions[0].text,
-                exp: this.querySelectorAll('input')[1].value,
-                phone: this.querySelectorAll('input')[2].value,
-                info: this.querySelector('textarea').value
+                            const profile = {
+                                name: this.querySelectorAll('input')[0].value,
+                            category: this.querySelector('select').selectedOptions[0].text,
+                            exp: this.querySelectorAll('input')[1].value,
+                            phone: this.querySelectorAll('input')[2].value,
+                            info: this.querySelector('textarea').value
     };
 
-                // შენახვა ლოკალურ მეხსიერებაში
-                const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-                profiles.push(profile);
-                localStorage.setItem('profiles', JSON.stringify(profiles));
+                            // შენახვა ლოკალურ მეხსიერებაში
+                            const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+                            profiles.push(profile);
+                            localStorage.setItem('profiles', JSON.stringify(profiles));
 
-                displayCard(profile);
-                this.reset();
+                            displayCard(profile);
+                            this.reset();
 };
 
-                function displayCard(p) {
+                            function displayCard(p) {
     const newCard = document.createElement('div');
-                newCard.className = 'card';
-                newCard.innerHTML = `
-                <div class="profile-img"><img src="https://via.placeholder.com/80"></div>
-                <h3>${p.name}</h3>
-                <p><strong>სპეციალობა:</strong> ${p.category}</p>
-                <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
-                <p style="font-size: 12px; color: #666;">${p.info}</p>
-                <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
-                `;
-                document.getElementById('profileGrid').appendChild(newCard);
+                            newCard.className = 'card';
+                            newCard.innerHTML = `
+                            <div class="profile-img"><img src="https://via.placeholder.com/80"></div>
+                            <h3>${p.name}</h3>
+                            <p><strong>სპეციალობა:</strong> ${p.category}</p>
+                            <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
+                            <p style="font-size: 12px; color: #666;">${p.info}</p>
+                            <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
+                            `;
+                            document.getElementById('profileGrid').appendChild(newCard);
 }
-                3. ცვლილების ატვირთვა
-                როცა კოდს ჩასვამ და დაასეივებ:
+                            3. ცვლილების ატვირთვა
+                            როცა კოდს ჩასვამ და დაასეივებ:
 
-                გახსენი GitHub Desktop.
+                            გახსენი GitHub Desktop.
 
-                მარცხნივ დაინახავ შეცვლილ index.html-ს.
+                            მარცხნივ დაინახავ შეცვლილ index.html-ს.
 
-                Summary-ში ჩაწერე "შენახვის ფუნქცია" და დააჭირე Commit to main.
+                            Summary-ში ჩაწერე "შენახვის ფუნქცია" და დააჭირე Commit to main.
 
-                შემდეგ დააჭირე Push origin.
+                            შემდეგ დააჭირე Push origin.
 
-                ამ ნაბიჯების შემდეგ, შენი საიტი ინტერნეტშიც განახლდება და მონაცემების შენახვასაც დაიწყებს.
+                            ამ ნაბიჯების შემდეგ, შენი საიტი ინტერნეტშიც განახლდება და მონაცემების შენახვასაც დაიწყებს.
 
-                გინდა, რომ საიტის თავში შენი ლოგოც გამოვაჩინოთ (ის სურათი, რომელიც საქაღალდეში გაქვს)?
+                            გინდა, რომ საიტის თავში შენი ლოგოც გამოვაჩინოთ (ის სურათი, რომელიც საქაღალდეში გაქვს)?
 
-                თქვენ თქვით
-                მესამე რაღაც ჩაემატა
+                            თქვენ თქვით
+                            მესამე რაღაც ჩაემატა
 
-                Gemini-მ თქვა
-                სკრინშოტიდან (Screenshot 63.png) ჩანს, რომ შენს საქაღალდეში მართლაც გაჩნდა მესამე ფაილი — .gitattributes.
+                            Gemini-მ თქვა
+                            სკრინშოტიდან (Screenshot 63.png) ჩანს, რომ შენს საქაღალდეში მართლაც გაჩნდა მესამე ფაილი — .gitattributes.
 
-                არ ინერვიულო, ეს ნორმალურია და ასეც უნდა იყოს. აი, რა არის ეს:
+                            არ ინერვიულო, ეს ნორმალურია და ასეც უნდა იყოს. აი, რა არის ეს:
 
-                რა არის ეს ფაილი? ეს არის ტექნიკური ფაილი, რომელიც GitHub Desktop-მა ავტომატურად შექმნა, როცა რეპოზიტორია "გააკეთე".
+                            რა არის ეს ფაილი? ეს არის ტექნიკური ფაილი, რომელიც GitHub Desktop-მა ავტომატურად შექმნა, როცა რეპოზიტორია "გააკეთე".
 
-                რას აკეთებს? ის ეხმარება GitHub-ს, რომ სწორად აღიქვას სხვადასხვა ტიპის ფაილები (მაგალითად, სურათები და ტექსტი) ატვირთვის დროს.
+                            რას აკეთებს? ის ეხმარება GitHub-ს, რომ სწორად აღიქვას სხვადასხვა ტიპის ფაილები (მაგალითად, სურათები და ტექსტი) ატვირთვის დროს.
 
-                უნდა წავშალო? არა, არ წაშალო. ის ხელს არაფერში გიშლის, პირიქით — ეხმარება საიტს სტაბილურ მუშაობაში.
+                            უნდა წავშალო? არა, არ წაშალო. ის ხელს არაფერში გიშლის, პირიქით — ეხმარება საიტს სტაბილურ მუშაობაში.
 
-                როგორ შევამოწმოთ საიტი?
-                რადგან წინა სკრინშოტში (Screenshot 62.png) ჩანდა, რომ საიტი უკვე იწყებდა შენებას, მოდი ეხლა შევამოწმოთ, გამოჩნდა თუ არა ინტერნეტში.
+                            როგორ შევამოწმოთ საიტი?
+                            რადგან წინა სკრინშოტში (Screenshot 62.png) ჩანდა, რომ საიტი უკვე იწყებდა შენებას, მოდი ეხლა შევამოწმოთ, გამოჩნდა თუ არა ინტერნეტში.
 
-                გახსენი ბრაუზერი და ჩაწერე ეს მისამართი:
-                👉 https://kanudosi4-sys.github.io/chven-aq-vart/
+                            გახსენი ბრაუზერი და ჩაწერე ეს მისამართი:
+                            👉 https://kanudosi4-sys.github.io/chven-aq-vart/
 
-                თუ საიტი ჩაიტვირთა, დამიწერე და შემდეგ ეტაპზე გადავიდეთ:
+                            თუ საიტი ჩაიტვირთა, დამიწერე და შემდეგ ეტაპზე გადავიდეთ:
 
-                გავასწოროთ VS Code-ში კოდის გამოჩენის საკითხი (რომ სიცარიელე არ იყოს).
+                            გავასწოროთ VS Code-ში კოდის გამოჩენის საკითხი (რომ სიცარიელე არ იყოს).
 
-                ჩავსვათ შენი ლოგო (New DOC Document.jpg) საიტის თავში.
+                            ჩავსვათ შენი ლოგო (New DOC Document.jpg) საიტის თავში.
 
-                გამოჩნდა საიტი ამ ბმულზე?
+                            გამოჩნდა საიტი ამ ბმულზე?
 
-                Gemini-მ თქვა
-                შესანიშნავი სიახლეა! სკრინშოტიდან (Screenshot 64.png) ჩანს, რომ საიტი „ჩვენ აქ ვართ“ უკვე ცოცხალია და ინტერნეტში მუშაობს. შენ წარმატებით გაიარე გზა იდეიდან რეალურ ვებსაიტამდე.
+                            Gemini-მ თქვა
+                            შესანიშნავი სიახლეა! სკრინშოტიდან (Screenshot 64.png) ჩანს, რომ საიტი „ჩვენ აქ ვართ“ უკვე ცოცხალია და ინტერნეტში მუშაობს. შენ წარმატებით გაიარე გზა იდეიდან რეალურ ვებსაიტამდე.
 
-                ახლა, როცა ბაზა უკვე ონლაინშია, მოდი დავამატოთ ის ლოგო, რომელიც შენს საქაღალდეშია (New DOC Document.jpg), რომ საიტი უფრო პერსონალური გახდეს.
+                            ახლა, როცა ბაზა უკვე ონლაინშია, მოდი დავამატოთ ის ლოგო, რომელიც შენს საქაღალდეშია (New DOC Document.jpg), რომ საიტი უფრო პერსონალური გახდეს.
 
-                როგორ ჩავსვათ ლოგო საიტზე:
-                გახსენი VS Code-ში შენი index.html (თუ ისევ ცარიელი გიჩანს, დააჭირე ფაილის სახელს მარცხენა პანელში).
+                            როგორ ჩავსვათ ლოგო საიტზე:
+                            გახსენი VS Code-ში შენი index.html (თუ ისევ ცარიელი გიჩანს, დააჭირე ფაილის სახელს მარცხენა პანელში).
 
-                მოძებნე კოდში <div class="header"> სექცია.
+                            მოძებნე კოდში <div class="header"> სექცია.
 
-                    ჩაამატე სურათის კოდი <h1>-ის თავზე, აი ასე:
+                                ჩაამატე სურათის კოდი <h1>-ის თავზე, აი ასე:
 
-                        HTML
-                        <div class="header">
-                            <img src="New DOC Document.jpg" alt="ლოგო" style="width: 100px; border-radius: 50%; margin-bottom: 15px;">
-                                <h1>ჩვენ აქ ვართ</h1>
-                                <p>იპოვე საჭირო სპეციალისტი ან დაამატე შენი პროფილი ბაზაში</p>
-                        </div>
-                        როგორ გამოვაჩინოთ ცვლილება ინტერნეტში:
-                        მას შემდეგ, რაც კოდს შეინახავ (Ctrl + S):
+                                    HTML
+                                    <div class="header">
+                                        <img src="New DOC Document.jpg" alt="ლოგო" style="width: 100px; border-radius: 50%; margin-bottom: 15px;">
+                                            <h1>ჩვენ აქ ვართ</h1>
+                                            <p>იპოვე საჭირო სპეციალისტი ან დაამატე შენი პროფილი ბაზაში</p>
+                                    </div>
+                                    როგორ გამოვაჩინოთ ცვლილება ინტერნეტში:
+                                    მას შემდეგ, რაც კოდს შეინახავ (Ctrl + S):
 
-                        გახსენი GitHub Desktop.
+                                    გახსენი GitHub Desktop.
 
-                        მარცხენა მხარეს დაინახავ, რომ index.html შეიცვალა.
+                                    მარცხენა მხარეს დაინახავ, რომ index.html შეიცვალა.
 
-                        ქვემოთ, Summary-ში ჩაწერე: ლოგოს დამატება.
+                                    ქვემოთ, Summary-ში ჩაწერე: ლოგოს დამატება.
 
-                        დააჭირე Commit to main.
+                                    დააჭირე Commit to main.
 
-                        და ბოლოს, დააჭირე Push origin ზედა ზოლში.
+                                    და ბოლოს, დააჭირე Push origin ზედა ზოლში.
 
-                        დაახლოებით 1 წუთში, როცა საიტს დაარეფრეშებ ბრაუზერში, შენი ლოგო გამოჩნდება სათაურის თავზე.
+                                    დაახლოებით 1 წუთში, როცა საიტს დაარეფრეშებ ბრაუზერში, შენი ლოგო გამოჩნდება სათაურის თავზე.
 
-                        შემდეგი ნაბიჯი:
-                        ახლა საიტზე მხოლოდ ერთი "ნიმუში" ბარათი ჩანს (გიორგი კ.). გინდა, რომ დაგეხმარო იმ კოდის დაწერაში, რომელიც საშუალებას მოგცემს, რომ ფორმაში ჩაწერილი რეალური ადამიანები ავტომატურად გამოჩნდნენ სიაში?
+                                    შემდეგი ნაბიჯი:
+                                    ახლა საიტზე მხოლოდ ერთი "ნიმუში" ბარათი ჩანს (გიორგი კ.). გინდა, რომ დაგეხმარო იმ კოდის დაწერაში, რომელიც საშუალებას მოგცემს, რომ ფორმაში ჩაწერილი რეალური ადამიანები ავტომატურად გამოჩნდნენ სიაში?
 
-                        გსურს ახლავე გავაქტიუროთ "ბაზაში დამატების" რეალური ფუნქცია?
+                                    გსურს ახლავე გავაქტიუროთ "ბაზაში დამატების" რეალური ფუნქცია?
 
-                        თქვენ თქვით
-                        მსურს
+                                    თქვენ თქვით
+                                    მსურს
 
-                        Gemini-მ თქვა
-                        შესანიშნავია! მოდი, ახლა შენი საიტი მართლაც „ცოცხალ“ ბაზად ვაქციოთ. ამისთვის უნდა გამოვიყენოთ JavaScript-ის ის ნაწილი, რომელიც ბრაუზერის მეხსიერებას (localStorage) მართავს. ეს ნიშნავს, რომ როცა ვინმე მონაცემებს შეიყვანს, ისინი შენს კომპიუტერში დარჩება მაშინაც კი, თუ გვერდს დაარეფრეშებ.
+                                    Gemini-მ თქვა
+                                    შესანიშნავია! მოდი, ახლა შენი საიტი მართლაც „ცოცხალ“ ბაზად ვაქციოთ. ამისთვის უნდა გამოვიყენოთ JavaScript-ის ის ნაწილი, რომელიც ბრაუზერის მეხსიერებას (localStorage) მართავს. ეს ნიშნავს, რომ როცა ვინმე მონაცემებს შეიყვანს, ისინი შენს კომპიუტერში დარჩება მაშინაც კი, თუ გვერდს დაარეფრეშებ.
 
-                        სკრინშოტიდან (Screenshot 64.png) ჩანს, რომ საიტის ვიზუალი უკვე გამართულია. ახლა ფუნქციონალის ჯერია.
+                                    სკრინშოტიდან (Screenshot 64.png) ჩანს, რომ საიტის ვიზუალი უკვე გამართულია. ახლა ფუნქციონალის ჯერია.
 
-                        1. კოდის სრული განახლება
-                        გახსენი VS Code-ში შენი index.html. წაშალე ყველაფერი, რაც იქ წერია და ჩაანაცვლე ამ სრული კოდით. აქ უკვე ჩავამატე ლოგო, შენახვის ფუნქცია და წაშლის ღილაკი (რომ ზედმეტი ბარათები მოაშორო):
+                                    1. კოდის სრული განახლება
+                                    გახსენი VS Code-ში შენი index.html. წაშალე ყველაფერი, რაც იქ წერია და ჩაანაცვლე ამ სრული კოდით. აქ უკვე ჩავამატე ლოგო, შენახვის ფუნქცია და წაშლის ღილაკი (რომ ზედმეტი ბარათები მოაშორო):
 
-                        HTML
-                        <!DOCTYPE html>
-                        <html lang="ka">
-                            <head>
-                                <meta charset="UTF-8">
-                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                        <title>ჩვენ აქ ვართ - ოსტატების ბაზა</title>
-                                        <style>
-                                            :root {--primary: #2c3e50; --accent: #e67e22; --light: #f4f7f6; }
-                                            body {font - family: 'Segoe UI', sans-serif; background: var(--light); margin: 0; padding: 20px; }
-                                            .header {text - align: center; padding: 40px 20px; background: var(--primary); color: white; border-radius: 15px; margin-bottom: 30px; }
-                                            .logo {width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 15px; object-fit: cover; }
+                                    HTML
+                                    <!DOCTYPE html>
+                                    <html lang="ka">
+                                        <head>
+                                            <meta charset="UTF-8">
+                                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                                    <title>ჩვენ აქ ვართ - ოსტატების ბაზა</title>
+                                                    <style>
+                                                        :root {--primary: #2c3e50; --accent: #e67e22; --light: #f4f7f6; }
+                                                        body {font - family: 'Segoe UI', sans-serif; background: var(--light); margin: 0; padding: 20px; }
+                                                        .header {text - align: center; padding: 40px 20px; background: var(--primary); color: white; border-radius: 15px; margin-bottom: 30px; }
+                                                        .logo {width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 15px; object-fit: cover; }
 
-                                            .filters {display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-                                            .filter-btn {padding: 10px 20px; border: none; background: white; border-radius: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-                                            .filter-btn:hover {background: var(--accent); color: white; }
+                                                        .filters {display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+                                                        .filter-btn {padding: 10px 20px; border: none; background: white; border-radius: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+                                                        .filter-btn:hover {background: var(--accent); color: white; }
 
-                                            .grid {display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-                                            .card {background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; position: relative; }
-                                            .profile-img {width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px; }
-                                            .contact-btn {display: block; margin-top: 15px; padding: 10px; background: var(--primary); color: white; text-decoration: none; border-radius: 6px; }
-                                            .delete-btn {position: absolute; top: 10px; right: 10px; color: red; cursor: pointer; border: none; background: none; font-weight: bold; }
+                                                        .grid {display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+                                                        .card {background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; position: relative; }
+                                                        .profile-img {width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px; }
+                                                        .contact-btn {display: block; margin-top: 15px; padding: 10px; background: var(--primary); color: white; text-decoration: none; border-radius: 6px; }
+                                                        .delete-btn {position: absolute; top: 10px; right: 10px; color: red; cursor: pointer; border: none; background: none; font-weight: bold; }
 
-                                            .add-profile {background: #fff; padding: 30px; border-radius: 15px; max-width: 500px; margin: 40px auto; border: 2px dashed var(--accent); }
-                                            input, select, textarea {width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-                                            .submit-btn {width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-                                        </style>
-                                    </head>
-                                    <body>
+                                                        .add-profile {background: #fff; padding: 30px; border-radius: 15px; max-width: 500px; margin: 40px auto; border: 2px dashed var(--accent); }
+                                                        input, select, textarea {width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+                                                        .submit-btn {width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+                                                    </style>
+                                                </head>
+                                                <body>
 
-                                        <div class="header">
-                                            <img src="New DOC Document.jpg" alt="Logo" class="logo">
-                                                <h1>ჩვენ აქ ვართ</h1>
-                                                <p>ოსტატებისა და სერვისების მონაცემთა ბაზა</p>
-                                        </div>
-
-                                        <div class="grid" id="profileGrid">
-                                        </div>
-
-                                        <div class="add-profile">
-                                            <h2 style="text-align: center; color: var(--accent);">დაამატე შენი პროფილი</h2>
-                                            <form id="regForm">
-                                                <input type="text" id="name" placeholder="სახელი და გვარი" required>
-                                                    <select id="category">
-                                                        <option value="ხელოსანი">ხელოსანი</option>
-                                                        <option value="მშენებელი">მშენებელი</option>
-                                                        <option value="სპეც-ტექნიკა">სპეც-ტექნიკა</option>
-                                                        <option value="მძღოლი">მძღოლი</option>
-                                                    </select>
-                                                    <input type="number" id="exp" placeholder="გამოცდილება (წლები)">
-                                                        <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required>
-                                                            <textarea id="info" placeholder="მოკლე ინფორმაცია..."></textarea>
-                                                            <button type="submit" class="submit-btn">ბაზაში დამატება</button>
-                                                        </form>
+                                                    <div class="header">
+                                                        <img src="New DOC Document.jpg" alt="Logo" class="logo">
+                                                            <h1>ჩვენ აქ ვართ</h1>
+                                                            <p>ოსტატებისა და სერვისების მონაცემთა ბაზა</p>
                                                     </div>
 
-                                                    <script>
+                                                    <div class="grid" id="profileGrid">
+                                                    </div>
+
+                                                    <div class="add-profile">
+                                                        <h2 style="text-align: center; color: var(--accent);">დაამატე შენი პროფილი</h2>
+                                                        <form id="regForm">
+                                                            <input type="text" id="name" placeholder="სახელი და გვარი" required>
+                                                                <select id="category">
+                                                                    <option value="ხელოსანი">ხელოსანი</option>
+                                                                    <option value="მშენებელი">მშენებელი</option>
+                                                                    <option value="სპეც-ტექნიკა">სპეც-ტექნიკა</option>
+                                                                    <option value="მძღოლი">მძღოლი</option>
+                                                                </select>
+                                                                <input type="number" id="exp" placeholder="გამოცდილება (წლები)">
+                                                                    <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required>
+                                                                        <textarea id="info" placeholder="მოკლე ინფორმაცია..."></textarea>
+                                                                        <button type="submit" class="submit-btn">ბაზაში დამატება</button>
+                                                                    </form>
+                                                                </div>
+
+                                                                <script>
     // ჩატვირთვისას მონაცემების გამოტანა
-                                                        window.onload = function() {
+                                                                    window.onload = function() {
         const saved = JSON.parse(localStorage.getItem('profiles')) || [];
         saved.forEach((p, index) => displayCard(p, index));
     };
 
-                                                        document.getElementById('regForm').onsubmit = function(e) {
-                                                            e.preventDefault();
-                                                        const profile = {
-                                                            name: document.getElementById('name').value,
-                                                        category: document.getElementById('category').value,
-                                                        exp: document.getElementById('exp').value,
-                                                        phone: document.getElementById('phone').value,
-                                                        info: document.getElementById('info').value
+                                                                    document.getElementById('regForm').onsubmit = function(e) {
+                                                                        e.preventDefault();
+                                                                    const profile = {
+                                                                        name: document.getElementById('name').value,
+                                                                    category: document.getElementById('category').value,
+                                                                    exp: document.getElementById('exp').value,
+                                                                    phone: document.getElementById('phone').value,
+                                                                    info: document.getElementById('info').value
         };
 
-                                                        const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-                                                        profiles.push(profile);
-                                                        localStorage.setItem('profiles', JSON.stringify(profiles));
+                                                                    const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+                                                                    profiles.push(profile);
+                                                                    localStorage.setItem('profiles', JSON.stringify(profiles));
 
-                                                        displayCard(profile, profiles.length - 1);
-                                                        this.reset();
+                                                                    displayCard(profile, profiles.length - 1);
+                                                                    this.reset();
     };
 
-                                                        function displayCard(p, index) {
+                                                                    function displayCard(p, index) {
         const div = document.createElement('div');
-                                                        div.className = 'card';
-                                                        div.innerHTML = `
-                                                        <button class="delete-btn" onclick="deleteProfile(${index})">X</button>
-                                                        <div class="profile-img"></div>
-                                                        <h3>${p.name}</h3>
-                                                        <p><strong>კატეგორია:</strong> ${p.category}</p>
-                                                        <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
-                                                        <p style="font-size:0.9em">${p.info}</p>
-                                                        <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
+                                                                    div.className = 'card';
+                                                                    div.innerHTML = `
+                                                                    <button class="delete-btn" onclick="deleteProfile(${index})">X</button>
+                                                                    <div class="profile-img"></div>
+                                                                    <h3>${p.name}</h3>
+                                                                    <p><strong>კატეგორია:</strong> ${p.category}</p>
+                                                                    <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
+                                                                    <p style="font-size:0.9em">${p.info}</p>
+                                                                    <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
         `;
         document.getElementById('profileGrid').appendChild(div);
     }
