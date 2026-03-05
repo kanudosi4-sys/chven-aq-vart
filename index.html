@@ -19,6 +19,7 @@
             padding: 20px;
         }
 
+        /* ჰედერი და ლოგო */
         .header {
             text-align: center;
             padding: 40px 20px;
@@ -29,14 +30,15 @@
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             border: 3px solid var(--accent);
             margin-bottom: 15px;
             object-fit: cover;
         }
 
+        /* ფილტრები */
         .filters {
             display: flex;
             justify-content: center;
@@ -53,6 +55,7 @@
             cursor: pointer;
             transition: 0.3s;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
         }
 
         .filter-btn:hover {
@@ -60,6 +63,7 @@
             color: white;
         }
 
+        /* ბარათების ბადე */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -73,14 +77,19 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
             position: relative;
+            border-top: 5px solid var(--accent);
         }
 
         .profile-img {
-            width: 80px;
-            height: 80px;
-            background: #ddd;
+            width: 70px;
+            height: 70px;
+            background: #eee;
             border-radius: 50%;
             margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
         }
 
         .contact-btn {
@@ -91,19 +100,22 @@
             color: white;
             text-decoration: none;
             border-radius: 6px;
+            font-weight: bold;
         }
 
         .delete-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            color: red;
+            color: #e74c3c;
             cursor: pointer;
             border: none;
             background: none;
+            font-size: 18px;
             font-weight: bold;
         }
 
+        /* ფორმა */
         .add-profile {
             background: #fff;
             padding: 30px;
@@ -133,6 +145,7 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -145,91 +158,101 @@
         <p>ოსტატებისა და სერვისების მონაცემთა ბაზა</p>
     </div>
 
+    <div class="filters">
+        <button class="filter-btn" onclick="filterProfiles('ყველა')">ყველა</button>
+        <button class="filter-btn" onclick="filterProfiles('მშენებელი')">მშენებელი</button>
+        <button class="filter-btn" onclick="filterProfiles('ხელოსანი')">ხელოსანი</button>
+        <button class="filter-btn" onclick="filterProfiles('სპეც-ტექნიკა')">სპეც-ტექნიკა</button>
+        <button class="filter-btn" onclick="filterProfiles('მძღოლი')">მძღოლი</button>
+    </div>
+
     <div class="grid" id="profileGrid">
     </div>
 
     <div class="add-profile">
         <h2 style="text-align: center; color: var(--accent);">დაამატე შენი პროფილი</h2>
         <form id="regForm">
-            <input type="text" id="name" placeholder="სახელი და გვარი" required>
-            <select id="category">
-                <option value="ხელოსანი">ხელოსანი</option>
+            <input type="text" id="userName" placeholder="სახელი და გვარი" required>
+            <select id="userCategory">
                 <option value="მშენებელი">მშენებელი</option>
+                <option value="ხელოსანი">ხელოსანი</option>
                 <option value="სპეც-ტექნიკა">სპეც-ტექნიკა</option>
                 <option value="მძღოლი">მძღოლი</option>
             </select>
-            <input type="number" id="exp" placeholder="გამოცდილება (წლები)">
-            <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required>
-            <textarea id="info" placeholder="მოკლე ინფორმაცია..."></textarea>
+            <input type="number" id="userExp" placeholder="გამოცდილება (წლები)">
+            <input type="tel" id="userPhone" placeholder="ტელეფონის ნომერი" required>
+            <textarea id="userInfo" placeholder="მოკლე ინფორმაცია თქვენს შესახებ..."></textarea>
             <button type="submit" class="submit-btn">ბაზაში დამატება</button>
         </form>
     </div>
 
     <script>
-        // ჩატვირთვისას მონაცემების გამოტანა
+        // 1. მონაცემების წამოღება მეხსიერებიდან ჩატვირთვისას
         window.onload = function () {
-            const saved = JSON.parse(localStorage.getItem('profiles')) || [];
-            saved.forEach((p, index) => displayCard(p, index));
+            const savedProfiles = JSON.parse(localStorage.getItem('myProfiles')) || [];
+            savedProfiles.forEach((profile, index) => displayCard(profile, index));
         };
 
+        // 2. ფორმის დამუშავება
         document.getElementById('regForm').onsubmit = function (e) {
             e.preventDefault();
-            const profile = {
-                name: document.getElementById('name').value,
-                category: document.getElementById('category').value,
-                exp: document.getElementById('exp').value,
-                phone: document.getElementById('phone').value,
-                info: document.getElementById('info').value
+
+            const newProfile = {
+                name: document.getElementById('userName').value,
+                category: document.getElementById('userCategory').value,
+                exp: document.getElementById('userExp').value,
+                phone: document.getElementById('userPhone').value,
+                info: document.getElementById('userInfo').value
             };
 
-            const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
-            profiles.push(profile);
-            localStorage.setItem('profiles', JSON.stringify(profiles));
+            const profiles = JSON.parse(localStorage.getItem('myProfiles')) || [];
+            profiles.push(newProfile);
+            localStorage.setItem('myProfiles', JSON.stringify(profiles));
 
-            displayCard(profile, profiles.length - 1);
+            displayCard(newProfile, profiles.length - 1);
             this.reset();
         };
 
+        // 3. ბარათის გამოჩენა ეკრანზე
         function displayCard(p, index) {
-            const div = document.createElement('div');
-            div.className = 'card';
-            div.innerHTML = `
-            <button class="delete-btn" onclick="deleteProfile(${index})">X</button>
-            <div class="profile-img"></div>
+            const grid = document.getElementById('profileGrid');
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+            <button class="delete-btn" onclick="deleteProfile(${index})">×</button>
+            <div class="profile-img">👤</div>
             <h3>${p.name}</h3>
             <p><strong>კატეგორია:</strong> ${p.category}</p>
             <p><strong>გამოცდილება:</strong> ${p.exp} წელი</p>
-            <p style="font-size:0.9em">${p.info}</p>
+            <p style="font-size: 0.9em; color: #555;">${p.info}</p>
             <a href="tel:${p.phone}" class="contact-btn">დაკავშირება</a>
         `;
-            document.getElementById('profileGrid').appendChild(div);
+            grid.appendChild(card);
         }
 
+        // 4. წაშლის ფუნქცია
         function deleteProfile(index) {
-            let profiles = JSON.parse(localStorage.getItem('profiles'));
-            profiles.splice(index, 1);
-            localStorage.setItem('profiles', JSON.stringify(profiles));
-            location.reload(); // გვერდის განახლება ცვლილების სანახავად
+            if (confirm('დარწმუნებული ხართ, რომ გსურთ წაშლა?')) {
+                let profiles = JSON.parse(localStorage.getItem('myProfiles'));
+                profiles.splice(index, 1);
+                localStorage.setItem('myProfiles', JSON.stringify(profiles));
+                location.reload();
+            }
         }
-    </script>// ამ ფუნქციას დავამატებთ ფილტრაციისთვის
-    function filterProfiles(category) {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-    // თუ 'ყველა' არის არჩეული ან კატეგორია ემთხვევა
-    if (category === 'ყველა' || card.innerHTML.includes(category)) {
-    card.style.display = 'block';
-    } else {
-    card.style.display = 'none';
-    }
-    });
-    }
 
-    // დავამატოთ ღილაკებზე "მოსმენა"
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-    filterProfiles(this.innerText);
-    });
-    });
+        // 5. ფილტრაციის ფუნქცია
+        function filterProfiles(category) {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardCategory = card.innerText;
+                if (category === 'ყველა' || cardCategory.includes(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
 </body>
 
