@@ -211,7 +211,25 @@
             localStorage.setItem('profiles', JSON.stringify(profiles));
             location.reload(); // გვერდის განახლება ცვლილების სანახავად
         }
-    </script>
+    </script>// ამ ფუნქციას დავამატებთ ფილტრაციისთვის
+    function filterProfiles(category) {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+    // თუ 'ყველა' არის არჩეული ან კატეგორია ემთხვევა
+    if (category === 'ყველა' || card.innerHTML.includes(category)) {
+    card.style.display = 'block';
+    } else {
+    card.style.display = 'none';
+    }
+    });
+    }
+
+    // დავამატოთ ღილაკებზე "მოსმენა"
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+    filterProfiles(this.innerText);
+    });
+    });
 
 </body>
 
