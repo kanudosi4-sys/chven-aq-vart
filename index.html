@@ -75,6 +75,19 @@
             text-align: center;
             position: relative;
             border-top: 5px solid var(--accent);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .contact-btn {
@@ -117,6 +130,11 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #d35400;
         }
     </style>
 </head>
@@ -151,7 +169,7 @@
             </select>
             <input type="number" id="userExp" placeholder="გამოცდილება (წლები)">
             <input type="tel" id="userPhone" placeholder="ტელეფონის ნომერი" required>
-            <textarea id="userInfo" placeholder="ინფორმაცია..."></textarea>
+            <textarea id="userInfo" placeholder="დამატებითი ინფორმაცია..."></textarea>
             <button type="submit" class="submit-btn">ბაზაში დამატება</button>
         </form>
     </div>
@@ -175,7 +193,7 @@
         const db = getDatabase(app);
         const profilesRef = ref(db, 'profiles');
 
-        // ბაზიდან მონაცემების წამოღება
+        // ბაზიდან მონაცემების ავტომატური წამოღება
         onValue(profilesRef, (snapshot) => {
             const grid = document.getElementById('profileGrid');
             grid.innerHTML = "";
@@ -196,7 +214,7 @@
             }
         });
 
-        // ბაზაში ჩაწერა
+        // ფორმის გაგზავნა ბაზაში
         document.getElementById('regForm').onsubmit = function (e) {
             e.preventDefault();
             const newProfile = {
@@ -208,8 +226,10 @@
             };
             push(profilesRef, newProfile);
             this.reset();
+            alert("თქვენი პროფილი წარმატებით დაემატა!");
         };
 
+        // ფილტრაციის ფუნქცია
         window.filterProfiles = function (category) {
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {
