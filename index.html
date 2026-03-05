@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ჩვენ აქ ვართ - ოსტატების ბაზა</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e67e22;
+            --light: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--light);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* ფილტრების სექცია */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* ბარათების ბადე */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            background: #ddd;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .status {
+            font-size: 12px;
+            color: green;
+            font-weight: bold;
+        }
+
+        .contact-btn {
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        /* ფორმის სექცია */
+        .add-profile {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 40px auto;
+            border: 2px dashed var(--accent);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>ჩვენ აქ ვართ</h1>
+        <p>იპოვე საჭირო სპეციალისტი ან დაამატე შენი პროფილი ბაზაში</p>
+    </div>
+
+    <div class="filters">
+        <button class="filter-btn active">ყველა</button>
+        <button class="filter-btn">მშენებელი</button>
+        <button class="filter-btn">ხელოსანი</button>
+        <button class="filter-btn">სპეც-ტექნიკა</button>
+        <button class="filter-btn">მძღოლი</button>
+    </div>
+
+    <div class="grid" id="profileGrid">
+        <div class="card">
+            <div class="profile-img">
+                <img src="https://via.placeholder.com/80" alt="პროფილი">
+            </div>
+            <h3>გიორგი კ.</h3>
+            <p><strong>სპეციალობა:</strong> მლესავი</p>
+            <p><strong>გამოცდილება:</strong> 8 წელი</p>
+            <span class="status">● ხელმისაწვდომია</span>
+            <a href="tel:555123456" class="contact-btn">დაკავშირება</a>
+        </div>
+    </div>
+
+    <div class="add-profile">
+        <h2 style="text-align: center; color: var(--accent);">დაამატე შენი პროფილი</h2>
+        <form id="regForm">
+            <input type="text" placeholder="სახელი და გვარი" required>
+            <select>
+                <option value="">აირჩიე კატეგორია</option>
+                <option value="msh">მშენებელი</option>
+                <option value="xel">ხელოსანი</option>
+                <option value="tech">სპეც-ტექნიკა</option>
+            </select>
+            <input type="number" placeholder="გამოცდილება (წლები)">
+            <input type="tel" placeholder="ტელეფონის ნომერი" required>
+            <textarea placeholder="მოკლე ინფორმაცია შენს შესახებ (რა ტექნიკა გაქვს, რა სამუშაოს ასრულებ)"></textarea>
+            <p style="font-size: 12px; color: #666;">ატვირთეთ CV ან ფოტო (მალე დაემატება)</p>
+            <button type="submit" class="submit-btn">ბაზაში დამატება</button>
+        </form>
+    </div>
+
+    <script>
+        // მომავალში აქ დავწერთ ლოგიკას, რომელიც ფორმიდან მონაცემებს აიღებს 
+        // და ცხრილში (ან ბაზაში) დაამატებს
+        document.getElementById('regForm').onsubmit = function (e) {
+            e.preventDefault();
+            alert('მადლობა! თქვენი მონაცემები მიღებულია (სადემონსტრაციო რეჟიმი)');
+        };
+        // ფორმის დამუშავება
+        document.getElementById('regForm').onsubmit = function (e) {
+            e.preventDefault();
+
+            // მონაცემების წამოღება ინპუტებიდან
+            const name = this.querySelectorAll('input')[0].value;
+            const category = this.querySelector('select').selectedOptions[0].text;
+            const exp = this.querySelectorAll('input')[1].value;
+            const phone = this.querySelectorAll('input')[2].value;
+            const info = this.querySelector('textarea').value;
+
+            // ახალი ბარათის შექმნა
+            const newCard = document.createElement('div');
+            newCard.className = 'card';
+            newCard.innerHTML = `
+        <div class="profile-img">
+            <img src="https://via.placeholder.com/80" alt="პროფილი">
+        </div>
+        <h3>${name}</h3>
+        <p><strong>სპეციალობა:</strong> ${category}</p>
+        <p><strong>გამოცდილება:</strong> ${exp} წელი</p>
+        <p style="font-size: 12px; color: #666;">${info}</p>
+        <span class="status">● ხელმისაწვდომია</span>
+        <a href="tel:${phone}" class="contact-btn">დაკავშირება</a>
+    `;
+
+            // ბარათის დამატება გვერდზე
+            document.getElementById('profileGrid').appendChild(newCard);
+
+            // ფორმის გასუფთავება
+            this.reset();
+            alert('თქვენი პროფილი წარმატებით დაემატა!');
+        };</script>
+
+</body>
+
+</html>
