@@ -160,7 +160,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        // შენი პირადი მონაცემები Screenshot (72)-დან
+        // შენი პირადი კონფიგურაცია Screenshot (72)-დან
         const firebaseConfig = {
             apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
             authDomain: "chven-aq-vart.firebaseapp.com",
@@ -168,14 +168,14 @@
             projectId: "chven-aq-vart",
             storageBucket: "chven-aq-vart.firebasestorage.app",
             messagingSenderId: "1067834621567",
-            appId: "1:1067834621567:web:46682b816c3bce4defc94a",
-            measurementId: "G-370R8XGGC4"
+            appId: "1:1067834621567:web:46682b816c3bce4defc94a"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const profilesRef = ref(db, 'profiles');
 
+        // ბაზიდან მონაცემების წამოღება
         onValue(profilesRef, (snapshot) => {
             const grid = document.getElementById('profileGrid');
             grid.innerHTML = "";
@@ -196,6 +196,7 @@
             }
         });
 
+        // ბაზაში ჩაწერა
         document.getElementById('regForm').onsubmit = function (e) {
             e.preventDefault();
             const newProfile = {
