@@ -10,7 +10,6 @@
             --blue: #1a73e8;
             --orange: #f29900;
             --bg: #f8f9fa;
-            --green: #28a745;
         }
 
         body {
@@ -55,14 +54,9 @@
             font-weight: bold;
             font-size: 17px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        .calc-link:hover {
-            transform: scale(1.02);
-        }
-
+        /* საძიებო ზოლი */
         .search-bar {
             background: #fff;
             padding: 15px;
@@ -74,25 +68,14 @@
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
-            align-items: center;
         }
 
         .filter-select {
             padding: 12px;
             border-radius: 8px;
-            border: 1px solid var(--blue);
-            min-width: 160px;
-            cursor: pointer;
+            border: 1px solid #ccc;
+            min-width: 220px;
             font-size: 14px;
-        }
-
-        .admin-in {
-            width: 60px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 11px;
-            opacity: 0.4;
         }
 
         .container {
@@ -103,42 +86,14 @@
 
         .reg-card {
             background: white;
-            padding: 35px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 40px;
             border-top: 6px solid var(--orange);
         }
 
-        /* ტიპის არჩევანი - ვინ არის მომხმარებელი */
-        .type-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .type-btn {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .type-btn.active[data-type="worker"] {
-            border-color: var(--blue);
-            background: #e8f0fe;
-            color: var(--blue);
-        }
-
-        .type-btn.active[data-type="employer"] {
-            border-color: var(--green);
-            background: #e6f4ea;
-            color: var(--green);
-        }
-
+        /* ფორმის სტილი */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -158,7 +113,6 @@
             border-radius: 8px;
             box-sizing: border-box;
             font-size: 15px;
-            outline: none;
         }
 
         .btn-submit {
@@ -166,14 +120,15 @@
             background: var(--orange);
             color: white;
             border: none;
-            padding: 16px;
+            padding: 18px;
             font-size: 18px;
             font-weight: bold;
-            cursor: pointer;
             border-radius: 8px;
+            cursor: pointer;
             margin-top: 10px;
         }
 
+        /* ბარათების სტილი */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -187,35 +142,7 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
-            border-bottom: 5px solid #ccc;
-            position: relative;
-        }
-
-        .card.worker {
-            border-bottom-color: var(--blue);
-        }
-
-        .card.employer {
-            border-bottom-color: var(--green);
-        }
-
-        .type-badge {
-            position: absolute;
-            top: -10px;
-            left: 15px;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-            color: white;
-        }
-
-        .worker .type-badge {
-            background: var(--blue);
-        }
-
-        .employer .type-badge {
-            background: var(--green);
+            border-bottom: 5px solid var(--blue);
         }
 
         .preview {
@@ -227,7 +154,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
             overflow: hidden;
         }
 
@@ -235,46 +161,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .time-stamp {
-            font-size: 10px;
-            color: #999;
-            margin-bottom: 5px;
-        }
-
-        .salary-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #e6f4ea;
-            color: #1e7e34;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 13px;
-            border: 1px solid #c3e6cb;
-        }
-
-        .card h4 {
-            margin: 5px 0;
-            font-size: 19px;
-            color: #1a1a1a;
-            padding-right: 80px;
-        }
-
-        .meta {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .badge {
-            background: #e8f0fe;
-            color: var(--blue);
-            padding: 3px 8px;
-            border-radius: 4px;
-            margin-right: 5px;
         }
 
         .call-btn {
@@ -288,29 +174,18 @@
             margin-top: auto;
         }
 
-        .del-btn {
-            background: #ff4d4d;
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 5px;
-            margin-top: 10px;
-            cursor: pointer;
-            display: none;
-        }
-
         /* AI ღილაკი */
         #ai-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             background: var(--blue);
             border-radius: 50%;
             border: none;
             color: white;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             z-index: 2000;
@@ -323,6 +198,10 @@
 
             .full-row {
                 grid-column: span 1;
+            }
+
+            .filter-select {
+                min-width: 100%;
             }
         }
     </style>
@@ -344,8 +223,7 @@
     <div class="search-bar">
         <select class="filter-select" id="fType" onchange="filter()">
             <option value="ყველა">🔍 ყველა განცხადება</option>
-            <option value="worker">👤 ვეძებ სამუშაოს</option>
-            <option value="employer">💼 ვეძებ კადრს</option>
+            <option value="worker">👤 ვეძებ თანამშრომელს, ხელოსანს, მუშას</option>
         </select>
         <select class="filter-select" id="fCity" onchange="filter()">
             <option value="ყველა">📍 ყველა ქალაქი</option>
@@ -353,145 +231,99 @@
             <option value="ბათუმი">ბათუმი</option>
             <option value="ქუთაისი">ქუთაისი</option>
             <option value="რუსთავი">რუსთავი</option>
-            <option value="გორი">გორი</option>
-            <option value="თელავი">თელავი</option>
-            <option value="ზუგდიდი">ზუგდიდი</option>
-            <option value="ფოთი">ფოთი</option>
-            <option value="ახალციხე">ახალციხე</option>
-            <option value="მცხეთა">მცხეთა</option>
-            <option value="სხვა">სხვა</option>
+            <option value="სხვა">სხვა რეგიონი</option>
         </select>
         <select class="filter-select" id="fCat" onchange="filter()">
             <option value="ყველა">📂 ყველა სფერო</option>
             <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
-            <option value="კვება / რესტორანი">კვება / რესტორანი</option>
-            <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
-            <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
-            <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
-            <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
-            <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
-            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
-            <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
-            <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
-            <option value="სხვა">სხვა პროფესია</option>
+            <option value="ტურიზმი / რესტორანი">ტურიზმი / რესტორანი</option>
+            <option value="ხელოვნება / სხვა">ხელოვნება / სხვა</option>
         </select>
-        <input type="password" class="admin-in" placeholder="Admin" oninput="showAdmin(this.value)">
     </div>
 
     <div class="container">
         <div class="reg-card">
-            <h3>📝 განცხადების დამატება</h3>
-            <div class="type-selector">
-                <div class="type-btn active" data-type="worker" onclick="setType('worker')">ვარ ხელოსანი</div>
-                <div class="type-btn" data-type="employer" onclick="setType('employer')">ვეძებ ხელოსანს</div>
-            </div>
+            <h3 style="margin-top:0;">📝 განცხადების დამატება</h3>
             <form id="regForm">
                 <div class="form-grid">
                     <input type="text" id="name" placeholder="სახელი და გვარი / კომპანია" required class="full-row">
+
                     <select id="city">
-                        <option value="თბილისი">📍 თბილისი</option>
-                        <option value="ბათუმი">📍 ბათუმი</option>
-                        <option value="ქუთაისი">📍 ქუთაისი</option>
-                        <option value="რუსთავი">📍 რუსთავი</option>
-                        <option value="გორი">📍 გორი</option>
-                        <option value="თელავი">📍 თელავი</option>
-                        <option value="ზუგდიდი">📍 ზუგდიდი</option>
-                        <option value="ფოთი">📍 ფოთი</option>
-                        <option value="ახალციხე">📍 ახალციხე</option>
-                        <option value="მცხეთა">📍 მცხეთა</option>
-                        <option value="სხვა">📍 სხვა რეგიონი</option>
+                        <option value="თბილისი">თბილისი</option>
+                        <option value="ბათუმი">ბათუმი</option>
+                        <option value="ქუთაისი">ქუთაისი</option>
+                        <option value="რუსთავი">რუსთავი</option>
+                        <option value="სხვა">სხვა რეგიონი</option>
                     </select>
+
                     <select id="cat">
-                        <option value="მშენებლობა / რემონტი">🏗️ მშენებლობა / რემონტი</option>
-                        <option value="კვება / რესტორანი">👨‍🍳 კვება / რესტორანი</option>
-                        <option value="ხელოვნება / გართობა">🎤 ხელოვნება / გართობა</option>
-                        <option value="ტურიზმი / სასტუმრო">🏨 ტურიზმი / სასტუმრო</option>
-                        <option value="ადმინისტრაცია / HR">📂 ადმინისტრაცია / HR</option>
-                        <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
-                        <option value="გაყიდვები / მოლარე">🛍️ გაყიდვები / მოლარე</option>
-                        <option value="IT / პროგრამირება">💻 IT / პროგრამირება</option>
-                        <option value="სამედიცინო / ფარმაცია">🩺 სამედიცინო / ფარმაცია</option>
-                        <option value="სერვისი / დასუფთავება">🧹 სერვისი / დასუფთავება</option>
-                        <option value="სხვა">✨ სხვა პროფესია</option>
+                        <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
+                        <option value="ტურიზმი / რესტორანი">ტურიზმი / რესტორანი</option>
+                        <option value="ხელოვნება / სხვა">ხელოვნება / სხვა</option>
                     </select>
-                    <input type="text" id="salary" placeholder="💰 ანაზღაურება (მაგ: 1500₾ თვეში)" class="full-row">
-                    <textarea id="desc" placeholder="აღწერეთ გამოცდილება ან პირობები..." rows="3"
+
+                    <input type="text" id="salary" placeholder="ანაზღაურება (მაგ: 1500₾)" class="full-row">
+                    <textarea id="desc" placeholder="აღწერეთ თქვენი შემოთავაზება ან გამოცდილება..." rows="3"
                         class="full-row"></textarea>
+
                     <div class="full-row">
-                        <label style="font-size: 13px; color: #666;">📄 ატვირთეთ ფოტო ან CV (PDF):</label>
+                        <label style="font-size: 13px; color: #666; display: block; margin-bottom: 5px;">🖼️ ფოტო ან CV
+                            (PDF):</label>
                         <input type="file" id="file" accept="image/*,.pdf">
                     </div>
+
                     <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
                     <button type="submit" class="btn-submit" id="submitBtn">გამოქვეყნება</button>
                 </div>
             </form>
         </div>
-        <div class="grid" id="displayBox"></div>
+        <div id="displayBox" class="grid"></div>
     </div>
 
-    <button id="ai-btn"
-        onclick="alert('გამარჯობა! მე ვარ თქვენი ციფრული ასისტენტი. რით შემიძლია დაგეხმაროთ?')">💬</button>
+    <button id="ai-btn" onclick="alert('გამარჯობა! მე ვარ თქვენი ასისტენტი. რით შემიძლია დაგეხმაროთ?')">💬</button>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
         const config = { apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw", databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com", projectId: "chven-aq-vart" };
         const db = getDatabase(initializeApp(config));
 
-        let currentType = 'worker';
-        window.setType = (type) => {
-            currentType = type;
-            document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === type));
-        };
-
-        const toBase64 = f => new Promise((res) => {
-            const r = new FileReader(); r.readAsDataURL(f);
-            r.onload = () => res(r.result);
-        });
+        const toBase64 = f => f ? new Promise((res) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); }) : "";
 
         onValue(ref(db, 'profiles'), (snapshot) => {
             const box = document.getElementById('displayBox'); box.innerHTML = "";
             const data = snapshot.val();
             if (data) Object.entries(data).reverse().forEach(([id, m]) => {
                 const div = document.createElement('div');
-                const type = m.type || 'worker';
-                div.className = `card ${type}`;
-                div.dataset.city = m.city || 'სხვა';
-                div.dataset.cat = m.cat || 'სხვა';
-                div.dataset.type = type;
+                div.className = 'card';
+                div.dataset.city = m.city;
+                div.dataset.cat = m.cat;
+                div.dataset.type = m.type || 'worker';
 
                 const isPdf = m.img && m.img.includes("pdf");
-                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">
-                ${isPdf ? '<div style="color:#d32f2f;font-weight:bold;">📄 იხილეთ ფაილი (PDF)</div>' : `<img src="${m.img}">`}
-            </div>` : '';
+                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${isPdf ? '📄 იხილეთ ფაილი (PDF)' : `<img src="${m.img}">`}</div>` : '';
 
                 div.innerHTML = `
-                <div class="type-badge">${type === 'worker' ? '👤 ვეძებ სამუშაოს' : '💼 ვაკანსია'}</div>
                 ${preview}
-                <div class="time-stamp">🕒 ${m.time || ''}</div>
-                ${m.salary ? `<div class="salary-tag">${m.salary}</div>` : ''}
                 <h4>${m.name}</h4>
-                <div class="meta"><span class="badge">📍 ${m.city}</span><span class="badge">📂 ${m.cat}</span></div>
-                <p style="font-size:14px; color:#444; margin-bottom:15px; flex-grow:1;">${m.desc || ''}</p>
+                <p style="font-size:13px; color:#777;">📍 ${m.city} | 📂 ${m.cat}</p>
+                <p style="font-size:14px; flex-grow:1;">${m.desc}</p>
+                <strong style="color:var(--blue);">${m.salary ? '💰 ' + m.salary : ''}</strong>
                 <a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a>
-                <button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>
             `;
                 box.appendChild(div);
             });
         });
-
-        window.showAdmin = (v) => document.querySelectorAll('.del-btn').forEach(b => b.style.display = v === '1234' ? 'block' : 'none');
-        window.deleteItem = (id) => { if (confirm('წავშალოთ?')) remove(ref(db, 'profiles/' + id)); };
 
         window.filter = () => {
             const type = document.getElementById('fType').value;
             const city = document.getElementById('fCity').value;
             const cat = document.getElementById('fCat').value;
             document.querySelectorAll('.card').forEach(c => {
-                const matchType = (type === 'ყველა' || c.dataset.type === type);
-                const matchCity = (city === 'ყველა' || c.dataset.city === city);
-                const matchCat = (cat === 'ყველა' || c.dataset.cat === cat);
+                const matchType = type === 'ყველა' || c.dataset.type === 'worker';
+                const matchCity = city === 'ყველა' || c.dataset.city === city;
+                const matchCat = cat === 'ყველა' || c.dataset.cat === cat;
                 c.style.display = (matchType && matchCity && matchCat) ? 'flex' : 'none';
             });
         };
@@ -499,8 +331,7 @@
         document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn'); btn.disabled = true;
-            let fileData = ""; const file = document.getElementById('file').files[0];
-            if (file) fileData = await toBase64(file);
+            const imgData = await toBase64(document.getElementById('file').files[0]);
 
             await push(ref(db, 'profiles'), {
                 name: document.getElementById('name').value,
@@ -509,8 +340,8 @@
                 salary: document.getElementById('salary').value,
                 desc: document.getElementById('desc').value,
                 phone: document.getElementById('phone').value,
-                type: currentType,
-                img: fileData,
+                type: 'worker',
+                img: imgData,
                 time: new Date().toLocaleString('ka-GE')
             });
             location.reload();
