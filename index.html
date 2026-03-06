@@ -34,7 +34,6 @@
             border: 2px solid var(--blue);
         }
 
-        /* ძებნა და ფილტრები */
         .search-bar {
             background: #fff;
             padding: 15px;
@@ -52,7 +51,7 @@
         .filter-select {
             padding: 12px;
             border-radius: 8px;
-            border: 2px solid var(--blue);
+            border: 1px solid var(--blue);
             min-width: 180px;
             cursor: pointer;
             font-size: 15px;
@@ -65,13 +64,6 @@
             border-radius: 5px;
             font-size: 12px;
             opacity: 0.5;
-            transition: 0.3s;
-        }
-
-        .admin-in:focus {
-            opacity: 1;
-            outline: none;
-            border-color: var(--blue);
         }
 
         .container {
@@ -80,7 +72,6 @@
             padding: 20px;
         }
 
-        /* დიდი და სრულყოფილი რეგისტრაციის ცხრილი */
         .reg-card {
             background: white;
             padding: 40px;
@@ -88,14 +79,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 40px;
             border-top: 6px solid var(--orange);
-        }
-
-        .reg-card h3 {
-            margin-top: 0;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .form-grid {
@@ -118,14 +101,6 @@
             box-sizing: border-box;
             font-size: 16px;
             outline: none;
-            transition: 0.3s;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            border-color: var(--orange);
-            box-shadow: 0 0 5px rgba(242, 153, 0, 0.2);
         }
 
         .btn-submit {
@@ -139,15 +114,8 @@
             cursor: pointer;
             border-radius: 8px;
             margin-top: 10px;
-            transition: 0.3s;
         }
 
-        .btn-submit:hover {
-            background: #e08e00;
-            transform: translateY(-2px);
-        }
-
-        /* ბარათების გრიდი */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -162,11 +130,6 @@
             display: flex;
             flex-direction: column;
             border-bottom: 5px solid var(--blue);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
         }
 
         .preview {
@@ -196,8 +159,15 @@
             font-size: 16px;
         }
 
+        .time-stamp {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
         .card h4 {
-            margin: 10px 0;
+            margin: 5px 0;
             font-size: 20px;
             color: #1a1a1a;
         }
@@ -217,14 +187,6 @@
             padding: 4px 10px;
             border-radius: 5px;
             font-weight: 500;
-        }
-
-        .description {
-            font-size: 15px;
-            color: #444;
-            line-height: 1.5;
-            margin-bottom: 15px;
-            flex-grow: 1;
         }
 
         .call-btn {
@@ -295,7 +257,6 @@
             <form id="regForm">
                 <div class="form-grid">
                     <input type="text" id="name" placeholder="თქვენი სახელი და გვარი" required class="full-row">
-
                     <select id="city">
                         <option value="თბილისი">📍 ქალაქი: თბილისი</option>
                         <option value="ბათუმი">📍 ქალაქი: ბათუმი</option>
@@ -303,7 +264,6 @@
                         <option value="რუსთავი">📍 ქალაქი: რუსთავი</option>
                         <option value="სხვა">📍 ქალაქი: სხვა</option>
                     </select>
-
                     <select id="cat">
                         <option value="ადმინისტრაცია / HR">📂 ადმინისტრაცია / HR</option>
                         <option value="ფინანსები / ბუღალტერია">📂 ფინანსები / ბუღალტერია</option>
@@ -311,23 +271,17 @@
                         <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
                         <option value="სხვა">✨ სხვა პროფესია</option>
                     </select>
-
-                    <textarea id="desc" placeholder="აღწერეთ თქვენი გამოცდილება (მაგ: ვმუშაობ 5 წელია...)" rows="4"
+                    <textarea id="desc" placeholder="აღწერეთ თქვენი გამოცდილება..." rows="4"
                         class="full-row"></textarea>
-
                     <div class="full-row">
-                        <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">📄 ატვირთეთ CV
-                            ან სერტიფიკატი (ფოტო ან PDF):</label>
+                        <label style="font-size: 14px; color: #555;">📄 ატვირთეთ CV (ფოტო ან PDF):</label>
                         <input type="file" id="file" accept="image/*,.pdf">
                     </div>
-
-                    <input type="tel" id="phone" placeholder="ტელეფონის ნომერი (მაგ: 599...)" required class="full-row">
-
+                    <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
                     <button type="submit" class="btn-submit" id="submitBtn">გამოქვეყნება</button>
                 </div>
             </form>
         </div>
-
         <div class="grid" id="displayBox"></div>
     </div>
 
@@ -338,10 +292,9 @@
         const config = { apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw", databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com", projectId: "chven-aq-vart" };
         const db = getDatabase(initializeApp(config));
 
-        const toBase64 = file => new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
+        const toBase64 = f => new Promise((res) => {
+            const r = new FileReader(); r.readAsDataURL(f);
+            r.onload = () => res(r.result);
         });
 
         onValue(ref(db, 'profiles'), (snapshot) => {
@@ -349,15 +302,11 @@
             const data = snapshot.val();
             if (data) Object.entries(data).reverse().forEach(([id, m]) => {
                 const div = document.createElement('div');
-                // თავსებადობა ძველ და ახალ ველებთან (undefined-ის ასაცილებლად)
                 const city = m.city || m.c || 'სხვა';
                 const cat = m.cat || m.s || 'სხვა';
-                const name = m.name || m.n || 'ანონიმური';
-                const phone = m.phone || m.p || '';
-                const desc = m.desc || m.d || '';
+                const time = m.time || ''; // თარიღის გამოტანა
 
                 div.className = 'card'; div.dataset.city = city; div.dataset.cat = cat;
-
                 const isPdf = m.img && m.img.includes("pdf");
                 const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">
                 ${isPdf ? '<div class="pdf-box">📄 PDF რეზიუმე<br><small>სანახავად დააჭირეთ</small></div>' : `<img src="${m.img}">`}
@@ -365,38 +314,31 @@
 
                 div.innerHTML = `
                 ${preview}
-                <h4>${name}</h4>
-                <div class="meta-info">
-                    <span class="badge">📍 ${city}</span>
-                    <span class="badge">📂 ${cat}</span>
-                </div>
-                <p class="description">${desc}</p>
-                <a href="tel:${phone}" class="call-btn">📞 დარეკვა: ${phone}</a>
+                <div class="time-stamp">🕒 ${time}</div>
+                <h4>${m.name || m.n || 'ანონიმური'}</h4>
+                <div class="meta-info"><span class="badge">📍 ${city}</span><span class="badge">📂 ${cat}</span></div>
+                <p style="font-size:15px; color:#444; flex-grow:1;">${m.desc || m.d || ''}</p>
+                <a href="tel:${m.phone || m.p}" class="call-btn">📞 დარეკვა: ${m.phone || m.p}</a>
                 <button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>
             `;
                 box.appendChild(div);
             });
         });
 
-        window.showAdmin = (val) => document.querySelectorAll('.del-btn').forEach(b => b.style.display = val === '1234' ? 'block' : 'none');
-        window.deleteItem = (id) => { if (confirm('ნამდვილად გსურთ წაშლა?')) remove(ref(db, 'profiles/' + id)); };
-
+        window.showAdmin = (v) => document.querySelectorAll('.del-btn').forEach(b => b.style.display = v === '1234' ? 'block' : 'none');
+        window.deleteItem = (id) => { if (confirm('წავშალოთ?')) remove(ref(db, 'profiles/' + id)); };
         window.filter = () => {
             const city = document.getElementById('fCity').value;
             const cat = document.getElementById('fCat').value;
             document.querySelectorAll('.card').forEach(c => {
-                const matchC = city === 'ყველა' || c.dataset.city === city;
-                const matchS = cat === 'ყველა' || c.dataset.cat === cat;
-                c.style.display = matchC && matchS ? 'flex' : 'none';
+                c.style.display = (city === 'ყველა' || c.dataset.city === city) && (cat === 'ყველა' || c.dataset.cat === cat) ? 'flex' : 'none';
             });
         };
 
         document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn'); btn.disabled = true; btn.innerText = "იგზავნება...";
-
-            let fileData = "";
-            const file = document.getElementById('file').files[0];
+            const btn = document.getElementById('submitBtn'); btn.disabled = true;
+            let fileData = ""; const file = document.getElementById('file').files[0];
             if (file) fileData = await toBase64(file);
 
             await push(ref(db, 'profiles'), {
@@ -405,7 +347,8 @@
                 cat: document.getElementById('cat').value,
                 desc: document.getElementById('desc').value,
                 phone: document.getElementById('phone').value,
-                img: fileData
+                img: fileData,
+                time: new Date().toLocaleString('ka-GE') // თარიღის შენახვა ქართულად
             });
             location.reload();
         };
