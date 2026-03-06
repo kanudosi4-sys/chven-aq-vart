@@ -8,9 +8,9 @@
     <style>
         :root {
             --blue: #1a73e8;
-            --green: #28a745;
             --orange: #f29900;
             --bg: #f8f9fa;
+            --green: #28a745;
         }
 
         body {
@@ -56,6 +56,11 @@
             font-size: 17px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .calc-link:hover {
+            transform: scale(1.02);
         }
 
         .search-bar {
@@ -105,6 +110,7 @@
             border-top: 6px solid var(--orange);
         }
 
+        /* ტიპის არჩევანი - ვინ არის მომხმარებელი */
         .type-selector {
             display: flex;
             gap: 10px;
@@ -152,6 +158,7 @@
             border-radius: 8px;
             box-sizing: border-box;
             font-size: 15px;
+            outline: none;
         }
 
         .btn-submit {
@@ -162,8 +169,9 @@
             padding: 16px;
             font-size: 18px;
             font-weight: bold;
-            border-radius: 8px;
             cursor: pointer;
+            border-radius: 8px;
+            margin-top: 10px;
         }
 
         .grid {
@@ -179,8 +187,8 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
-            position: relative;
             border-bottom: 5px solid #ccc;
+            position: relative;
         }
 
         .card.worker {
@@ -219,14 +227,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             cursor: pointer;
+            overflow: hidden;
         }
 
         .preview img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .time-stamp {
+            font-size: 10px;
+            color: #999;
+            margin-bottom: 5px;
         }
 
         .salary-tag {
@@ -243,7 +257,7 @@
         }
 
         .card h4 {
-            margin: 10px 0 5px 0;
+            margin: 5px 0;
             font-size: 19px;
             color: #1a1a1a;
             padding-right: 80px;
@@ -285,6 +299,7 @@
             display: none;
         }
 
+        /* AI ღილაკი */
         #ai-btn {
             position: fixed;
             bottom: 20px;
@@ -298,6 +313,7 @@
             font-size: 24px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 2000;
         }
 
         @media (max-width: 768px) {
@@ -327,9 +343,9 @@
 
     <div class="search-bar">
         <select class="filter-select" id="fType" onchange="filter()">
-            <option value="ყველა">🔍 ყველა ტიპი</option>
-            <option value="worker">👤 სპეციალისტები</option>
-            <option value="employer">💼 ვაკანსიები</option>
+            <option value="ყველა">🔍 ყველა განცხადება</option>
+            <option value="worker">👤 ვეძებ სამუშაოს</option>
+            <option value="employer">💼 ვეძებ კადრს</option>
         </select>
         <select class="filter-select" id="fCity" onchange="filter()">
             <option value="ყველა">📍 ყველა ქალაქი</option>
@@ -347,18 +363,17 @@
         </select>
         <select class="filter-select" id="fCat" onchange="filter()">
             <option value="ყველა">📂 ყველა სფერო</option>
-            <option value="მშენებლობა / რემონტი">🏗️ მშენებლობა / რემონტი</option>
-            <option value="კვება / რესტორანი">👨‍🍳 კვება / რესტორანი</option>
-            <option value="ხელოვნება / გართობა">🎤 ხელოვნება / გართობა</option>
-            <option value="ტურიზმი / სასტუმრო">🏨 ტურიზმი / სასტუმრო</option>
-            <option value="ადმინისტრაცია / HR">📂 ადმინისტრაცია / HR</option>
-            <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
-            <option value="გაყიდვები / მოლარე">🛍️ გაყიდვები / მოლარე</option>
-            <option value="IT / პროგრამირება">💻 IT / პროგრამირება</option>
-            <option value="დაცვა / უსაფრთხოება">🛡️ დაცვა / უსაფრთხოება</option>
-            <option value="სამედიცინო / ფარმაცია">🩺 სამედიცინო / ფარმაცია</option>
-            <option value="სერვისი / დასუფთავება">🧹 სერვისი / დასუფთავება</option>
-            <option value="სხვა">✨ სხვა პროფესია</option>
+            <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
+            <option value="კვება / რესტორანი">კვება / რესტორანი</option>
+            <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
+            <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
+            <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
+            <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+            <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
+            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+            <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
+            <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
+            <option value="სხვა">სხვა პროფესია</option>
         </select>
         <input type="password" class="admin-in" placeholder="Admin" oninput="showAdmin(this.value)">
     </div>
@@ -367,8 +382,8 @@
         <div class="reg-card">
             <h3>📝 განცხადების დამატება</h3>
             <div class="type-selector">
-                <div class="type-btn active" data-type="worker" onclick="setType('worker')">ვეძებ სამსახურს</div>
-                <div class="type-btn" data-type="employer" onclick="setType('employer')">ვეძებ კადრს</div>
+                <div class="type-btn active" data-type="worker" onclick="setType('worker')">ვარ ხელოსანი</div>
+                <div class="type-btn" data-type="employer" onclick="setType('employer')">ვეძებ ხელოსანს</div>
             </div>
             <form id="regForm">
                 <div class="form-grid">
@@ -395,16 +410,15 @@
                         <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
                         <option value="გაყიდვები / მოლარე">🛍️ გაყიდვები / მოლარე</option>
                         <option value="IT / პროგრამირება">💻 IT / პროგრამირება</option>
-                        <option value="დაცვა / უსაფრთხოება">🛡️ დაცვა / უსაფრთხოება</option>
                         <option value="სამედიცინო / ფარმაცია">🩺 სამედიცინო / ფარმაცია</option>
                         <option value="სერვისი / დასუფთავება">🧹 სერვისი / დასუფთავება</option>
                         <option value="სხვა">✨ სხვა პროფესია</option>
                     </select>
-                    <input type="text" id="salary" placeholder="💰 ანაზღაურება (მაგ: 1500₾)" class="full-row">
-                    <textarea id="desc" placeholder="აღწერეთ გამოცდილება ან ვაკანსიის პირობები..." rows="3"
+                    <input type="text" id="salary" placeholder="💰 ანაზღაურება (მაგ: 1500₾ თვეში)" class="full-row">
+                    <textarea id="desc" placeholder="აღწერეთ გამოცდილება ან პირობები..." rows="3"
                         class="full-row"></textarea>
                     <div class="full-row">
-                        <label style="font-size: 13px;">📄 ფოტო, პორტფოლიო ან CV (PDF):</label>
+                        <label style="font-size: 13px; color: #666;">📄 ატვირთეთ ფოტო ან CV (PDF):</label>
                         <input type="file" id="file" accept="image/*,.pdf">
                     </div>
                     <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
@@ -416,7 +430,7 @@
     </div>
 
     <button id="ai-btn"
-        onclick="alert('გამარჯობა! მე ვარ Gemini, თქვენი ციფრული ასისტენტი. რით შემიძლია დაგეხმაროთ?')">💬</button>
+        onclick="alert('გამარჯობა! მე ვარ თქვენი ციფრული ასისტენტი. რით შემიძლია დაგეხმაროთ?')">💬</button>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
@@ -431,7 +445,10 @@
             document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === type));
         };
 
-        const toBase64 = f => f ? new Promise((res) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); }) : "";
+        const toBase64 = f => new Promise((res) => {
+            const r = new FileReader(); r.readAsDataURL(f);
+            r.onload = () => res(r.result);
+        });
 
         onValue(ref(db, 'profiles'), (snapshot) => {
             const box = document.getElementById('displayBox'); box.innerHTML = "";
@@ -445,16 +462,18 @@
                 div.dataset.type = type;
 
                 const isPdf = m.img && m.img.includes("pdf");
-                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${isPdf ? '📄 იხილეთ ფაილი' : `<img src="${m.img}">`}</div>` : '';
+                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">
+                ${isPdf ? '<div style="color:#d32f2f;font-weight:bold;">📄 იხილეთ ფაილი (PDF)</div>' : `<img src="${m.img}">`}
+            </div>` : '';
 
                 div.innerHTML = `
-                <div class="type-badge">${type === 'worker' ? '👤 სპეციალისტი' : '💼 ვაკანსია'}</div>
+                <div class="type-badge">${type === 'worker' ? '👤 ვეძებ სამუშაოს' : '💼 ვაკანსია'}</div>
                 ${preview}
                 <div class="time-stamp">🕒 ${m.time || ''}</div>
                 ${m.salary ? `<div class="salary-tag">${m.salary}</div>` : ''}
                 <h4>${m.name}</h4>
                 <div class="meta"><span class="badge">📍 ${m.city}</span><span class="badge">📂 ${m.cat}</span></div>
-                <p style="font-size:14px; color:#444; flex-grow:1;">${m.desc}</p>
+                <p style="font-size:14px; color:#444; margin-bottom:15px; flex-grow:1;">${m.desc || ''}</p>
                 <a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a>
                 <button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>
             `;
@@ -470,9 +489,9 @@
             const city = document.getElementById('fCity').value;
             const cat = document.getElementById('fCat').value;
             document.querySelectorAll('.card').forEach(c => {
-                const matchType = type === 'ყველა' || c.dataset.type === type;
-                const matchCity = city === 'ყველა' || c.dataset.city === city;
-                const matchCat = cat === 'ყველა' || c.dataset.cat === cat;
+                const matchType = (type === 'ყველა' || c.dataset.type === type);
+                const matchCity = (city === 'ყველა' || c.dataset.city === city);
+                const matchCat = (cat === 'ყველა' || c.dataset.cat === cat);
                 c.style.display = (matchType && matchCity && matchCat) ? 'flex' : 'none';
             });
         };
@@ -480,8 +499,8 @@
         document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn'); btn.disabled = true;
-            const file = document.getElementById('file').files[0];
-            const imgData = await toBase64(file);
+            let fileData = ""; const file = document.getElementById('file').files[0];
+            if (file) fileData = await toBase64(file);
 
             await push(ref(db, 'profiles'), {
                 name: document.getElementById('name').value,
@@ -491,7 +510,7 @@
                 desc: document.getElementById('desc').value,
                 phone: document.getElementById('phone').value,
                 type: currentType,
-                img: imgData,
+                img: fileData,
                 time: new Date().toLocaleString('ka-GE')
             });
             location.reload();
