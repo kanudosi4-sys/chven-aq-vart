@@ -4,43 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ჩვენ აქ ვართ - დასაქმების პლატფორმა</title>
+    <title>ჩვენ აქ ვართ</title>
     <style>
         :root {
             --blue: #1a73e8;
             --orange: #f29900;
-            --bg: #f8f9fa;
+            --bg: #f4f7f6;
+            --text: #333;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background: var(--bg);
+            color: var(--text);
             margin: 0;
-            padding-bottom: 50px;
         }
 
         header {
             background: #fff;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
-            border-bottom: 2px solid #eee;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            object-fit: cover;
+            border: 2px solid var(--blue);
         }
 
-        /* 🔍 საძიებო ფილტრები */
         .search-container {
             background: #fff;
             padding: 15px;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             justify-content: center;
             gap: 10px;
@@ -50,91 +50,91 @@
         .filter-select {
             padding: 12px;
             border-radius: 8px;
-            border: 2px solid var(--blue);
-            font-size: 15px;
-            min-width: 180px;
-            cursor: pointer;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            min-width: 160px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .filter-select:focus {
+            border-color: var(--blue);
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: auto;
             padding: 20px;
         }
 
-        /* ფორმის სტილი */
-        .reg-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-            border-top: 5px solid var(--orange);
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: var(--orange);
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 8px;
-        }
-
-        /* განცხადების ბარათები */
+        /* ბარათების სტილი */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .card {
             background: white;
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            border-top: 5px solid var(--blue);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+            border-top: 4px solid var(--blue);
+            display: flex;
+            flex-direction: column;
         }
 
-        .cv-img {
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* PDF და სურათის პრევიუ */
+        .preview-box {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 12px;
+            height: 180px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             border: 1px solid #eee;
-            background: #f0f0f0;
         }
 
-        .badge {
-            background: #e8f0fe;
-            color: var(--blue);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
+        .preview-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pdf-icon {
+            text-align: center;
+            color: #d93025;
             font-weight: bold;
-            display: inline-block;
-            margin: 5px 5px 0 0;
+        }
+
+        .card h4 {
+            margin: 10px 0 5px 0;
+            font-size: 20px;
+        }
+
+        .info-row {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            font-size: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: 15px;
         }
 
         .call-btn {
-            display: block;
             background: #28a745;
             color: white;
             text-align: center;
@@ -142,7 +142,43 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .call-btn:hover {
+            background: #218838;
+        }
+
+        .reg-btn-toggle {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            font-weight: bold;
+        }
+
+        #regSection {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .admin-del {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            display: none;
         }
     </style>
 </head>
@@ -151,8 +187,8 @@
 
     <header>
         <img src="New DOC Document.jpg" alt="Logo" class="logo">
-        <h2 style="margin:5px 0;">ჩვენ აქ ვართ</h2>
-        <p style="margin:0; color:#666;">იპოვეთ კადრი ან განათავსეთ თქვენი რეზიუმე</p>
+        <h1>ჩვენ აქ ვართ</h1>
+        <p>დასაქმების თავისუფალი პლატფორმა</p>
     </header>
 
     <div class="search-container">
@@ -162,26 +198,26 @@
             <option value="ბათუმი">ბათუმი</option>
             <option value="ქუთაისი">ქუთაისი</option>
             <option value="რუსთავი">რუსთავი</option>
-            <option value="ფოთი">ფოთი</option>
-            <option value="გორი">გორი</option>
-            <option value="ზუგდიდი">ზუგდიდი</option>
             <option value="სხვა">სხვა ქალაქი</option>
         </select>
         <select class="filter-select" id="filterCat" onchange="applyFilters()">
             <option value="ყველა">📂 ყველა კატეგორია</option>
             <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
-            <option value="ფინანსები / ბუღალტერია">ფინანსები / ბუღალტერია</option>
             <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
             <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
-            <option value="სამედიცინო / მომსახურება">სამედიცინო / მომსახურება</option>
-            <option value="სოფლის მეურნეობა">სოფლის მეურნეობა</option>
             <option value="სხვა">სხვა პროფესია</option>
         </select>
+        <input type="password" id="adminPass" placeholder="Admin" style="width:60px; opacity:0.3; border:none;"
+            oninput="checkAdmin(this.value)">
     </div>
 
     <div class="container">
-        <div class="reg-card">
-            <h3>📝 დაამატე შენი განცხადება</h3>
+        <button class="reg-btn-toggle"
+            onclick="document.getElementById('regSection').style.display='block'; this.style.display='none'">+
+            განცხადების დამატება</button>
+
+        <div id="regSection">
+            <h3>📝 შეავსეთ მონაცემები</h3>
             <form id="f">
                 <input type="text" id="n" placeholder="სახელი და გვარი" required>
                 <select id="c">
@@ -189,22 +225,20 @@
                     <option value="ბათუმი">ბათუმი</option>
                     <option value="ქუთაისი">ქუთაისი</option>
                     <option value="რუსთავი">რუსთავი</option>
-                    <option value="ფოთი">ფოთი</option>
                     <option value="სხვა">სხვა ქალაქი</option>
                 </select>
                 <select id="s">
-                    <option value="ადმინისტრაცია / HR">📂 ადმინისტრაცია / HR</option>
-                    <option value="ფინანსები / ბუღალტერია">📂 ფინანსები / ბუღალტერია</option>
-                    <option value="მშენებლობა / რემონტი">🏗️ მშენებლობა / რემონტი</option>
-                    <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
-                    <option value="სოფლის მეურნეობა">🚜 სოფლის მეურნეობა</option>
-                    <option value="სხვა">✨ სხვა პროფესია</option>
+                    <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
+                    <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
+                    <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+                    <option value="სხვა">სხვა პროფესია</option>
                 </select>
-                <textarea id="d" placeholder="დაწერეთ თქვენი გამოცდილების ან უნარების შესახებ..." rows="3"></textarea>
-                <label>📸 ატვირთეთ თქვენი CV-ს ან სერტიფიკატის ფოტო:</label>
-                <input type="file" id="i" accept="image/*">
-                <input type="tel" id="p" placeholder="ტელეფონი (მაგ: 599...)" required>
-                <button type="submit" class="btn-submit" id="subBtn">განცხადების განთავსება</button>
+                <textarea id="d" placeholder="მოკლე აღწერა..." rows="3"></textarea>
+                <label>📄 ატვირთეთ რეზიუმე (ფოტო ან PDF):</label>
+                <input type="file" id="i" accept="image/*,.pdf">
+                <input type="tel" id="p" placeholder="ტელეფონი" required>
+                <button type="submit" class="btn-submit" id="subBtn"
+                    style="background:var(--orange); color:white; border:none; padding:15px; border-radius:8px; width:100%; cursor:pointer;">გამოქვეყნება</button>
             </form>
         </div>
 
@@ -213,71 +247,60 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        const cfg = {
-            apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
-            databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com",
-            projectId: "chven-aq-vart"
-        };
+        const cfg = { apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw", databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com", projectId: "chven-aq-vart" };
         const db = getDatabase(initializeApp(cfg));
 
-        // ფოტოს წამკითხველი ფუნქცია
-        const toBase64 = file => new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
+        const toBase64 = f => new Promise((res) => {
+            const r = new FileReader(); r.readAsDataURL(f);
+            r.onload = () => res(r.result);
         });
 
-        // მონაცემების გამოტანა და ძებნა
         onValue(ref(db, 'profiles'), (s) => {
             const b = document.getElementById('box'); b.innerHTML = "";
             const data = s.val();
-            if (data) Object.values(data).reverse().forEach(m => {
+            if (data) Object.entries(data).reverse().forEach(([key, m]) => {
                 const div = document.createElement('div');
                 div.className = 'card'; div.dataset.city = m.city; div.dataset.cat = m.cat;
+
+                // PDF-ის შემოწმება
+                const isPdf = m.img && m.img.includes("application/pdf");
+                const previewHtml = isPdf
+                    ? `<div class="preview-box" onclick="window.open('${m.img}')"><div class="pdf-icon">📄 PDF რეზიუმე<br><small>სანახავად დააჭირეთ</small></div></div>`
+                    : (m.img ? `<div class="preview-box" onclick="window.open('${m.img}')"><img src="${m.img}"></div>` : '<div class="preview-box">ფოტო არ არის</div>');
+
                 div.innerHTML = `
-                ${m.img ? `<img src="${m.img}" class="cv-img" title="ნახვა" onclick="window.open(this.src)">` : '<div class="cv-img" style="display:flex;align-items:center;justify-content:center;color:#999">ფოტო არ არის</div>'}
+                ${previewHtml}
                 <h4>${m.name}</h4>
-                <span class="badge">📍 ${m.city}</span><span class="badge">📂 ${m.cat}</span>
-                <p style="font-size:14px; color:#444; margin-top:10px;">${m.desc || ''}</p>
-                <a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a>
+                <div class="info-row">📍 ${m.city} | 📂 ${m.cat}</div>
+                <p class="desc">${m.desc || ''}</p>
+                <a href="tel:${m.phone}" class="call-btn">📞 დარეკვა</a>
+                <button class="admin-del" onclick="deletePost('${key}')">წაშლა</button>
             `;
                 b.appendChild(div);
             });
         });
 
-        // ფილტრაციის ლოგიკა
+        // წაშლის ფუნქცია ადმინისთვის
+        window.deletePost = (key) => { if (confirm('დარწმუნებული ხართ?')) remove(ref(db, 'profiles/' + key)); };
+        window.checkAdmin = (v) => { document.querySelectorAll('.admin-del').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none'); };
+
         window.applyFilters = () => {
             const city = document.getElementById('filterCity').value;
             const cat = document.getElementById('filterCat').value;
             document.querySelectorAll('.card').forEach(c => {
-                const mCity = (city === 'ყველა' || c.dataset.city === city);
-                const mCat = (cat === 'ყველა' || c.dataset.cat === cat);
-                c.style.display = mCity && mCat ? 'block' : 'none';
+                c.style.display = (city === 'ყველა' || c.dataset.city === city) && (cat === 'ყველა' || c.dataset.cat === cat) ? 'flex' : 'none';
             });
         };
 
-        // ფორმის გაგზავნა
         document.getElementById('f').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('subBtn'); btn.disabled = true; btn.innerText = "იგზავნება...";
-
-            let imgData = "";
-            const file = document.getElementById('i').files[0];
-            if (file) imgData = await toBase64(file);
-
-            await push(ref(db, 'profiles'), {
-                name: document.getElementById('n').value,
-                city: document.getElementById('c').value,
-                cat: document.getElementById('s').value,
-                desc: document.getElementById('d').value,
-                phone: document.getElementById('p').value,
-                img: imgData
-            });
-
-            e.target.reset(); btn.disabled = false; btn.innerText = "განცხადების განთავსება";
-            alert("თქვენი CV წარმატებით დაემატა!");
+            const btn = document.getElementById('subBtn'); btn.disabled = true;
+            let img = ""; const file = document.getElementById('i').files[0];
+            if (file) img = await toBase64(file);
+            await push(ref(db, 'profiles'), { name: document.getElementById('n').value, city: document.getElementById('c').value, cat: document.getElementById('s').value, desc: document.getElementById('d').value, phone: document.getElementById('p').value, img: img });
+            location.reload();
         };
     </script>
 </body>
