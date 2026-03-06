@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ჩვენ აქ ვართ - ხელოსნების ბირჟა</title>
+    <title>ჩვენ აქ ვართ - დასაქმების პლატფორმა</title>
     <style>
         :root {
             --blue: #1a73e8;
@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: var(--bg);
             margin: 0;
             padding-bottom: 50px;
@@ -21,22 +21,43 @@
 
         header {
             background: #fff;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
-            border-bottom: 3px solid var(--blue);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #eee;
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--blue);
+        }
+
+        /* 🔍 მთავარი ფილტრები - საიტის პრინციპი */
+        .search-container {
+            background: #fff;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid var(--blue);
+            font-size: 15px;
+            min-width: 180px;
+            cursor: pointer;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: auto;
             padding: 20px;
         }
@@ -44,11 +65,11 @@
         /* რეგისტრაციის ფორმა */
         .reg-card {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            margin-bottom: 40px;
-            border-top: 6px solid var(--orange);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--orange);
         }
 
         input,
@@ -56,7 +77,7 @@
         textarea {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
+            margin: 8px 0;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
@@ -73,14 +94,9 @@
             font-weight: bold;
             cursor: pointer;
             border-radius: 8px;
-            transition: 0.3s;
         }
 
-        .btn-submit:disabled {
-            background: #ccc;
-        }
-
-        /* ოსტატების ბარათები */
+        /* განცხადების ბარათები */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -92,10 +108,10 @@
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            border-left: 5px solid var(--blue);
+            border-top: 5px solid var(--blue);
         }
 
-        .cv-photo {
+        .cv-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
@@ -113,10 +129,10 @@
             font-size: 13px;
             font-weight: bold;
             display: inline-block;
-            margin: 5px 5px 10px 0;
+            margin: 5px 5px 0 0;
         }
 
-        .phone-btn {
+        .call-btn {
             display: block;
             background: #28a745;
             color: white;
@@ -134,115 +150,130 @@
 
     <header>
         <img src="New DOC Document.jpg" alt="Logo" class="logo">
-        <h1>ჩვენ აქ ვართ</h1>
-        <p>იპოვეთ საუკეთესო ხელოსნები ერთ სივრცეში</p>
+        <h2 style="margin:5px 0;">ჩვენ აქ ვართ</h2>
+        <p style="margin:0; color:#666;">იპოვეთ კადრი ან განათავსეთ თქვენი რეზიუმე</p>
     </header>
+
+    <div class="search-container">
+        <select class="filter-select" id="filterCity" onchange="applyFilters()">
+            <option value="ყველა">📍 ყველა ქალაქი</option>
+            <option value="თბილისი">თბილისი</option>
+            <option value="ბათუმი">ბათუმი</option>
+            <option value="ქუთაისი">ქუთაისი</option>
+            <option value="რუსთავი">რუსთავი</option>
+            <option value="გორი">გორი</option>
+            <option value="ზუგდიდი">ზუგდიდი</option>
+            <option value="ფოთი">ფოთი</option>
+            <option value="თელავი">თელავი</option>
+        </select>
+        <select class="filter-select" id="filterCat" onchange="applyFilters()">
+            <option value="ყველა">📂 ყველა კატეგორია</option>
+            <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
+            <option value="ფინანსები / ბუღალტერია">ფინანსები / ბუღალტერია</option>
+            <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
+            <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+            <option value="გაყიდვები / მარკეტინგი">გაყიდვები / მარკეტინგი</option>
+            <option value="სამედიცინო / მომსახურება">სამედიცინო / მომსახურება</option>
+            <option value="სოფლის მეურნეობა">სოფლის მეურნეობა</option>
+        </select>
+    </div>
 
     <div class="container">
         <div class="reg-card">
-            <h3>🛠️ ხელოსნის რეგისტრაცია</h3>
-            <form id="regForm">
-                <input type="text" id="name" placeholder="თქვენი სახელი და გვარი" required>
-                <select id="city">
+            <h3>📝 დაამატე შენი განცხადება</h3>
+            <form id="f">
+                <input type="text" id="n" placeholder="სახელი და გვარი" required>
+                <select id="c">
                     <option value="თბილისი">თბილისი</option>
                     <option value="ბათუმი">ბათუმი</option>
                     <option value="ქუთაისი">ქუთაისი</option>
                     <option value="რუსთავი">რუსთავი</option>
+                    <option value="გორი">გორი</option>
+                    <option value="ზუგდიდი">ზუგდიდი</option>
+                    <option value="ფოთი">ფოთი</option>
+                    <option value="თელავი">თელავი</option>
                 </select>
-                <select id="category">
+                <select id="s">
+                    <option value="ადმინისტრაცია / HR">📂 ადმინისტრაცია / HR</option>
+                    <option value="ფინანსები / ბუღალტერია">📂 ფინანსები / ბუღალტერია</option>
                     <option value="მშენებლობა / რემონტი">🏗️ მშენებლობა / რემონტი</option>
                     <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
-                    <option value="ადმინისტრაცია / მენეჯმენტი">💼 ადმინისტრაცია / მენეჯმენტი</option>
-                    <option value="მომსახურება / დასუფთავება">🧹 მომსახურება / დასუფთავება</option>
+                    <option value="გაყიდვები / მარკეტინგი">📈 გაყიდვები / მარკეტინგი</option>
+                    <option value="სამედიცინო / მომსახურება">🏥 სამედიცინო / მომსახურება</option>
                     <option value="სოფლის მეურნეობა">🚜 სოფლის მეურნეობა</option>
-                    <option value="სხვა">🔧 სხვა მომსახურება</option>
                 </select>
-                <textarea id="cv" placeholder="აღწერეთ თქვენი გამოცდილება (მაგ: ვმუშაობ 5 წელია...)"
+                <textarea id="d" placeholder="დაწერეთ თქვენი გამოცდილების, განათლების ან უნარების შესახებ..."
                     rows="3"></textarea>
-                <label>📷 გადაუღეთ ფოტო თქვენს CV-ს ან სერტიფიკატს:</label>
-                <input type="file" id="photoInput" accept="image/*">
-                <input type="tel" id="phone" placeholder="ტელეფონის ნომერი (მაგ: 599...)" required>
-                <button type="submit" class="btn-submit" id="submitBtn">გამოქვეყნება</button>
+                <label>📸 ატვირთეთ CV ან სერტიფიკატის ფოტო:</label>
+                <input type="file" id="i" accept="image/*">
+                <input type="tel" id="p" placeholder="ტელეფონი (მაგ: 599...)" required>
+                <button type="submit" class="btn-submit" id="sub">განცხადების განთავსება</button>
             </form>
         </div>
 
-        <div class="grid" id="masterGrid"></div>
+        <div class="grid" id="box"></div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        const firebaseConfig = {
+        const cfg = {
             apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
-            authDomain: "chven-aq-vart.firebaseapp.com",
             databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com",
             projectId: "chven-aq-vart"
         };
+        const db = getDatabase(initializeApp(cfg));
 
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        // ფოტოს გადაქცევა ტექსტად (Base64)
-        const toBase64 = file => new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
+        const toBase64 = f => new Promise((res) => {
+            const r = new FileReader(); r.readAsDataURL(f);
+            r.onload = () => res(r.result);
         });
 
-        // მონაცემების გამოტანა
-        onValue(ref(db, 'profiles'), (snapshot) => {
-            const grid = document.getElementById('masterGrid');
-            grid.innerHTML = "";
-            const data = snapshot.val();
-            if (data) {
-                Object.values(data).reverse().forEach(p => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                    ${p.image ? `<img src="${p.image}" class="cv-photo" onclick="window.open(this.src)">` : ''}
-                    <h3>${p.name}</h3>
-                    <span class="badge">📍 ${p.city}</span>
-                    <span class="badge">🛠️ ${p.category}</span>
-                    <p>${p.cv || 'გამოცდილება არ არის მითითებული'}</p>
-                    <a href="tel:${p.phone}" class="phone-btn">📞 დარეკვა: ${p.phone}</a>
-                `;
-                    grid.appendChild(card);
-                });
-            }
-        });
-
-        // რეგისტრაცია
-        document.getElementById('regForm').onsubmit = async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.innerText = "იგზავნება...";
-
-            let photoData = "";
-            const file = document.getElementById('photoInput').files[0];
-
-            if (file) {
-                try { photoData = await toBase64(file); } catch (e) { console.error(e); }
-            }
-
-            await push(ref(db, 'profiles'), {
-                name: document.getElementById('name').value,
-                city: document.getElementById('city').value,
-                category: document.getElementById('category').value,
-                cv: document.getElementById('cv').value,
-                phone: document.getElementById('phone').value,
-                image: photoData
+        onValue(ref(db, 'profiles'), (s) => {
+            const b = document.getElementById('box'); b.innerHTML = "";
+            const data = s.val();
+            if (data) Object.values(data).reverse().forEach(m => {
+                const div = document.createElement('div');
+                div.className = 'card'; div.dataset.city = m.city; div.dataset.cat = m.cat;
+                div.innerHTML = `
+                ${m.img ? `<img src="${m.img}" class="cv-img" onclick="window.open(this.src)">` : ''}
+                <h4>${m.name}</h4>
+                <span class="badge">📍 ${m.city}</span><span class="badge">📂 ${m.cat}</span>
+                <p style="font-size:14px; color:#444; margin-top:10px;">${m.desc || ''}</p>
+                <a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a>
+            `;
+                b.appendChild(div);
             });
+        });
 
-            e.target.reset();
-            btn.disabled = false;
-            btn.innerText = "გამოქვეყნება";
-            alert("თქვენი პროფილი წარმატებით დაემატა!");
+        window.applyFilters = () => {
+            const city = document.getElementById('filterCity').value;
+            const cat = document.getElementById('filterCat').value;
+            document.querySelectorAll('.card').forEach(c => {
+                const mCity = city === 'ყველა' || c.dataset.city === city;
+                const mCat = cat === 'ყველა' || c.dataset.cat === cat;
+                c.style.display = mCity && mCat ? 'block' : 'none';
+            });
+        };
+
+        document.getElementById('f').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('sub'); btn.disabled = true; btn.innerText = "იგზავნება...";
+            let img = ""; const file = document.getElementById('i').files[0];
+            if (file) img = await toBase64(file);
+            await push(ref(db, 'profiles'), {
+                name: document.getElementById('n').value,
+                city: document.getElementById('c').value,
+                cat: document.getElementById('s').value,
+                desc: document.getElementById('d').value,
+                phone: document.getElementById('p').value,
+                img: img
+            });
+            e.target.reset(); btn.disabled = false; btn.innerText = "განცხადების განთავსება";
+            alert("თქვენი განცხადება წარმატებით დაემატა!");
         };
     </script>
-
 </body>
 
 </html>
