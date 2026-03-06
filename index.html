@@ -21,7 +21,6 @@
             line-height: 1.6;
         }
 
-        /* Header & Branding */
         header {
             background: #fff;
             padding: 25px;
@@ -35,6 +34,7 @@
             border-radius: 50%;
             border: 2px solid var(--primary);
             margin-bottom: 10px;
+            object-fit: cover;
         }
 
         header h1 {
@@ -43,7 +43,6 @@
             color: var(--primary);
         }
 
-        /* Search Filters - Jobs.ge Style */
         .search-area {
             background: #fff;
             padding: 20px;
@@ -61,13 +60,12 @@
             padding: 12px;
             border: 1px solid #dadce0;
             border-radius: 8px;
-            min-width: 250px;
+            min-width: 220px;
             font-size: 14px;
             background: #fff;
             cursor: pointer;
         }
 
-        /* Master Cards Grid */
         .grid {
             max-width: 1200px;
             margin: 30px auto;
@@ -85,6 +83,8 @@
             transition: 0.3s;
             position: relative;
             border-top: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
@@ -96,6 +96,10 @@
             margin: 0 0 10px 0;
             font-size: 20px;
             color: #202124;
+        }
+
+        .badge-container {
+            margin-bottom: 15px;
         }
 
         .badge {
@@ -114,23 +118,42 @@
             padding: 12px;
             border-radius: 4px;
             font-size: 14px;
-            margin: 15px 0;
-            min-height: 60px;
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
 
-        .contact-btn {
+        .btn {
             display: block;
             width: 100%;
             padding: 12px;
-            background: #27ae60;
-            color: #fff;
-            text-decoration: none;
-            text-align: center;
             border-radius: 8px;
+            text-align: center;
             font-weight: bold;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
         }
 
-        /* Modern Registration Form */
+        .btn-pdf {
+            background: #e67e22;
+            color: white;
+        }
+
+        .btn-pdf:hover {
+            background: #d35400;
+        }
+
+        .btn-call {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-call:hover {
+            background: #219150;
+        }
+
         .reg-box {
             max-width: 600px;
             margin: 60px auto;
@@ -163,6 +186,7 @@
             margin-bottom: 20px;
             font-size: 15px;
             box-sizing: border-box;
+            outline: none;
         }
 
         .submit-btn {
@@ -175,11 +199,14 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        .submit-btn:hover {
-            background: #d48600;
+        .loading {
+            font-size: 14px;
+            color: var(--primary);
+            text-align: center;
+            display: none;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -189,7 +216,7 @@
     <header>
         <img src="New DOC Document.jpg" alt="Logo" class="logo">
         <h1>ჩვენ აქ ვართ</h1>
-        <p>იპოვე სასურველი სპეციალისტი მთელი საქართველოს მასშტაბით</p>
+        <p>პროფესიონალთა ბაზა - იპოვე და დაუკავშირდი</p>
     </header>
 
     <div class="search-area">
@@ -201,18 +228,21 @@
             <option value="რუსთავი">რუსთავი</option>
             <option value="გორი">გორი</option>
             <option value="თელავი">თელავი</option>
+            <option value="ზუგდიდი">ზუგდიდი</option>
+            <option value="ფოთი">ფოთი</option>
         </select>
 
         <select class="filter" id="catFilter" onchange="filterData()">
             <option value="ყველა">🛠️ ყველა კატეგორია</option>
             <option value="ადმინისტრაცია">ადმინისტრაცია / მართვა</option>
             <option value="მშენებლობა">მშენებლობა / რემონტი</option>
-            <option value="ინჟინერია">ინჟინერია</option>
+            <option value="ინჟინერია">ინჟინერია / ტექნიკური</option>
             <option value="ტრანსპორტი">ტრანსპორტი / ლოგისტიკა</option>
             <option value="სოფლის მეურნეობა">სოფლის მეურნეობა</option>
-            <option value="სამედიცინო">სამედიცინო</option>
+            <option value="სამედიცინო">სამედიცინო / მომსახურება</option>
             <option value="ენერგეტიკა">ენერგეტიკა</option>
             <option value="დასუფთავება">დასუფთავება</option>
+            <option value="დღიური მუშა">დღიური მუშა</option>
             <option value="სხვა">სხვა მომსახურება</option>
         </select>
     </div>
@@ -220,9 +250,9 @@
     <div class="grid" id="masterGrid"></div>
 
     <div class="reg-box">
-        <h2>დაამატე შენი მონაცემები</h2>
+        <h2>განათავსე შენი პროფილი</h2>
         <form id="regForm">
-            <label>სრული სახელი</label>
+            <label>სახელი და გვარი</label>
             <input type="text" id="name" placeholder="მაგ: ალიკა ტიტვინიძე" required>
 
             <label>ქალაქი</label>
@@ -233,34 +263,41 @@
                 <option value="რუსთავი">რუსთავი</option>
                 <option value="გორი">გორი</option>
                 <option value="თელავი">თელავი</option>
+                <option value="სხვა">სხვა</option>
             </select>
 
             <label>სპეციალობა</label>
             <select id="category" required>
                 <option value="ადმინისტრაცია">ადმინისტრაცია / მართვა</option>
                 <option value="მშენებლობა">მშენებლობა / რემონტი</option>
-                <option value="ინჟინერია">ინჟინერია</option>
+                <option value="ინჟინერია">ინჟინერია / ტექნიკური</option>
                 <option value="ტრანსპორტი">ტრანსპორტი / ლოგისტიკა</option>
                 <option value="სოფლის მეურნეობა">სოფლის მეურნეობა</option>
-                <option value="სამედიცინო">სამედიცინო</option>
+                <option value="სამედიცინო">სამედიცინო / მომსახურება</option>
                 <option value="ენერგეტიკა">ენერგეტიკა</option>
                 <option value="დასუფთავება">დასუფთავება</option>
+                <option value="დღიური მუშა">დღიური მუშა</option>
                 <option value="სხვა">სხვა მომსახურება</option>
             </select>
 
-            <label>გამოცდილება / CV (მოკლედ)</label>
-            <textarea id="cv" rows="5" placeholder="აღწერეთ თქვენი გამოცდილება, რა სამუშაოს ეძებთ..."></textarea>
+            <label>მოკლე CV / გამოცდილება</label>
+            <textarea id="cv" rows="4" placeholder="აღწერეთ თქვენი უნარები და გამოცდილება..."></textarea>
+
+            <label>ატვირთე სრული CV (PDF ფორმატი)</label>
+            <input type="file" id="pdfFile" accept=".pdf">
 
             <label>ტელეფონის ნომერი</label>
             <input type="tel" id="phone" placeholder="599XXXXXX" required>
 
-            <button type="submit" class="submit-btn">გამოქვეყნება</button>
+            <button type="submit" class="submit-btn" id="submitBtn">გამოქვეყნება</button>
+            <div id="loader" class="loading">ფაილი იტვირთება, გთხოვთ დაელოდოთ...</div>
         </form>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { getDatabase, ref as dbRef, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
@@ -274,9 +311,10 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-        const profilesRef = ref(db, 'profiles');
+        const storage = getStorage(app);
 
-        onValue(profilesRef, (snapshot) => {
+        // მონაცემების წამოღება
+        onValue(dbRef(db, 'profiles'), (snapshot) => {
             const grid = document.getElementById('masterGrid');
             grid.innerHTML = "";
             const data = snapshot.val();
@@ -286,40 +324,74 @@
                     card.className = 'card';
                     card.dataset.city = p.city;
                     card.dataset.cat = p.category;
+
+                    let pdfButton = p.pdfUrl ? `<a href="${p.pdfUrl}" target="_blank" class="btn btn-pdf">📄 ნახე სრული CV (PDF)</a>` : '';
+
                     card.innerHTML = `
                     <h3>${p.name}</h3>
-                    <div><span class="badge">📍 ${p.city}</span><span class="badge">🛠️ ${p.category}</span></div>
-                    <div class="cv-preview">${p.cv || 'გამოცდილება არ არის მითითებული'}</div>
-                    <a href="tel:${p.phone}" class="contact-btn">📞 დარეკვა</a>
+                    <div class="badge-container">
+                        <span class="badge">📍 ${p.city}</span>
+                        <span class="badge">🛠️ ${p.category}</span>
+                    </div>
+                    <div class="cv-preview">${p.cv || 'აღწერა არ არის.'}</div>
+                    ${pdfButton}
+                    <a href="tel:${p.phone}" class="btn btn-call">📞 დარეკვა: ${p.phone}</a>
                 `;
                     grid.appendChild(card);
                 });
             }
         });
 
-        document.getElementById('regForm').onsubmit = (e) => {
+        // ფორმის გაგზავნა
+        document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
-            push(profilesRef, {
-                name: document.getElementById('name').value,
-                city: document.getElementById('city').value,
-                category: document.getElementById('category').value,
-                cv: document.getElementById('cv').value,
-                phone: document.getElementById('phone').value
-            });
-            e.target.reset();
-            alert("თქვენი მონაცემები წარმატებით დაემატა!");
+            const submitBtn = document.getElementById('submitBtn');
+            const loader = document.getElementById('loader');
+            const file = document.getElementById('pdfFile').files[0];
+
+            submitBtn.disabled = true;
+            loader.style.display = "block";
+
+            let pdfUrl = "";
+
+            try {
+                if (file) {
+                    const fileRef = sRef(storage, 'cv_docs/' + Date.now() + "_" + file.name);
+                    await uploadBytes(fileRef, file);
+                    pdfUrl = await getDownloadURL(fileRef);
+                }
+
+                await push(dbRef(db, 'profiles'), {
+                    name: document.getElementById('name').value,
+                    city: document.getElementById('city').value,
+                    category: document.getElementById('category').value,
+                    cv: document.getElementById('cv').value,
+                    phone: document.getElementById('phone').value,
+                    pdfUrl: pdfUrl
+                });
+
+                e.target.reset();
+                alert("თქვენი პროფილი წარმატებით დაემატა!");
+            } catch (error) {
+                alert("შეცდომა: " + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                loader.style.display = "none";
+            }
         };
 
+        // ფილტრაცია
         window.filterData = () => {
             const city = document.getElementById('cityFilter').value;
             const cat = document.getElementById('catFilter').value;
             document.querySelectorAll('.card').forEach(card => {
-                const mCity = card.dataset.city === city || city === 'ყველა';
-                const mCat = card.dataset.cat === cat || cat === 'ყველა';
-                card.style.display = mCity && mCat ? 'block' : 'none';
+                const mCity = (city === 'ყველა' || card.dataset.city === city);
+                const mCat = (cat === 'ყველა' || card.dataset.cat === cat);
+                card.style.display = (mCity && mCat) ? 'block' : 'none';
             });
         };
     </script>
+
 </body>
 
 </html>
