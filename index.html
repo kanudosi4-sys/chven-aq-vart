@@ -33,7 +33,7 @@
             object-fit: cover;
         }
 
-        /* 🔍 მთავარი ფილტრები - საიტის პრინციპი */
+        /* 🔍 საძიებო ფილტრები */
         .search-container {
             background: #fff;
             padding: 15px;
@@ -62,7 +62,7 @@
             padding: 20px;
         }
 
-        /* რეგისტრაციის ფორმა */
+        /* ფორმის სტილი */
         .reg-card {
             background: white;
             padding: 25px;
@@ -113,12 +113,13 @@
 
         .cv-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             cursor: pointer;
             border: 1px solid #eee;
+            background: #f0f0f0;
         }
 
         .badge {
@@ -161,10 +162,10 @@
             <option value="ბათუმი">ბათუმი</option>
             <option value="ქუთაისი">ქუთაისი</option>
             <option value="რუსთავი">რუსთავი</option>
+            <option value="ფოთი">ფოთი</option>
             <option value="გორი">გორი</option>
             <option value="ზუგდიდი">ზუგდიდი</option>
-            <option value="ფოთი">ფოთი</option>
-            <option value="თელავი">თელავი</option>
+            <option value="სხვა">სხვა ქალაქი</option>
         </select>
         <select class="filter-select" id="filterCat" onchange="applyFilters()">
             <option value="ყველა">📂 ყველა კატეგორია</option>
@@ -172,9 +173,9 @@
             <option value="ფინანსები / ბუღალტერია">ფინანსები / ბუღალტერია</option>
             <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
             <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
-            <option value="გაყიდვები / მარკეტინგი">გაყიდვები / მარკეტინგი</option>
             <option value="სამედიცინო / მომსახურება">სამედიცინო / მომსახურება</option>
             <option value="სოფლის მეურნეობა">სოფლის მეურნეობა</option>
+            <option value="სხვა">სხვა პროფესია</option>
         </select>
     </div>
 
@@ -188,26 +189,22 @@
                     <option value="ბათუმი">ბათუმი</option>
                     <option value="ქუთაისი">ქუთაისი</option>
                     <option value="რუსთავი">რუსთავი</option>
-                    <option value="გორი">გორი</option>
-                    <option value="ზუგდიდი">ზუგდიდი</option>
                     <option value="ფოთი">ფოთი</option>
-                    <option value="თელავი">თელავი</option>
+                    <option value="სხვა">სხვა ქალაქი</option>
                 </select>
                 <select id="s">
                     <option value="ადმინისტრაცია / HR">📂 ადმინისტრაცია / HR</option>
                     <option value="ფინანსები / ბუღალტერია">📂 ფინანსები / ბუღალტერია</option>
                     <option value="მშენებლობა / რემონტი">🏗️ მშენებლობა / რემონტი</option>
                     <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
-                    <option value="გაყიდვები / მარკეტინგი">📈 გაყიდვები / მარკეტინგი</option>
-                    <option value="სამედიცინო / მომსახურება">🏥 სამედიცინო / მომსახურება</option>
                     <option value="სოფლის მეურნეობა">🚜 სოფლის მეურნეობა</option>
+                    <option value="სხვა">✨ სხვა პროფესია</option>
                 </select>
-                <textarea id="d" placeholder="დაწერეთ თქვენი გამოცდილების, განათლების ან უნარების შესახებ..."
-                    rows="3"></textarea>
-                <label>📸 ატვირთეთ CV ან სერტიფიკატის ფოტო:</label>
+                <textarea id="d" placeholder="დაწერეთ თქვენი გამოცდილების ან უნარების შესახებ..." rows="3"></textarea>
+                <label>📸 ატვირთეთ თქვენი CV-ს ან სერტიფიკატის ფოტო:</label>
                 <input type="file" id="i" accept="image/*">
                 <input type="tel" id="p" placeholder="ტელეფონი (მაგ: 599...)" required>
-                <button type="submit" class="btn-submit" id="sub">განცხადების განთავსება</button>
+                <button type="submit" class="btn-submit" id="subBtn">განცხადების განთავსება</button>
             </form>
         </div>
 
@@ -225,11 +222,14 @@
         };
         const db = getDatabase(initializeApp(cfg));
 
-        const toBase64 = f => new Promise((res) => {
-            const r = new FileReader(); r.readAsDataURL(f);
-            r.onload = () => res(r.result);
+        // ფოტოს წამკითხველი ფუნქცია
+        const toBase64 = file => new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
         });
 
+        // მონაცემების გამოტანა და ძებნა
         onValue(ref(db, 'profiles'), (s) => {
             const b = document.getElementById('box'); b.innerHTML = "";
             const data = s.val();
@@ -237,7 +237,7 @@
                 const div = document.createElement('div');
                 div.className = 'card'; div.dataset.city = m.city; div.dataset.cat = m.cat;
                 div.innerHTML = `
-                ${m.img ? `<img src="${m.img}" class="cv-img" onclick="window.open(this.src)">` : ''}
+                ${m.img ? `<img src="${m.img}" class="cv-img" title="ნახვა" onclick="window.open(this.src)">` : '<div class="cv-img" style="display:flex;align-items:center;justify-content:center;color:#999">ფოტო არ არის</div>'}
                 <h4>${m.name}</h4>
                 <span class="badge">📍 ${m.city}</span><span class="badge">📂 ${m.cat}</span>
                 <p style="font-size:14px; color:#444; margin-top:10px;">${m.desc || ''}</p>
@@ -247,31 +247,37 @@
             });
         });
 
+        // ფილტრაციის ლოგიკა
         window.applyFilters = () => {
             const city = document.getElementById('filterCity').value;
             const cat = document.getElementById('filterCat').value;
             document.querySelectorAll('.card').forEach(c => {
-                const mCity = city === 'ყველა' || c.dataset.city === city;
-                const mCat = cat === 'ყველა' || c.dataset.cat === cat;
+                const mCity = (city === 'ყველა' || c.dataset.city === city);
+                const mCat = (cat === 'ყველა' || c.dataset.cat === cat);
                 c.style.display = mCity && mCat ? 'block' : 'none';
             });
         };
 
+        // ფორმის გაგზავნა
         document.getElementById('f').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('sub'); btn.disabled = true; btn.innerText = "იგზავნება...";
-            let img = ""; const file = document.getElementById('i').files[0];
-            if (file) img = await toBase64(file);
+            const btn = document.getElementById('subBtn'); btn.disabled = true; btn.innerText = "იგზავნება...";
+
+            let imgData = "";
+            const file = document.getElementById('i').files[0];
+            if (file) imgData = await toBase64(file);
+
             await push(ref(db, 'profiles'), {
                 name: document.getElementById('n').value,
                 city: document.getElementById('c').value,
                 cat: document.getElementById('s').value,
                 desc: document.getElementById('d').value,
                 phone: document.getElementById('p').value,
-                img: img
+                img: imgData
             });
+
             e.target.reset(); btn.disabled = false; btn.innerText = "განცხადების განთავსება";
-            alert("თქვენი განცხადება წარმატებით დაემატა!");
+            alert("თქვენი CV წარმატებით დაემატა!");
         };
     </script>
 </body>
