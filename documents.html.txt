@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <title>დოკუმენტები</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background: #f4f4f4; }
+        .card { background: white; padding: 30px; display: inline-block; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .btn { display: block; background: #1a73e8; color: white; padding: 15px; margin: 10px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>გადმოწერეთ ხელშეკრულებები</h2>
+        <a href="shromiti.docx" download class="btn">📝 შრომითი ხელშეკრულება</a>
+        <a href="nardoba.docx" download class="btn">🛠️ ნარდობის ხელშეკრულება</a>
+        <a href="aqti.docx" download class="btn">📦 ნასყიდობის ხელშეკრულება</a>
+        <a href="m_ch_aqti.docx" download class="btn">✅ მიღება ჩაბარების აქტი</a>
+        <br>
+        <a href="index.html" style="color: #666;">უკან დაბრუნება</a>
+    </div>
+</body>
+</html>
