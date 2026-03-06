@@ -56,7 +56,6 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* საძიებო ზოლი */
         .search-bar {
             background: #fff;
             padding: 15px;
@@ -93,7 +92,6 @@
             border-top: 6px solid var(--orange);
         }
 
-        /* ფორმის სტილი */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -128,7 +126,6 @@
             margin-top: 10px;
         }
 
-        /* ბარათების სტილი */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -174,7 +171,6 @@
             margin-top: auto;
         }
 
-        /* AI ღილაკი */
         #ai-btn {
             position: fixed;
             bottom: 20px;
@@ -198,10 +194,6 @@
 
             .full-row {
                 grid-column: span 1;
-            }
-
-            .filter-select {
-                min-width: 100%;
             }
         }
     </style>
@@ -231,47 +223,70 @@
             <option value="ბათუმი">ბათუმი</option>
             <option value="ქუთაისი">ქუთაისი</option>
             <option value="რუსთავი">რუსთავი</option>
-            <option value="სხვა">სხვა რეგიონი</option>
+            <option value="გორი">გორი</option>
+            <option value="თელავი">თელავი</option>
+            <option value="ზუგდიდი">ზუგდიდი</option>
+            <option value="ფოთი">ფოთი</option>
+            <option value="ახალციხე">ახალციხე</option>
+            <option value="მცხეთა">მცხეთა</option>
+            <option value="სხვა">სხვა</option>
         </select>
         <select class="filter-select" id="fCat" onchange="filter()">
             <option value="ყველა">📂 ყველა სფერო</option>
             <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
-            <option value="ტურიზმი / რესტორანი">ტურიზმი / რესტორანი</option>
-            <option value="ხელოვნება / სხვა">ხელოვნება / სხვა</option>
+            <option value="კვება / რესტორანი">კვება / რესტორანი</option>
+            <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
+            <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
+            <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
+            <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+            <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
+            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+            <option value="დაცვა / უსაფრთხოება">დაცვა / უსაფრთხოება</option>
+            <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
+            <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
+            <option value="სხვა">სხვა პროფესია</option>
         </select>
     </div>
 
     <div class="container">
         <div class="reg-card">
-            <h3 style="margin-top:0;">📝 განცხადების დამატება</h3>
+            <h3>📝 განცხადების დამატება</h3>
             <form id="regForm">
                 <div class="form-grid">
                     <input type="text" id="name" placeholder="სახელი და გვარი / კომპანია" required class="full-row">
-
                     <select id="city">
                         <option value="თბილისი">თბილისი</option>
                         <option value="ბათუმი">ბათუმი</option>
                         <option value="ქუთაისი">ქუთაისი</option>
                         <option value="რუსთავი">რუსთავი</option>
+                        <option value="გორი">გორი</option>
+                        <option value="თელავი">თელავი</option>
+                        <option value="ზუგდიდი">ზუგდიდი</option>
+                        <option value="ფოთი">ფოთი</option>
+                        <option value="ახალციხე">ახალციხე</option>
+                        <option value="მცხეთა">მცხეთა</option>
                         <option value="სხვა">სხვა რეგიონი</option>
                     </select>
-
                     <select id="cat">
                         <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
-                        <option value="ტურიზმი / რესტორანი">ტურიზმი / რესტორანი</option>
-                        <option value="ხელოვნება / სხვა">ხელოვნება / სხვა</option>
+                        <option value="კვება / რესტორანი">კვება / რესტორანი</option>
+                        <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
+                        <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
+                        <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
+                        <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+                        <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
+                        <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+                        <option value="დაცვა / უსაფრთხოება">დაცვა / უსაფრთხოება</option>
+                        <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
+                        <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
+                        <option value="სხვა">სხვა პროფესია</option>
                     </select>
-
-                    <input type="text" id="salary" placeholder="ანაზღაურება (მაგ: 1500₾)" class="full-row">
-                    <textarea id="desc" placeholder="აღწერეთ თქვენი შემოთავაზება ან გამოცდილება..." rows="3"
+                    <input type="text" id="salary" placeholder="💰 ანაზღაურება (მაგ: 1500₾)" class="full-row">
+                    <textarea id="desc" placeholder="აღწერეთ თქვენი გამოცდილება ან პირობები..." rows="3"
                         class="full-row"></textarea>
-
                     <div class="full-row">
-                        <label style="font-size: 13px; color: #666; display: block; margin-bottom: 5px;">🖼️ ფოტო ან CV
-                            (PDF):</label>
                         <input type="file" id="file" accept="image/*,.pdf">
                     </div>
-
                     <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
                     <button type="submit" class="btn-submit" id="submitBtn">გამოქვეყნება</button>
                 </div>
@@ -280,15 +295,13 @@
         <div id="displayBox" class="grid"></div>
     </div>
 
-    <button id="ai-btn" onclick="alert('გამარჯობა! მე ვარ თქვენი ასისტენტი. რით შემიძლია დაგეხმაროთ?')">💬</button>
+    <button id="ai-btn" onclick="alert('გამარჯობა! მე ვარ თქვენი ასისტენტი.')">💬</button>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-
         const config = { apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw", databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com", projectId: "chven-aq-vart" };
         const db = getDatabase(initializeApp(config));
-
         const toBase64 = f => f ? new Promise((res) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); }) : "";
 
         onValue(ref(db, 'profiles'), (snapshot) => {
@@ -299,19 +312,8 @@
                 div.className = 'card';
                 div.dataset.city = m.city;
                 div.dataset.cat = m.cat;
-                div.dataset.type = m.type || 'worker';
-
-                const isPdf = m.img && m.img.includes("pdf");
-                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${isPdf ? '📄 იხილეთ ფაილი (PDF)' : `<img src="${m.img}">`}</div>` : '';
-
-                div.innerHTML = `
-                ${preview}
-                <h4>${m.name}</h4>
-                <p style="font-size:13px; color:#777;">📍 ${m.city} | 📂 ${m.cat}</p>
-                <p style="font-size:14px; flex-grow:1;">${m.desc}</p>
-                <strong style="color:var(--blue);">${m.salary ? '💰 ' + m.salary : ''}</strong>
-                <a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a>
-            `;
+                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${m.img.includes("pdf") ? '📄 CV (PDF)' : `<img src="${m.img}">`}</div>` : '';
+                div.innerHTML = `${preview}<h4>${m.name}</h4><p>📍 ${m.city} | 📂 ${m.cat}</p><p>${m.desc}</p><strong>${m.salary ? '💰 ' + m.salary : ''}</strong><a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a>`;
                 box.appendChild(div);
             });
         });
@@ -321,18 +323,15 @@
             const city = document.getElementById('fCity').value;
             const cat = document.getElementById('fCat').value;
             document.querySelectorAll('.card').forEach(c => {
-                const matchType = type === 'ყველა' || c.dataset.type === 'worker';
-                const matchCity = city === 'ყველა' || c.dataset.city === city;
-                const matchCat = cat === 'ყველა' || c.dataset.cat === cat;
-                c.style.display = (matchType && matchCity && matchCat) ? 'flex' : 'none';
+                const mCity = city === 'ყველა' || c.dataset.city === city;
+                const mCat = cat === 'ყველა' || c.dataset.cat === cat;
+                c.style.display = (mCity && mCat) ? 'flex' : 'none';
             });
         };
 
         document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn'); btn.disabled = true;
             const imgData = await toBase64(document.getElementById('file').files[0]);
-
             await push(ref(db, 'profiles'), {
                 name: document.getElementById('name').value,
                 city: document.getElementById('city').value,
@@ -340,9 +339,7 @@
                 salary: document.getElementById('salary').value,
                 desc: document.getElementById('desc').value,
                 phone: document.getElementById('phone').value,
-                type: 'worker',
-                img: imgData,
-                time: new Date().toLocaleString('ka-GE')
+                img: imgData
             });
             location.reload();
         };
