@@ -4,64 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ჩვენ აქ ვართ</title>
+    <title>ჩვენ აქ ვართ - სამშენებლო ჰაბი</title>
     <style>
         :root {
             --blue: #1a73e8;
+            --green: #28a745;
             --orange: #f29900;
-            --bg: #f8f9fa;
+            --bg: #f0f2f5;
         }
 
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--bg);
             margin: 0;
-            padding-bottom: 50px;
+            padding-bottom: 80px;
         }
 
         header {
             background: #fff;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
-            border-bottom: 3px solid var(--blue);
+            border-bottom: 4px solid var(--blue);
         }
 
         .logo {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            object-fit: cover;
             border: 2px solid var(--blue);
         }
 
-        /* კალკულატორის ღილაკის სტილი */
-        .calc-banner {
+        /* კალკულატორის და ხელშეკრულების პანელი */
+        .top-tools {
             max-width: 1100px;
             margin: 15px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             padding: 0 20px;
         }
 
-        .calc-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(90deg, #1e3c72, #2a5298);
-            color: white;
+        .tool-link {
+            display: block;
             text-align: center;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 10px;
             text-decoration: none;
+            color: white;
             font-weight: bold;
-            font-size: 17px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .calc-link:hover {
-            transform: scale(1.02);
-            background: linear-gradient(90deg, #2a5298, #1e3c72);
+        .btn-calc {
+            background: #1e3c72;
+        }
+
+        .btn-doc {
+            background: #555;
         }
 
         .search-bar {
@@ -75,25 +75,13 @@
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
-            align-items: center;
         }
 
         .filter-select {
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--blue);
-            min-width: 160px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .admin-in {
-            width: 60px;
             padding: 10px;
+            border-radius: 8px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 11px;
-            opacity: 0.4;
+            min-width: 150px;
         }
 
         .container {
@@ -102,22 +90,52 @@
             padding: 20px;
         }
 
+        /* ფორმის სტილი */
         .reg-card {
             background: white;
-            padding: 35px;
+            padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
             border-top: 6px solid var(--orange);
+        }
+
+        .type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .type-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .type-btn.active[data-type="worker"] {
+            border-color: var(--blue);
+            background: #e8f0fe;
+            color: var(--blue);
+        }
+
+        .type-btn.active[data-type="employer"] {
+            border-color: var(--green);
+            background: #e6f4ea;
+            color: var(--green);
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .full-row {
+        .full {
             grid-column: span 2;
         }
 
@@ -128,9 +146,8 @@
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 8px;
+            font-size: 14px;
             box-sizing: border-box;
-            font-size: 15px;
-            outline: none;
         }
 
         .btn-submit {
@@ -138,7 +155,7 @@
             background: var(--orange);
             color: white;
             border: none;
-            padding: 16px;
+            padding: 15px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
@@ -146,9 +163,10 @@
             margin-top: 10px;
         }
 
+        /* ბარათების სტილი */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
@@ -156,24 +174,50 @@
             background: white;
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
-            border-bottom: 5px solid var(--blue);
             position: relative;
+            border-left: 8px solid #ccc;
+        }
+
+        .card.worker {
+            border-left-color: var(--blue);
+        }
+
+        .card.employer {
+            border-left-color: var(--green);
+        }
+
+        .type-badge {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .worker .type-badge {
+            background: var(--blue);
+        }
+
+        .employer .type-badge {
+            background: var(--green);
         }
 
         .preview {
             width: 100%;
-            height: 200px;
-            background: #f0f0f0;
+            height: 180px;
+            background: #eee;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            overflow: hidden;
         }
 
         .preview img {
@@ -182,47 +226,21 @@
             object-fit: cover;
         }
 
-        .time-stamp {
-            font-size: 10px;
-            color: #999;
-            margin-bottom: 5px;
-        }
-
         .salary-tag {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: #e6f4ea;
-            color: #1e7e34;
-            padding: 5px 12px;
-            border-radius: 20px;
+            background: #fffbe6;
+            color: #856404;
+            padding: 4px 10px;
+            border-radius: 5px;
             font-weight: bold;
-            font-size: 13px;
-            border: 1px solid #c3e6cb;
-        }
-
-        .card h4 {
-            margin: 5px 0;
-            font-size: 19px;
-            color: #1a1a1a;
-            padding-right: 80px;
-        }
-
-        .meta {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .badge {
-            background: #e8f0fe;
-            color: var(--blue);
-            padding: 3px 8px;
-            border-radius: 4px;
-            margin-right: 5px;
+            font-size: 12px;
+            border: 1px solid #ffeeba;
         }
 
         .call-btn {
+            display: block;
             background: #28a745;
             color: white;
             text-align: center;
@@ -233,28 +251,91 @@
             margin-top: auto;
         }
 
-        .del-btn {
-            background: #ff4d4d;
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 5px;
-            margin-top: 10px;
-            cursor: pointer;
-            display: none;
+        /* ასისტენტის ჩატი */
+        #ai-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
         }
 
-        @media (max-width: 768px) {
+        .chat-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--blue);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-box {
+            display: none;
+            width: 300px;
+            height: 400px;
+            background: white;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: var(--blue);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            font-size: 14px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+
+        /* მასალების ცხრილი */
+        .info-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 600px) {
             .form-grid {
                 grid-template-columns: 1fr;
             }
 
-            .full-row {
-                grid-column: span 1;
-            }
-
-            .calc-link {
-                font-size: 15px;
+            .top-tools {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -267,86 +348,97 @@
         <h1>ჩვენ აქ ვართ</h1>
     </header>
 
-    <div class="calc-banner">
-        <a href="https://kanudosi4-sys.github.io/alika/" target="_blank" class="calc-link">
-            <span>🧮</span> სამშენებლო კალკულატორი - გამოთვალე ხარჯები მარტივად! <span>🏗️</span>
-        </a>
+    <div class="top-tools">
+        <a href="https://kanudosi4-sys.github.io/alika/" target="_blank" class="tool-link btn-calc">🧮 სამშენებლო
+            კალკულატორი</a>
+        <a href="#" onclick="alert('ხელშეკრულების ნიმუში მალე დაემატება!')" class="tool-link btn-doc">📄 ხელშეკრულების
+            ნიმუში</a>
     </div>
 
     <div class="search-bar">
+        <select class="filter-select" id="fType" onchange="filter()">
+            <option value="ყველა">🔍 ყველა ტიპი</option>
+            <option value="worker">🛠️ ხელოსნები</option>
+            <option value="employer">💼 დამკვეთები</option>
+        </select>
         <select class="filter-select" id="fCity" onchange="filter()">
             <option value="ყველა">📍 ყველა ქალაქი</option>
             <option value="თბილისი">თბილისი</option>
             <option value="ბათუმი">ბათუმი</option>
             <option value="ქუთაისი">ქუთაისი</option>
-            <option value="რუსთავი">რუსთავი</option>
-            <option value="გორი">გორი</option>
-            <option value="თელავი">თელავი</option>
-            <option value="ზუგდიდი">ზუგდიდი</option>
-            <option value="ფოთი">ფოთი</option>
-            <option value="ახალციხე">ახალციხე</option>
-            <option value="მცხეთა">მცხეთა</option>
             <option value="სხვა">სხვა</option>
         </select>
-        <select class="filter-select" id="fCat" onchange="filter()">
-            <option value="ყველა">📂 ყველა სფერო</option>
-            <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
-            <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
-            <option value="ტურიზმი / რესტორანი">ტურიზმი / რესტორანი</option>
-            <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
-            <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
-            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
-            <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
-            <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
-            <option value="სხვა">სხვა პროფესია</option>
-        </select>
-        <input type="password" class="admin-in" placeholder="Admin" oninput="showAdmin(this.value)">
     </div>
 
     <div class="container">
         <div class="reg-card">
-            <h3>📝 განცხადების დამატება</h3>
+            <h3>📝 განცხადების განთავსება</h3>
+            <div class="type-selector">
+                <div class="type-btn active" data-type="worker" onclick="setType('worker')">ვარ ხელოსანი</div>
+                <div class="type-btn" data-type="employer" onclick="setType('employer')">ვეძებ ხელოსანს</div>
+            </div>
             <form id="regForm">
                 <div class="form-grid">
-                    <input type="text" id="name" placeholder="სახელი და გვარი" required class="full-row">
+                    <input type="text" id="name" placeholder="სახელი და გვარი / კომპანია" required class="full">
                     <select id="city">
-                        <option value="თბილისი">📍 თბილისი</option>
-                        <option value="ბათუმი">📍 ბათუმი</option>
-                        <option value="ქუთაისი">📍 ქუთაისი</option>
-                        <option value="რუსთავი">📍 რუსთავი</option>
-                        <option value="გორი">📍 გორი (შიდა ქართლი)</option>
-                        <option value="თელავი">📍 თელავი (კახეთი)</option>
-                        <option value="ზუგდიდი">📍 ზუგდიდი (სამეგრელო)</option>
-                        <option value="ფოთი">📍 ფოთი</option>
-                        <option value="ახალციხე">📍 ახალციხე (სამცხე-ჯავახეთი)</option>
-                        <option value="მცხეთა">📍 მცხეთა (მცხეთა-მთიანეთი)</option>
-                        <option value="სხვა">📍 სხვა რეგიონი</option>
+                        <option value="თბილისი">თბილისი</option>
+                        <option value="ბათუმი">ბათუმი</option>
+                        <option value="ქუთაისი">ქუთაისი</option>
+                        <option value="სხვა">სხვა რეგიონი</option>
                     </select>
                     <select id="cat">
-                        <option value="ადმინისტრაცია / HR">📂 ადმინისტრაცია / HR</option>
                         <option value="მშენებლობა / რემონტი">🏗️ მშენებლობა / რემონტი</option>
                         <option value="ტურიზმი / რესტორანი">🍽️ ტურიზმი / რესტორანი</option>
-                        <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
-                        <option value="გაყიდვები / მოლარე">🛍️ გაყიდვები / მოლარე</option>
-                        <option value="IT / პროგრამირება">💻 IT / პროგრამირება</option>
-                        <option value="სამედიცინო / ფარმაცია">🩺 სამედიცინო / ფარმაცია</option>
-                        <option value="სერვისი / დასუფთავება">🧹 სერვისი / დასუფთავება</option>
-                        <option value="სხვა">✨ სხვა პროფესია</option>
+                        <option value="სხვა">✨ სხვა</option>
                     </select>
-                    <input type="text" id="salary"
-                        placeholder="💰 სასურველი ანაზღაურება (მაგ: 1500₾ თვეში ან 50₾ დღეში)" class="full-row">
-                    <textarea id="desc" placeholder="მოკლე აღწერა გამოცდილების შესახებ..." rows="3"
-                        class="full-row"></textarea>
-                    <div class="full-row">
-                        <label style="font-size: 13px; color: #666;">📄 ატვირთეთ CV ან სერტიფიკატი (ფოტო/PDF):</label>
+                    <input type="text" id="salary" placeholder="💰 ანაზღაურება" class="full">
+                    <textarea id="desc" placeholder="დაწერეთ დეტალები..." rows="3" class="full"></textarea>
+                    <div class="full">
+                        <label style="font-size: 12px;">📄 ფოტო/CV:</label>
                         <input type="file" id="file" accept="image/*,.pdf">
                     </div>
-                    <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
+                    <input type="tel" id="phone" placeholder="ტელეფონი" required class="full">
                     <button type="submit" class="btn-submit" id="submitBtn">გამოქვეყნება</button>
                 </div>
             </form>
         </div>
+
         <div class="grid" id="displayBox"></div>
+
+        <div class="info-section">
+            <h4>🧱 მასალების ხარჯვის ორიენტირი</h4>
+            <table>
+                <tr>
+                    <th>სამუშაო</th>
+                    <th>მასალა</th>
+                    <th>ხარჯი (მიახლ.)</th>
+                </tr>
+                <tr>
+                    <td>კედლის ლესვა</td>
+                    <td>ცემენტი/ქვიშა</td>
+                    <td>15-20 კგ / მ² (2სმ სისქეზე)</td>
+                </tr>
+                <tr>
+                    <td>იატაკის მოჭიმვა</td>
+                    <td>ქვიშა-ცემენტი</td>
+                    <td>20-22 კგ / მ² (1სმ სისქეზე)</td>
+                </tr>
+                <tr>
+                    <td>ბლოკის წყობა (20სმ)</td>
+                    <td>ბლოკი</td>
+                    <td>12.5 ცალი / მ²</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="ai-chat">
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">ასისტენტი Gemini <span style="cursor:pointer" onclick="toggleChat()">✖</span></div>
+            <div class="chat-body">გამარჯობა! მე ვარ საიტის ასისტენტი. რით შემიძლია დაგეხმაროთ? შეგიძლიათ მკითხოთ
+                მასალების ხარჯვაზე ან საიტის გამოყენებაზე.</div>
+        </div>
+        <button class="chat-btn" onclick="toggleChat()">💬</button>
     </div>
 
     <script type="module">
@@ -356,54 +448,62 @@
         const config = { apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw", databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com", projectId: "chven-aq-vart" };
         const db = getDatabase(initializeApp(config));
 
-        const toBase64 = f => new Promise((res) => {
-            const r = new FileReader(); r.readAsDataURL(f);
-            r.onload = () => res(r.result);
-        });
+        let currentType = 'worker';
+        window.setType = (type) => {
+            currentType = type;
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === type));
+        };
+
+        window.toggleChat = () => {
+            const chat = document.getElementById('chatBox');
+            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+        };
+
+        const toBase64 = f => f ? new Promise((res) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); }) : "";
 
         onValue(ref(db, 'profiles'), (snapshot) => {
             const box = document.getElementById('displayBox'); box.innerHTML = "";
             const data = snapshot.val();
             if (data) Object.entries(data).reverse().forEach(([id, m]) => {
                 const div = document.createElement('div');
-                const city = m.city || m.c || 'სხვა';
-                const cat = m.cat || m.s || 'სხვა';
-                div.className = 'card'; div.dataset.city = city; div.dataset.cat = cat;
+                const type = m.type || 'worker';
+                div.className = `card ${type}`;
+                div.dataset.city = m.city; div.dataset.cat = m.cat; div.dataset.type = type;
 
                 const isPdf = m.img && m.img.includes("pdf");
-                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">
-                ${isPdf ? '<div style="color:#d32f2f;font-weight:bold;">📄 ნახეთ CV (PDF)</div>' : `<img src="${m.img}">`}
-            </div>` : '';
+                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${isPdf ? '📄 PDF' : `<img src="${m.img}">`}</div>` : '';
 
                 div.innerHTML = `
+                <div class="type-badge">${type === 'worker' ? '🛠️ ხელოსანი' : '💼 დამკვეთი'}</div>
                 ${preview}
-                <div class="time-stamp">🕒 ${m.time || ''}</div>
-                ${m.salary ? `<div class="salary-tag">${m.salary}</div>` : ''}
-                <h4>${m.name || m.n || 'ანონიმური'}</h4>
-                <div class="meta"><span class="badge">📍 ${city}</span><span class="badge">📂 ${cat}</span></div>
-                <p style="font-size:14px; color:#444; margin-bottom:15px;">${m.desc || m.d || ''}</p>
-                <a href="tel:${m.phone || m.p}" class="call-btn">📞 დარეკვა: ${m.phone || m.p}</a>
-                <button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>
+                <div class="salary-tag">${m.salary || 'შეთანხმებით'}</div>
+                <h4 style="margin:10px 0 5px 0">${m.name}</h4>
+                <div style="font-size:12px; color:#666; margin-bottom:10px;">📍 ${m.city} | 📂 ${m.cat}</div>
+                <p style="font-size:13px; flex-grow:1">${m.desc}</p>
+                <div style="font-size:10px; color:#999; margin-bottom:5px;">🕒 ${m.time || ''}</div>
+                <a href="tel:${m.phone}" class="call-btn">📞 დარეკვა</a>
+                <button onclick="deleteItem('${id}')" class="del-btn" style="display:none; color:red; border:none; background:none; cursor:pointer; margin-top:5px;">წაშლა</button>
             `;
                 box.appendChild(div);
             });
         });
 
-        window.showAdmin = (v) => document.querySelectorAll('.del-btn').forEach(b => b.style.display = v === '1234' ? 'block' : 'none');
-        window.deleteItem = (id) => { if (confirm('წავშალოთ?')) remove(ref(db, 'profiles/' + id)); };
         window.filter = () => {
             const city = document.getElementById('fCity').value;
-            const cat = document.getElementById('fCat').value;
+            const cat = "ყველა";
+            const type = document.getElementById('fType').value;
             document.querySelectorAll('.card').forEach(c => {
-                c.style.display = (city === 'ყველა' || c.dataset.city === city) && (cat === 'ყველა' || c.dataset.cat === cat) ? 'flex' : 'none';
+                const matchCity = city === 'ყველა' || c.dataset.city === city;
+                const matchType = type === 'ყველა' || c.dataset.type === type;
+                c.style.display = matchCity && matchType ? 'flex' : 'none';
             });
         };
 
         document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn'); btn.disabled = true;
-            let fileData = ""; const file = document.getElementById('file').files[0];
-            if (file) fileData = await toBase64(file);
+            const file = document.getElementById('file').files[0];
+            const imgData = await toBase64(file);
 
             await push(ref(db, 'profiles'), {
                 name: document.getElementById('name').value,
@@ -412,7 +512,8 @@
                 salary: document.getElementById('salary').value,
                 desc: document.getElementById('desc').value,
                 phone: document.getElementById('phone').value,
-                img: fileData,
+                type: currentType,
+                img: imgData,
                 time: new Date().toLocaleString('ka-GE')
             });
             location.reload();
