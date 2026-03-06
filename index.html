@@ -21,7 +21,7 @@
 
         header {
             background: #fff;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
             border-bottom: 3px solid var(--blue);
         }
@@ -43,7 +43,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
             align-items: center;
         }
@@ -52,18 +52,18 @@
             padding: 12px;
             border-radius: 8px;
             border: 1px solid var(--blue);
-            min-width: 180px;
+            min-width: 160px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .admin-in {
-            width: 70px;
+            width: 60px;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 12px;
-            opacity: 0.5;
+            font-size: 11px;
+            opacity: 0.4;
         }
 
         .container {
@@ -74,7 +74,7 @@
 
         .reg-card {
             background: white;
-            padding: 40px;
+            padding: 35px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 40px;
@@ -84,7 +84,7 @@
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 15px;
         }
 
         .full-row {
@@ -95,11 +95,11 @@
         select,
         textarea {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-sizing: border-box;
-            font-size: 16px;
+            font-size: 15px;
             outline: none;
         }
 
@@ -108,8 +108,8 @@
             background: var(--orange);
             color: white;
             border: none;
-            padding: 18px;
-            font-size: 20px;
+            padding: 16px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             border-radius: 8px;
@@ -119,31 +119,31 @@
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
 
         .card {
             background: white;
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
             border-bottom: 5px solid var(--blue);
+            position: relative;
         }
 
         .preview {
             width: 100%;
-            height: 220px;
+            height: 200px;
             background: #f0f0f0;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             overflow: hidden;
-            border: 1px solid #eee;
         }
 
         .preview img {
@@ -152,61 +152,64 @@
             object-fit: cover;
         }
 
-        .pdf-box {
-            color: #d32f2f;
-            font-weight: bold;
-            text-align: center;
-            font-size: 16px;
+        .time-stamp {
+            font-size: 10px;
+            color: #999;
+            margin-bottom: 5px;
         }
 
-        .time-stamp {
-            font-size: 11px;
-            color: #888;
-            margin-bottom: 5px;
-            font-style: italic;
+        .salary-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e6f4ea;
+            color: #1e7e34;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            border: 1px solid #c3e6cb;
         }
 
         .card h4 {
             margin: 5px 0;
-            font-size: 20px;
+            font-size: 19px;
             color: #1a1a1a;
+            padding-right: 80px;
         }
 
-        .meta-info {
-            font-size: 14px;
+        .meta {
+            font-size: 13px;
             color: #666;
-            margin-bottom: 12px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            margin-bottom: 10px;
         }
 
         .badge {
             background: #e8f0fe;
             color: var(--blue);
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
         }
 
         .call-btn {
             background: #28a745;
             color: white;
             text-align: center;
-            padding: 14px;
+            padding: 12px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
+            margin-top: auto;
         }
 
         .del-btn {
             background: #ff4d4d;
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 6px;
-            margin-top: 12px;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 10px;
             cursor: pointer;
             display: none;
         }
@@ -228,7 +231,6 @@
     <header>
         <img src="New DOC Document.jpg" alt="Logo" class="logo">
         <h1>ჩვენ აქ ვართ</h1>
-        <p style="color: #666; margin-top: -10px;">დასაქმების თავისუფალი პლატფორმა</p>
     </header>
 
     <div class="search-bar">
@@ -238,14 +240,24 @@
             <option value="ბათუმი">ბათუმი</option>
             <option value="ქუთაისი">ქუთაისი</option>
             <option value="რუსთავი">რუსთავი</option>
+            <option value="გორი">გორი</option>
+            <option value="თელავი">თელავი</option>
+            <option value="ზუგდიდი">ზუგდიდი</option>
+            <option value="ფოთი">ფოთი</option>
+            <option value="ახალციხე">ახალციხე</option>
+            <option value="მცხეთა">მცხეთა</option>
             <option value="სხვა">სხვა</option>
         </select>
         <select class="filter-select" id="fCat" onchange="filter()">
             <option value="ყველა">📂 ყველა სფერო</option>
             <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
-            <option value="ფინანსები / ბუღალტერია">ფინანსები / ბუღალტერია</option>
             <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
+            <option value="ტურიზმი / რესტორანი">ტურიზმი / რესტორანი</option>
             <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+            <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
+            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+            <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
+            <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
             <option value="სხვა">სხვა პროფესია</option>
         </select>
         <input type="password" class="admin-in" placeholder="Admin" oninput="showAdmin(this.value)">
@@ -253,28 +265,40 @@
 
     <div class="container">
         <div class="reg-card">
-            <h3>📝 განცხადების განთავსება</h3>
+            <h3>📝 განცხადების დამატება</h3>
             <form id="regForm">
                 <div class="form-grid">
-                    <input type="text" id="name" placeholder="თქვენი სახელი და გვარი" required class="full-row">
+                    <input type="text" id="name" placeholder="სახელი და გვარი" required class="full-row">
                     <select id="city">
-                        <option value="თბილისი">📍 ქალაქი: თბილისი</option>
-                        <option value="ბათუმი">📍 ქალაქი: ბათუმი</option>
-                        <option value="ქუთაისი">📍 ქალაქი: ქუთაისი</option>
-                        <option value="რუსთავი">📍 ქალაქი: რუსთავი</option>
-                        <option value="სხვა">📍 ქალაქი: სხვა</option>
+                        <option value="თბილისი">📍 თბილისი</option>
+                        <option value="ბათუმი">📍 ბათუმი</option>
+                        <option value="ქუთაისი">📍 ქუთაისი</option>
+                        <option value="რუსთავი">📍 რუსთავი</option>
+                        <option value="გორი">📍 გორი (შიდა ქართლი)</option>
+                        <option value="თელავი">📍 თელავი (კახეთი)</option>
+                        <option value="ზუგდიდი">📍 ზუგდიდი (სამეგრელო)</option>
+                        <option value="ფოთი">📍 ფოთი</option>
+                        <option value="ახალციხე">📍 ახალციხე (სამცხე-ჯავახეთი)</option>
+                        <option value="მცხეთა">📍 მცხეთა (მცხეთა-მთიანეთი)</option>
+                        <option value="სხვა">📍 სხვა რეგიონი</option>
                     </select>
                     <select id="cat">
                         <option value="ადმინისტრაცია / HR">📂 ადმინისტრაცია / HR</option>
-                        <option value="ფინანსები / ბუღალტერია">📂 ფინანსები / ბუღალტერია</option>
                         <option value="მშენებლობა / რემონტი">🏗️ მშენებლობა / რემონტი</option>
+                        <option value="ტურიზმი / რესტორანი">🍽️ ტურიზმი / რესტორანი</option>
                         <option value="ლოგისტიკა / ტრანსპორტი">🚚 ლოგისტიკა / ტრანსპორტი</option>
+                        <option value="გაყიდვები / მოლარე">🛍️ გაყიდვები / მოლარე</option>
+                        <option value="IT / პროგრამირება">💻 IT / პროგრამირება</option>
+                        <option value="სამედიცინო / ფარმაცია">🩺 სამედიცინო / ფარმაცია</option>
+                        <option value="სერვისი / დასუფთავება">🧹 სერვისი / დასუფთავება</option>
                         <option value="სხვა">✨ სხვა პროფესია</option>
                     </select>
-                    <textarea id="desc" placeholder="აღწერეთ თქვენი გამოცდილება..." rows="4"
+                    <input type="text" id="salary"
+                        placeholder="💰 სასურველი ანაზღაურება (მაგ: 1500₾ თვეში ან 50₾ დღეში)" class="full-row">
+                    <textarea id="desc" placeholder="მოკლე აღწერა გამოცდილების შესახებ..." rows="3"
                         class="full-row"></textarea>
                     <div class="full-row">
-                        <label style="font-size: 14px; color: #555;">📄 ატვირთეთ CV (ფოტო ან PDF):</label>
+                        <label style="font-size: 13px; color: #666;">📄 ატვირთეთ CV ან სერტიფიკატი (ფოტო/PDF):</label>
                         <input type="file" id="file" accept="image/*,.pdf">
                     </div>
                     <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
@@ -304,20 +328,20 @@
                 const div = document.createElement('div');
                 const city = m.city || m.c || 'სხვა';
                 const cat = m.cat || m.s || 'სხვა';
-                const time = m.time || ''; // თარიღის გამოტანა
-
                 div.className = 'card'; div.dataset.city = city; div.dataset.cat = cat;
+
                 const isPdf = m.img && m.img.includes("pdf");
                 const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">
-                ${isPdf ? '<div class="pdf-box">📄 PDF რეზიუმე<br><small>სანახავად დააჭირეთ</small></div>' : `<img src="${m.img}">`}
+                ${isPdf ? '<div style="color:#d32f2f;font-weight:bold;">📄 ნახეთ CV (PDF)</div>' : `<img src="${m.img}">`}
             </div>` : '';
 
                 div.innerHTML = `
                 ${preview}
-                <div class="time-stamp">🕒 ${time}</div>
+                <div class="time-stamp">🕒 ${m.time || ''}</div>
+                ${m.salary ? `<div class="salary-tag">${m.salary}</div>` : ''}
                 <h4>${m.name || m.n || 'ანონიმური'}</h4>
-                <div class="meta-info"><span class="badge">📍 ${city}</span><span class="badge">📂 ${cat}</span></div>
-                <p style="font-size:15px; color:#444; flex-grow:1;">${m.desc || m.d || ''}</p>
+                <div class="meta"><span class="badge">📍 ${city}</span><span class="badge">📂 ${cat}</span></div>
+                <p style="font-size:14px; color:#444; margin-bottom:15px;">${m.desc || m.d || ''}</p>
                 <a href="tel:${m.phone || m.p}" class="call-btn">📞 დარეკვა: ${m.phone || m.p}</a>
                 <button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>
             `;
@@ -345,10 +369,11 @@
                 name: document.getElementById('name').value,
                 city: document.getElementById('city').value,
                 cat: document.getElementById('cat').value,
+                salary: document.getElementById('salary').value,
                 desc: document.getElementById('desc').value,
                 phone: document.getElementById('phone').value,
                 img: fileData,
-                time: new Date().toLocaleString('ka-GE') // თარიღის შენახვა ქართულად
+                time: new Date().toLocaleString('ka-GE')
             });
             location.reload();
         };
