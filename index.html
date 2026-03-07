@@ -352,6 +352,7 @@
 
         window.deleteItem = (id) => { if (confirm('წაშლა?')) remove(ref(db, 'profiles/' + id)); };
         window.showAdmin = (v) => { document.querySelectorAll('.del-btn').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none'); };
+
         window.filter = () => {
             const city = document.getElementById('fCity').value;
             const cat = document.getElementById('fCat').value;
