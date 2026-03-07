@@ -333,7 +333,7 @@
                 const div = document.createElement('div');
                 div.className = 'card'; div.dataset.city = m.city; div.dataset.cat = m.cat;
                 const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${m.img.includes("pdf") ? '📄 CV (PDF)' : `<img src="${m.img}">`}</div>` : '';
-                div.innerHTML = `${preview}<h4>${m.name}</h4><p>📍 ${m.city} | 📂 ${m.cat}</p><p>${m.desc}</p><strong>${m.salary ? '💰 ' + m.salary : ''}</strong><a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a><button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>`;
+                div.innerHTML = `${preview}<h4>${m.name}</h4><p>📍 ${m.city} | 📂 ${m.cat}</p><p>${m.desc}</p><strong>${m.salary ? '💰 ' + m.salary : ''}</strong><a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a><button class="del-btn" onclick="window.deleteItem('${id}')">წაშლა</button>`;
                 box.appendChild(div);
             });
         });
@@ -350,6 +350,7 @@
             location.reload();
         };
 
+        // ფუნქციები გამოგვაქვს გლობალურად, რომ HTML-მა დაინახოს
         window.deleteItem = (id) => { if (confirm('წაშლა?')) remove(ref(db, 'profiles/' + id)); };
         window.showAdmin = (v) => { document.querySelectorAll('.del-btn').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none'); };
 
@@ -362,6 +363,11 @@
                 c.style.display = (mCity && mCat) ? 'flex' : 'none';
             });
         };
+
+        // AI ასისტენტის ღილაკის ამუშავება
+        document.getElementById('ai-btn').addEventListener('click', () => {
+            alert('გამარჯობა! მე შენი ასისტენტი ვარ. რით შემიძლია დაგეხმარო?');
+        });
     </script>
 </body>
 
