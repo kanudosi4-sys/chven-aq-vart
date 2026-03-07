@@ -153,35 +153,6 @@
             flex-direction: column;
         }
 
-        .preview {
-            width: 100%;
-            height: 200px;
-            background: #f0f0f0;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .call-btn {
-            background: #28a745;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: auto;
-        }
-
         .del-btn {
             background: #ff4d4d;
             color: white;
@@ -193,7 +164,7 @@
             display: none;
         }
 
-        <div id="chat-window" style="display: none; position: fixed; bottom: 90px; right: 20px; width: 300px; background: white; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 2000; flex-direction: column; overflow: hidden; border-top: 5px solid #1a73e8;"><div style="background: #1a73e8; color: white; padding: 10px; font-weight: bold; display: flex; justify-content: space-between;"><span>AI ასისტენტი</span><button onclick="document.getElementById('chat-window').style.display='none'" style="background:none; border:none; color:white; cursor:pointer;">✖</button></div><div id="chat-content" style="height: 300px; padding: 10px; overflow-y: auto; font-size: 14px; display: flex; flex-direction: column; gap: 10px;"><div style="background: #f1f1f1; padding: 8px; border-radius: 10px; align-self: flex-start;">გამარჯობა ! მე ალიკას საიტის ასისტენტი ვარ. რით დაგეხმაროთ?</div></div><div style="padding: 10px; border-top: 1px solid #eee; display: flex;"><input type="text" id="chat-input" placeholder="ჩაწერეთ კითხვა..." style="flex: 1; border: 1px solid #ccc; border-radius: 5px; padding: 5px;"><button id="send-btn" style="background: #f29900; color: white; border: none; padding: 5px 10px; margin-left: 5px; border-radius: 5px; cursor: pointer;">➤</button></div></div>#ai-btn {
+        #ai-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -207,6 +178,21 @@
             cursor: pointer;
             z-index: 2000;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #chat-window {
+            display: none;
+            position: fixed;
+            bottom: 95px;
+            right: 20px;
+            width: 320px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            z-index: 2001;
+            flex-direction: column;
+            overflow: hidden;
+            border-top: 5px solid var(--blue);
         }
 
         @media (max-width: 768px) {
@@ -236,32 +222,15 @@
     <div class="search-bar">
         <select class="filter-select" id="fCity" onchange="filter()">
             <option value="ყველა">📍 ყველა ქალაქი</option>
+            <option value="რუსთავი">რუსთავი</option>
             <option value="თბილისი">თბილისი</option>
             <option value="ბათუმი">ბათუმი</option>
             <option value="ქუთაისი">ქუთაისი</option>
-            <option value="რუსთავი">რუსთავი</option>
-            <option value="გორი">გორი</option>
-            <option value="თელავი">თელავი</option>
-            <option value="ზუგდიდი">ზუგდიდი</option>
-            <option value="ფოთი">ფოთი</option>
-            <option value="ახალციხე">ახალციხე</option>
-            <option value="მცხეთა">მცხეთა</option>
-            <option value="სხვა">სხვა</option>
         </select>
         <select class="filter-select" id="fCat" onchange="filter()">
             <option value="ყველა">📂 ყველა სფერო</option>
             <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
             <option value="კვება / რესტორანი">კვება / რესტორანი</option>
-            <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
-            <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
-            <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
-            <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
-            <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
-            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
-            <option value="დაცვა / უსაფრთხოება">დაცვა / უსაფრთხოება</option>
-            <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
-            <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
-            <option value="სხვა">სხვა პროფესია</option>
         </select>
         <input type="password" style="width:60px; opacity:0.1" placeholder="Pass" oninput="showAdmin(this.value)">
     </div>
@@ -272,38 +241,9 @@
             <form id="regForm">
                 <div class="form-grid">
                     <input type="text" id="name" placeholder="სახელი და გვარი / კომპანია" required class="full-row">
-                    <select id="city">
-                        <option value="თბილისი">თბილისი</option>
-                        <option value="ბათუმი">ბათუმი</option>
-                        <option value="ქუთაისი">ქუთაისი</option>
-                        <option value="რუსთავი">რუსთავი</option>
-                        <option value="გორი">გორი</option>
-                        <option value="თელავი">თელავი</option>
-                        <option value="ზუგდიდი">ზუგდიდი</option>
-                        <option value="ფოთი">ფოთი</option>
-                        <option value="ახალციხე">ახალციხე</option>
-                        <option value="მცხეთა">მცხეთა</option>
-                        <option value="სხვა">სხვა რეგიონი</option>
-                    </select>
-                    <select id="cat">
-                        <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
-                        <option value="კვება / რესტორანი">კვება / რესტორანი</option>
-                        <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
-                        <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
-                        <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
-                        <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
-                        <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
-                        <option value="IT / პროგრამირება">IT / პროგრამირება</option>
-                        <option value="დაცვა / უსაფრთხოება">დაცვა / უსაფრთხოება</option>
-                        <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
-                        <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
-                        <option value="სხვა">სხვა პროფესია</option>
-                    </select>
-                    <input type="text" id="salary" placeholder="💰 ანაზღაურება (მაგ: 1500₾)" class="full-row">
                     <textarea id="desc" placeholder="აღწერეთ პირობები..." rows="3" class="full-row"></textarea>
-                    <div class="full-row"><input type="file" id="file" accept="image/*,.pdf"></div>
                     <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
-                    <button type="submit" class="btn-submit" id="submitBtn">გამოქვეყნება</button>
+                    <button type="submit" class="btn-submit">გამოქვეყნება</button>
                 </div>
             </form>
             <a href="documents.html" target="_blank" class="btn-docs">📄 ხელშეკრულებების ნიმუშები</a>
@@ -311,10 +251,32 @@
         <div id="displayBox" class="grid"></div>
     </div>
 
+    <div id="chat-window">
+        <div
+            style="background: #1a73e8; color: white; padding: 12px; font-weight: bold; display: flex; justify-content: space-between;">
+            <span>AI ასისტენტი</span>
+            <button onclick="document.getElementById('chat-window').style.display='none'"
+                style="background:none; border:none; color:white; cursor:pointer; font-size: 18px;">✖</button>
+        </div>
+        <div id="chat-content"
+            style="height: 300px; padding: 15px; overflow-y: auto; font-size: 14px; display: flex; flex-direction: column; gap: 10px; background: #f9f9f9;">
+            <div
+                style="background: #e9ecef; padding: 10px; border-radius: 10px; align-self: flex-start; max-width: 85%;">
+                გამარჯობა! მე ალიკას AI ასისტენტი ვარ. რით დაგეხმაროთ?
+            </div>
+        </div>
+        <div style="padding: 10px; border-top: 1px solid #eee; display: flex; background: white;">
+            <input type="text" id="chat-input" placeholder="ჩაწერეთ..."
+                style="flex: 1; border: 1px solid #ddd; border-radius: 5px; padding: 8px;">
+            <button id="send-btn"
+                style="background: #f29900; color: white; border: none; padding: 8px 15px; margin-left: 5px; border-radius: 5px; cursor: pointer; font-weight: bold;">➤</button>
+        </div>
+    </div>
+
     <button id="ai-btn">💬</button>
 
     <script type="module">
-        // --- 1. ფილტრის და ადმინის ფუნქციები ---
+        // 1. ადმინი და ფილტრი
         window.showAdmin = (v) => {
             document.querySelectorAll('.del-btn').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none');
         };
@@ -329,9 +291,8 @@
             });
         };
 
-        // --- 2. AI ჩატის სრული ლოგიკა ---
+        // 2. ჩატის ლოგიკა
         const initChat = () => {
-            // ელემენტების მოძებნა (ეს გაკლდა!)
             const aiBtn = document.getElementById('ai-btn');
             const chatWin = document.getElementById('chat-window');
             const chatInput = document.getElementById('chat-input');
@@ -340,45 +301,33 @@
 
             if (!aiBtn || !chatWin || !sendBtn) return;
 
-            // მესიჯის დამატება
             const addMessage = (text, isUser) => {
                 const msg = document.createElement('div');
-                msg.style.cssText = `padding:8px; border-radius:10px; max-width:80%; margin-bottom:8px; align-self:${isUser ? 'flex-end' : 'flex-start'}; background:${isUser ? '#f29900' : '#f1f1f1'}; color:${isUser ? 'white' : 'black'}; font-family: sans-serif;`;
+                msg.style.cssText = `padding:10px; border-radius:10px; max-width:85%; margin-bottom:5px; align-self:${isUser ? 'flex-end' : 'flex-start'}; background:${isUser ? '#f29900' : '#e9ecef'}; color:${isUser ? 'white' : 'black'};`;
                 msg.innerText = text;
                 chatContent.appendChild(msg);
                 chatContent.scrollTop = chatContent.scrollHeight;
             };
 
-            // AI პასუხი
-            const getAiResponse = (q) => {
-                const low = q.toLowerCase();
-                if (low.includes('პაროლი') || low.includes('1234')) return "ინფორმაცია დაცულია!";
-                if (low.includes('გამარჯობა')) return "გამარჯობა! მე ალიკას AI ასისტენტი ვარ.";
-                return "მადლობა, ალიკა მალე გიპასუხებთ.";
-            };
-
-            // გაგზავნა
             sendBtn.onclick = () => {
                 const q = chatInput.value.trim();
                 if (!q) return;
                 addMessage(q, true);
                 chatInput.value = '';
-                setTimeout(() => addMessage(getAiResponse(q), false), 500);
+                setTimeout(() => {
+                    let resp = "მადლობა, ალიკა მალე გიპასუხებთ.";
+                    if (q.toLowerCase().includes("გამარჯობა")) resp = "გამარჯობა! რით დაგეხმაროთ?";
+                    addMessage(resp, false);
+                }, 600);
             };
 
-            // გახსნა/დახურვა
             aiBtn.onclick = () => {
                 const isHidden = chatWin.style.display === 'none' || chatWin.style.display === '';
                 chatWin.style.display = isHidden ? 'flex' : 'none';
             };
         };
 
-        // --- 3. გაშვება ---
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initChat);
-        } else {
-            initChat();
-        }
+        document.addEventListener('DOMContentLoaded', initChat);
     </script>
 </body>
 
