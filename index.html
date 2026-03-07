@@ -222,15 +222,32 @@
     <div class="search-bar">
         <select class="filter-select" id="fCity" onchange="filter()">
             <option value="ყველა">📍 ყველა ქალაქი</option>
-            <option value="რუსთავი">რუსთავი</option>
             <option value="თბილისი">თბილისი</option>
             <option value="ბათუმი">ბათუმი</option>
             <option value="ქუთაისი">ქუთაისი</option>
+            <option value="რუსთავი">რუსთავი</option>
+            <option value="გორი">გორი</option>
+            <option value="თელავი">თელავი</option>
+            <option value="ზუგდიდი">ზუგდიდი</option>
+            <option value="ფოთი">ფოთი</option>
+            <option value="ახალციხე">ახალციხე</option>
+            <option value="მცხეთა">მცხეთა</option>
+            <option value="სხვა">სხვა</option>
         </select>
         <select class="filter-select" id="fCat" onchange="filter()">
             <option value="ყველა">📂 ყველა სფერო</option>
             <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
             <option value="კვება / რესტორანი">კვება / რესტორანი</option>
+            <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
+            <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
+            <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
+            <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+            <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
+            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+            <option value="დაცვა / უსაფრთხოება">დაცვა / უსაფრთხოება</option>
+            <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
+            <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
+            <option value="სხვა">სხვა პროფესია</option>
         </select>
         <input type="password" style="width:60px; opacity:0.1" placeholder="Pass" oninput="showAdmin(this.value)">
     </div>
@@ -241,7 +258,36 @@
             <form id="regForm">
                 <div class="form-grid">
                     <input type="text" id="name" placeholder="სახელი და გვარი / კომპანია" required class="full-row">
+                    <select id="city">
+                        <option value="თბილისი">თბილისი</option>
+                        <option value="ბათუმი">ბათუმი</option>
+                        <option value="ქუთაისი">ქუთაისი</option>
+                        <option value="რუსთავი">რუსთავი</option>
+                        <option value="გორი">გორი</option>
+                        <option value="თელავი">თელავი</option>
+                        <option value="ზუგდიდი">ზუგდიდი</option>
+                        <option value="ფოთი">ფოთი</option>
+                        <option value="ახალციხე">ახალციხე</option>
+                        <option value="მცხეთა">მცხეთა</option>
+                        <option value="სხვა">სხვა რეგიონი</option>
+                    </select>
+                    <select id="cat">
+                        <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
+                        <option value="კვება / რესტორანი">კვება / რესტორანი</option>
+                        <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
+                        <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
+                        <option value="ადმინისტრაცია / HR">ადმინისტრაცია / HR</option>
+                        <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+                        <option value="გაყიდვები / მოლარე">გაყიდვები / მოლარე</option>
+                        <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+                        <option value="დაცვა / უსაფრთხოება">დაცვა / უსაფრთხოება</option>
+                        <option value="სამედიცინო / ფარმაცია">სამედიცინო / ფარმაცია</option>
+                        <option value="სერვისი / დასუფთავება">სერვისი / დასუფთავება</option>
+                        <option value="სხვა">სხვა პროფესია</option>
+                    </select>
+                    <input type="text" id="salary" placeholder="💰 ანაზღაურება (მაგ: 1500₾)" class="full-row">
                     <textarea id="desc" placeholder="აღწერეთ პირობები..." rows="3" class="full-row"></textarea>
+                    <div class="full-row"><input type="file" id="file" accept="image/*,.pdf"></div>
                     <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
                     <button type="submit" class="btn-submit">გამოქვეყნება</button>
                 </div>
@@ -317,6 +363,7 @@
                 setTimeout(() => {
                     let resp = "მადლობა, ალიკა მალე გიპასუხებთ.";
                     if (q.toLowerCase().includes("გამარჯობა")) resp = "გამარჯობა! რით დაგეხმაროთ?";
+                    if (q.toLowerCase().includes("კალკულატორი")) resp = "კალკულატორი მენიუს ზემოთ არის.";
                     addMessage(resp, false);
                 }, 600);
             };
