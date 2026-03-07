@@ -193,7 +193,7 @@
             display: none;
         }
 
-        #ai-btn {
+        <div id="chat-window" style="display: none; position: fixed; bottom: 90px; right: 20px; width: 300px; background: white; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 2000; flex-direction: column; overflow: hidden; border-top: 5px solid #1a73e8;"><div style="background: #1a73e8; color: white; padding: 10px; font-weight: bold; display: flex; justify-content: space-between;"><span>AI ასისტენტი</span><button onclick="document.getElementById('chat-window').style.display='none'" style="background:none; border:none; color:white; cursor:pointer;">✖</button></div><div id="chat-content" style="height: 300px; padding: 10px; overflow-y: auto; font-size: 14px; display: flex; flex-direction: column; gap: 10px;"><div style="background: #f1f1f1; padding: 8px; border-radius: 10px; align-self: flex-start;">გამარჯობა ! მე ალიკას საიტის ასისტენტი ვარ. რით დაგეხმაროთ?</div></div><div style="padding: 10px; border-top: 1px solid #eee; display: flex;"><input type="text" id="chat-input" placeholder="ჩაწერეთ კითხვა..." style="flex: 1; border: 1px solid #ccc; border-radius: 5px; padding: 5px;"><button id="send-btn" style="background: #f29900; color: white; border: none; padding: 5px 10px; margin-left: 5px; border-radius: 5px; cursor: pointer;">➤</button></div></div>#ai-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -314,45 +314,10 @@
     <button id="ai-btn">💬</button>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-
-        const config = {
-            apiKey: "AIzaSyBFOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
-            databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com",
-            projectId: "chven-aq-vart"
+        // --- 1. ფილტრის და ადმინის ფუნქციები ---
+        window.showAdmin = (v) => {
+            document.querySelectorAll('.del-btn').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none');
         };
-
-        const db = getDatabase(initializeApp(config));
-        const toBase64 = f => f ? new Promise((res) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); }) : "";
-
-        onValue(ref(db, 'profiles'), (snapshot) => {
-            const box = document.getElementById('displayBox'); box.innerHTML = "";
-            const data = snapshot.val();
-            if (data) Object.entries(data).reverse().forEach(([id, m]) => {
-                const div = document.createElement('div');
-                div.className = 'card'; div.dataset.city = m.city; div.dataset.cat = m.cat;
-                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${m.img.includes("pdf") ? '📄 CV (PDF)' : `<img src="${m.img}">`}</div>` : '';
-                div.innerHTML = `${preview}<h4>${m.name}</h4><p>📍 ${m.city} | 📂 ${m.cat}</p><p>${m.desc}</p><strong>${m.salary ? '💰 ' + m.salary : ''}</strong><a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a><button class="del-btn" onclick="window.deleteItem('${id}')">წაშლა</button>`;
-                box.appendChild(div);
-            });
-        });
-
-        document.getElementById('regForm').onsubmit = async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn'); btn.disabled = true;
-            const imgData = await toBase64(document.getElementById('file').files[0]);
-            await push(ref(db, 'profiles'), {
-                name: document.getElementById('name').value, city: document.getElementById('city').value,
-                cat: document.getElementById('cat').value, salary: document.getElementById('salary').value,
-                desc: document.getElementById('desc').value, phone: document.getElementById('phone').value, img: imgData
-            });
-            location.reload();
-        };
-
-        // ფუნქციები გამოგვაქვს გლობალურად, რომ HTML-მა დაინახოს
-        window.deleteItem = (id) => { if (confirm('წაშლა?')) remove(ref(db, 'profiles/' + id)); };
-        window.showAdmin = (v) => { document.querySelectorAll('.del-btn').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none'); };
 
         window.filter = () => {
             const city = document.getElementById('fCity').value;
@@ -364,10 +329,56 @@
             });
         };
 
-        // AI ასისტენტის ღილაკის ამუშავება
-        document.getElementById('ai-btn').addEventListener('click', () => {
-            alert('გამარჯობა! მე შენი ასისტენტი ვარ. რით შემიძლია დაგეხმარო?');
-        });
+        // --- 2. AI ჩატის სრული ლოგიკა ---
+        const initChat = () => {
+            // ელემენტების მოძებნა (ეს გაკლდა!)
+            const aiBtn = document.getElementById('ai-btn');
+            const chatWin = document.getElementById('chat-window');
+            const chatInput = document.getElementById('chat-input');
+            const chatContent = document.getElementById('chat-content');
+            const sendBtn = document.getElementById('send-btn');
+
+            if (!aiBtn || !chatWin || !sendBtn) return;
+
+            // მესიჯის დამატება
+            const addMessage = (text, isUser) => {
+                const msg = document.createElement('div');
+                msg.style.cssText = `padding:8px; border-radius:10px; max-width:80%; margin-bottom:8px; align-self:${isUser ? 'flex-end' : 'flex-start'}; background:${isUser ? '#f29900' : '#f1f1f1'}; color:${isUser ? 'white' : 'black'}; font-family: sans-serif;`;
+                msg.innerText = text;
+                chatContent.appendChild(msg);
+                chatContent.scrollTop = chatContent.scrollHeight;
+            };
+
+            // AI პასუხი
+            const getAiResponse = (q) => {
+                const low = q.toLowerCase();
+                if (low.includes('პაროლი') || low.includes('1234')) return "ინფორმაცია დაცულია!";
+                if (low.includes('გამარჯობა')) return "გამარჯობა! მე ალიკას AI ასისტენტი ვარ.";
+                return "მადლობა, ალიკა მალე გიპასუხებთ.";
+            };
+
+            // გაგზავნა
+            sendBtn.onclick = () => {
+                const q = chatInput.value.trim();
+                if (!q) return;
+                addMessage(q, true);
+                chatInput.value = '';
+                setTimeout(() => addMessage(getAiResponse(q), false), 500);
+            };
+
+            // გახსნა/დახურვა
+            aiBtn.onclick = () => {
+                const isHidden = chatWin.style.display === 'none' || chatWin.style.display === '';
+                chatWin.style.display = isHidden ? 'flex' : 'none';
+            };
+        };
+
+        // --- 3. გაშვება ---
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initChat);
+        } else {
+            initChat();
+        }
     </script>
 </body>
 
