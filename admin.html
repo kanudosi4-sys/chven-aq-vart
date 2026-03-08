@@ -64,7 +64,11 @@
             databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com",
             projectId: "chven-aq-vart"
         };
-
+        const pass = prompt("შეიყვანეთ პაროლი ადმინ-პანელისთვის:");
+        if (pass !== "1234") { // აქ "1235"-ის ნაცვლად ჩაწერე შენი სასურველი პაროლი
+            alert("წვდომა უარყოფილია!");
+            window.location.href = "index.html";
+        }
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const msgContainer = document.getElementById('messages-container');
