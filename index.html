@@ -426,7 +426,10 @@
         };
 
         const API_KEY = "AIzaSyArHUNLMjwT6-Cnbikgx1wpPlP_PgQZVmw";
-
+        window.ToggleChat = () => {
+            const c = document.getElementById('ai-chat');
+            if (c) c.style.display = (c.style.display === 'block') ? 'none' : 'block';
+        };
         document.getElementById('sendChatBtn').onclick = async () => {
             const input = document.getElementById('chatMsg');
             const body = document.getElementById('chatBody');
