@@ -425,7 +425,9 @@
 
         window.toggleChat = () => {
             const c = document.getElementById('ai-chat');
-            if (c) c.style.display = (c.style.display === 'block') ? 'none' : 'block';
+            if (c) {
+                c.style.display = (c.style.display === 'block') ? 'none' : 'block';
+            }
         };
 
         document.getElementById('sendChatBtn').onclick = async () => {
@@ -451,7 +453,7 @@
                 body.innerHTML += `<div style="color:red;">შეცდომაა...</div>`;
             }
             body.scrollTop = body.scrollHeight;
-        }; 
+        };
     </script>
 </body>
 
