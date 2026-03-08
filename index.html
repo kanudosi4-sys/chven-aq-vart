@@ -58,6 +58,7 @@
         }
 
         /* საძიებო პანელი */
+        /* დაახლოებით ხაზი 48 */
         .search-bar {
             background: #fff;
             padding: 15px;
@@ -72,12 +73,15 @@
         }
 
         .filter-select {
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
             border: 1px solid #ccc;
-            min-width: 200px;
+            flex: 1;
+            min-width: 150px;
+            max-width: 450px;
             font-size: 14px;
         }
+
 
         .admin-in {
             width: 50px;
@@ -361,9 +365,9 @@
         <div id="displayBox" class="grid"></div>
     </div>
 
-    <div style="text-align: center; margin: 40px 0;">
+    <div style="text-align: center; margin: 30px 0;">
         <a href="documents.html" target="_blank"
-            style="background: #2c3e50; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            style="background: #2c3e50; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
             📄 ხელშეკრულებების ნიმუშები
         </a>
     </div>
@@ -416,6 +420,30 @@
         window.deleteItem = (id) => { if (confirm('დარწმუნებული ხართ?')) remove(ref(db, 'profiles/' + id)); };
 
         // ჩატის ფუნქციები
+        // ხაზი 423
+        window.toggleChat = () => {
+            const c = document.getElementById('ai-chat');
+            c.style.display = (c.style.display === 'block') ? 'none' : 'block';
+        };
+
+        // ხაზი 428
+        document.getElementById('sendChatBtn').onclick = async () => {
+            const input = document.getElementById('chatMsg');
+            const body = document.getElementById('chatBody');
+            if (input.value.trim() !== "") {
+                const msg = input.value;
+                body.innerHTML += `<div style="margin-top:10px; color:blue; text-align:right;"><b>თქვენ:</b> ${msg}</div>`;
+
+                await push(ref(db, 'chat_messages'), {
+                    text: msg,
+                    time: new Date().toLocaleString()
+                });
+
+                input.value = "";
+                body.innerHTML += `<div style="margin-top:10px; color:green;"><b>ოპერატორი:</b> შეტყობინება მიღებულია.</div>`;
+                body.scrollTop = body.scrollHeight;
+            }
+        };
         window.toggleChat = () => { const c = document.getElementById('ai-chat'); c.style.display = (c.style.display === 'block') ? 'none' : 'block'; };
 
         document.getElementById('sendChatBtn').onclick = async () => {
@@ -451,7 +479,24 @@
                 c.style.display = (mCity && mCat) ? 'flex' : 'none';
             });
         };
+        // ჩატის გაგზავნა
+        document.getElementById('sendChatBtn').onclick = async () => {
+            const input = document.getElementById('chatMsg');
+            const body = document.getElementById('chatBody');
+            if (input.value.trim() !== "") {
+                const msg = input.value;
+                body.innerHTML += `<div style="margin-top:10px; color:blue; text-align:right;"><b>თქვენ:</b> ${msg}</div>`;
 
+                await push(ref(db, 'chat_messages'), {
+                    text: msg,
+                    time: new Date().toLocaleString()
+                });
+
+                input.value = "";
+                body.innerHTML += `<div style="margin-top:10px; color:green;"><b>ოპერატორი:</b> შეტყობინება მიღებულია.</div>`;
+                body.scrollTop = body.scrollHeight;
+            }
+        };
         // ფორმის გაგზავნა
         document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
