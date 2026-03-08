@@ -420,13 +420,13 @@
         window.deleteItem = (id) => { if (confirm('დარწმუნებული ხართ?')) remove(ref(db, 'profiles/' + id)); };
 
         // AL - ინტელექტუალური ასისტენტი
-        window.ToggleChat = () => {
+        window.toggleChat = () => {
             const c = document.getElementById('ai-chat');
             c.style.display = (c.style.display === 'block') ? 'none' : 'block';
         };
 
         const API_KEY = "AIzaSyArHUNLMjwT6-Cnbikgx1wpPlP_PgQZVmw";
-        window.ToggleChat = () => {
+        window.toggleChat = () => {
             const c = document.getElementById('ai-chat');
             if (c) c.style.display = (c.style.display === 'block') ? 'none' : 'block';
         };
