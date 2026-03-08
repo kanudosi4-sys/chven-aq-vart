@@ -17,6 +17,7 @@
             margin-bottom: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .time {
@@ -34,6 +35,18 @@
             border-bottom: 2px solid #2c3e50;
             padding-bottom: 10px;
         }
+
+        .del-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -44,32 +57,29 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+        import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
-        // გამოიყენე შენი Firebase კონფიგურაცია (იგივე რაც index.html-ში გაქვს)
         const firebaseConfig = {
-            databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com"
+            apiKey: "AIzaSyBfOfz9TAw8TwfVL8qNrhdHbwbc2TewMNw",
+            databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com",
+            projectId: "chven-aq-vart"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-
         const msgContainer = document.getElementById('messages-container');
-
-        import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
-
-        // ... (კონფიგურაცია იგივე დარჩეს)
-
+        // 1. ბაზიდან მონაცემების წამოღება
         onValue(ref(db, 'chat_messages'), (snapshot) => {
-            msgContainer.innerHTML = "";
+            msgContainer.innerHTML = ""; // აქ ვშლით ტექსტს "იტვირთება..."
             const data = snapshot.val();
+
             if (data) {
                 Object.entries(data).reverse().forEach(([id, msg]) => {
                     const card = `
-                        <div class="msg-card" style="position:relative;">
-                            <div class="time">📅 ${msg.time}</div>
-                            <div class="text">💬 ${msg.text}</div>
-                            <button onclick="deleteMsg('${id}')" style="position:absolute; right:10px; top:10px; cursor:pointer; background:#ff4d4d; color:white; border:none; border-radius:4px; padding:5px 10px;">წაშლა</button>
+                        <div class="msg-card" style="background:white; padding:15px; margin-bottom:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:relative;">
+                            <div style="color:#888; font-size:12px;">📅 ${msg.time}</div>
+                            <div style="margin-top:5px; font-size:16px;">💬 ${msg.text}</div>
+                            <button onclick="deleteMsg('${id}')" style="position:absolute; right:10px; top:10px; background:#ff4d4d; color:white; border:none; border-radius:4px; padding:5px 10px; cursor:pointer;">წაშლა</button>
                         </div>
                     `;
                     msgContainer.innerHTML += card;
@@ -79,9 +89,9 @@
             }
         });
 
-        // წაშლის ფუნქცია
+        // 2. წაშლის ფუნქცია
         window.deleteMsg = (id) => {
-            if (confirm("ნამდვილად გსურთ ამ შეტყობინების წაშლა?")) {
+            if (confirm("ნამდვილად გსურთ წაშლა?")) {
                 remove(ref(db, 'chat_messages/' + id));
             }
         };

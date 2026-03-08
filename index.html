@@ -386,12 +386,12 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        const config = {
-            apiKey: "AIzaSyBfOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
+        const firebaseConfig = {
+            apiKey: "AIzaSyBfOfz9TAw8TwfVL8qNrhdHbwbc2TewMNw",
             databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com",
             projectId: "chven-aq-vart"
         };
-        const db = getDatabase(initializeApp(config));
+        const db = getDatabase(initializeApp(firebaseConfig));
         const toBase64 = f => f ? new Promise((res) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); }) : "";
 
         // მონაცემების გამოტანა
