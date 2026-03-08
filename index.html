@@ -34,6 +34,7 @@
             border: 2px solid var(--blue);
         }
 
+        /* კალკულატორის ბანერი */
         .calc-banner {
             max-width: 1100px;
             margin: 15px auto;
@@ -56,6 +57,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* საძიებო პანელი */
         .search-bar {
             background: #fff;
             padding: 15px;
@@ -73,16 +75,16 @@
             padding: 12px;
             border-radius: 8px;
             border: 1px solid #ccc;
-            min-width: 220px;
+            min-width: 200px;
             font-size: 14px;
         }
 
         .admin-in {
-            width: 60px;
+            width: 50px;
             padding: 5px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 11px;
+            font-size: 10px;
             opacity: 0.3;
         }
 
@@ -135,6 +137,7 @@
             margin-top: 10px;
         }
 
+        /* ბარათების ბადე */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -162,6 +165,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .preview img {
@@ -192,6 +196,7 @@
             display: none;
         }
 
+        /* ჩატი */
         #ai-btn {
             position: fixed;
             bottom: 20px;
@@ -272,6 +277,7 @@
 </head>
 
 <body>
+
     <header>
         <img src="New DOC Document.jpg" alt="Logo" class="logo">
         <h1>ჩვენ აქ ვართ</h1>
@@ -291,17 +297,24 @@
             <option value="რუსთავი">რუსთავი</option>
             <option value="ქუთაისი">ქუთაისი</option>
             <option value="გორი">გორი</option>
-            <option value="თელავი">თელავი</option>
-            <option value="ზუგდიდი">ზუგდიდი</option>
             <option value="ფოთი">ფოთი</option>
+            <option value="ზუგდიდი">ზუგდიდი</option>
+            <option value="მარნეული">მარნეული</option>
+            <option value="თელავი">თელავი</option>
+            <option value="ახალციხე">ახალციხე</option>
+            <option value="სხვა">სხვა</option>
         </select>
         <select class="filter-select" id="fCat" onchange="filter()">
             <option value="ყველა">📂 ყველა სფერო</option>
             <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
-            <option value="კვება / რესტორანი">კვება / რესტორანი</option>
-            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+            <option value="საბანკო / მოლარე / გაყიდვები">საბანკო / მოლარე / გაყიდვები</option>
+            <option value="კვება / რესტორანი / სასტუმრო">კვება / რესტორანი / სასტუმრო</option>
             <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
-            <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
+            <option value="დაცვა / უსაფრთხოება">დაცვა / უსაფრთხოება</option>
+            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+            <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
+            <option value="ადმინისტრაცია / ოფისი">ადმინისტრაცია / ოფისი</option>
+            <option value="სხვა პროფესია">სხვა პროფესია</option>
         </select>
         <input type="password" class="admin-in" placeholder="Pass" oninput="showAdmin(this.value)">
     </div>
@@ -318,38 +331,52 @@
                         <option value="რუსთავი">რუსთავი</option>
                         <option value="ქუთაისი">ქუთაისი</option>
                         <option value="გორი">გორი</option>
+                        <option value="ფოთი">ფოთი</option>
+                        <option value="ზუგდიდი">ზუგდიდი</option>
+                        <option value="მარნეული">მარნეული</option>
                         <option value="თელავი">თელავი</option>
+                        <option value="ახალციხე">ახალციხე</option>
+                        <option value="სხვა">სხვა</option>
                     </select>
                     <select id="cat">
                         <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
-                        <option value="კვება / რესტორანი">კვება / რესტორანი</option>
+                        <option value="საბანკო / მოლარე / გაყიდვები">საბანკო / მოლარე / გაყიდვები</option>
+                        <option value="კვება / რესტორანი / სასტუმრო">კვება / რესტორანი / სასტუმრო</option>
+                        <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+                        <option value="დაცვა / უსაფრთხოება">დაცვა / უსაფრთხოება</option>
                         <option value="IT / პროგრამირება">IT / პროგრამირება</option>
-                        <option value="სხვა">სხვა</option>
+                        <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
+                        <option value="ადმინისტრაცია / ოფისი">ადმინისტრაცია / ოფისი</option>
+                        <option value="სხვა პროფესია">სხვა პროფესია</option>
                     </select>
-                    <input type="text" id="salary" placeholder="💰 ანაზღაურება (მაგ: 1500₾)" class="full-row">
-                    <textarea id="desc" placeholder="აღწერეთ პირობები..." rows="3" class="full-row"></textarea>
+                    <input type="text" id="salary" placeholder="💰 ანაზღაურება" class="full-row">
+                    <textarea id="desc" placeholder="დამატებითი ინფორმაცია..." rows="3" class="full-row"></textarea>
                     <input type="file" id="file" accept="image/*,.pdf" class="full-row">
                     <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
                     <button type="submit" class="btn-submit" id="submitBtn">გამოქვეყნება</button>
                 </div>
             </form>
         </div>
+
         <div id="displayBox" class="grid"></div>
     </div>
 
-    <div id="ai-chat">
-        <div class="chat-header">ასისტენტი <span style="cursor:pointer" onclick="toggleChat()">✖</span></div>
-        <div class="chat-body" id="chatBody">გამარჯობა! რით შემიძლია დაგეხმაროთ?</div>
-        <div class="chat-input"><input type="text" id="chatMsg"><button onclick="sendMsg()">➤</button></div>
-    </div>
-    <button id="ai-btn" onclick="toggleChat()">💬</button>
-
     <div style="text-align: center; margin: 40px 0;">
-        <a href="documents.html"
+        <a href="documents.html" target="_blank"
             style="background: #2c3e50; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
             📄 ხელშეკრულებების ნიმუშები
         </a>
     </div>
+
+    <div id="ai-chat">
+        <div class="chat-header">კონსულტაცია <span style="cursor:pointer" onclick="toggleChat()">✖</span></div>
+        <div class="chat-body" id="chatBody">მოგვწერეთ ნებისმიერი კითხვა...</div>
+        <div class="chat-input">
+            <input type="text" id="chatMsg" placeholder="ჩაწერეთ აქ...">
+            <button id="sendChatBtn">➤</button>
+        </div>
+    </div>
+    <button id="ai-btn" onclick="toggleChat()">💬</button>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
@@ -363,6 +390,7 @@
         const db = getDatabase(initializeApp(config));
         const toBase64 = f => f ? new Promise((res) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); }) : "";
 
+        // მონაცემების გამოტანა
         onValue(ref(db, 'profiles'), (snapshot) => {
             const box = document.getElementById('displayBox'); box.innerHTML = "";
             const data = snapshot.val();
@@ -370,25 +398,50 @@
                 const div = document.createElement('div');
                 div.className = 'card'; div.dataset.city = m.city; div.dataset.cat = m.cat;
                 const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${m.img.includes("pdf") ? '📄 CV (PDF)' : `<img src="${m.img}">`}</div>` : '';
-                div.innerHTML = `${preview}<h4>${m.name}</h4><p>📍 ${m.city} | 📂 ${m.cat}</p><p>${m.desc}</p><strong>${m.salary ? '💰 ' + m.salary : ''}</strong><a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a><button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>`;
+                div.innerHTML = `
+                    ${preview}
+                    <h4>${m.name}</h4>
+                    <p>📍 ${m.city} | 📂 ${m.cat}</p>
+                    <p>${m.desc}</p>
+                    <strong>${m.salary ? '💰 ' + m.salary : ''}</strong>
+                    <a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a>
+                    <button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>
+                `;
                 box.appendChild(div);
             });
         });
 
+        // ადმინის ფუნქციები
         window.showAdmin = (v) => { document.querySelectorAll('.del-btn').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none'); };
-        window.deleteItem = (id) => { if (confirm('წაშლა?')) remove(ref(db, 'profiles/' + id)); };
+        window.deleteItem = (id) => { if (confirm('დარწმუნებული ხართ?')) remove(ref(db, 'profiles/' + id)); };
+
+        // ჩატის ფუნქციები
         window.toggleChat = () => { const c = document.getElementById('ai-chat'); c.style.display = (c.style.display === 'block') ? 'none' : 'block'; };
 
-        window.sendMsg = () => {
+        document.getElementById('sendChatBtn').onclick = async () => {
             const input = document.getElementById('chatMsg');
             const body = document.getElementById('chatBody');
-            if (input.value) {
-                body.innerHTML += `<div style="margin-top:10px; color:blue;"><b>თქვენ:</b> ${input.value}</div>`;
-                body.innerHTML += `<div style="margin-top:5px; color:green;"><b>AI:</b> გმადლობთ კითხვისთვის!</div>`;
-                input.value = ""; body.scrollTop = body.scrollHeight;
+            if (input.value.trim() !== "") {
+                const msg = input.value;
+                body.innerHTML += `<div style="margin-top:10px; color:blue; text-align:right;"><b>თქვენ:</b> ${msg}</div>`;
+
+                // შეტყობინების გაგზავნა ბაზაში
+                await push(ref(db, 'chat_messages'), {
+                    text: msg,
+                    time: new Date().toLocaleString()
+                });
+
+                setTimeout(() => {
+                    body.innerHTML += `<div style="margin-top:10px; color:green;"><b>ოპერატორი:</b> თქვენი შეტყობინება მიღებულია, ოპერატორი მალე დაგიკავშირდებათ.</div>`;
+                    body.scrollTop = body.scrollHeight;
+                }, 1000);
+
+                input.value = "";
+                body.scrollTop = body.scrollHeight;
             }
         };
 
+        // ფილტრაცია
         window.filter = () => {
             const city = document.getElementById('fCity').value;
             const cat = document.getElementById('fCat').value;
@@ -399,10 +452,13 @@
             });
         };
 
+        // ფორმის გაგზავნა
         document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn'); btn.disabled = true;
+            const btn = document.getElementById('submitBtn'); btn.disabled = true; btn.innerText = "გაიგზავნება...";
+
             const imgData = await toBase64(document.getElementById('file').files[0]);
+
             await push(ref(db, 'profiles'), {
                 name: document.getElementById('name').value,
                 city: document.getElementById('city').value,
@@ -412,6 +468,7 @@
                 phone: document.getElementById('phone').value,
                 img: imgData
             });
+
             location.reload();
         };
     </script>
