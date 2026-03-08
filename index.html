@@ -30,14 +30,14 @@
             width: 90px;
             height: 90px;
             border-radius: 50%;
-            border: 2px solid var(--blue);
             object-fit: cover;
+            border: 2px solid var(--blue);
         }
 
-        .container {
+        .calc-banner {
             max-width: 1100px;
-            margin: auto;
-            padding: 20px;
+            margin: 15px auto;
+            padding: 0 20px;
         }
 
         .calc-link {
@@ -47,11 +47,49 @@
             gap: 10px;
             background: linear-gradient(90deg, #1e3c72, #2a5298);
             color: white;
+            text-align: center;
             padding: 15px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 17px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar {
+            background: #fff;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            min-width: 220px;
+            font-size: 14px;
+        }
+
+        .admin-in {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 11px;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
         }
 
         .reg-card {
@@ -81,6 +119,7 @@
             border: 1px solid #ccc;
             border-radius: 8px;
             box-sizing: border-box;
+            font-size: 15px;
         }
 
         .btn-submit {
@@ -93,6 +132,7 @@
             font-weight: bold;
             border-radius: 8px;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         .grid {
@@ -106,28 +146,117 @@
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
             border-bottom: 5px solid var(--blue);
             position: relative;
         }
 
-        .call-btn {
-            display: block;
-            text-align: center;
-            background: #28a745;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 10px;
-            font-weight: bold;
+        .preview {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .admin-input {
-            width: 60px;
-            opacity: 0.1;
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        .preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .call-btn {
+            background: #28a745;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: auto;
+        }
+
+        .del-btn {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #ai-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 65px;
+            height: 65px;
+            background: var(--blue);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+        }
+
+        #ai-chat {
+            position: fixed;
+            bottom: 95px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 2001;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .chat-header {
+            background: var(--blue);
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chat-body {
+            height: 250px;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 14px;
+            background: #f9f9f9;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            border: none;
+            padding: 10px;
+            flex: 1;
+            border-radius: 0;
+        }
+
+        .chat-input button {
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
         }
 
         @media (max-width: 768px) {
@@ -146,37 +275,60 @@
     <header>
         <img src="New DOC Document.jpg" alt="Logo" class="logo">
         <h1>ჩვენ აქ ვართ</h1>
-        <input type="password" class="admin-input" placeholder="Pass" oninput="showAdmin(this.value)">
     </header>
 
-    <div class="container">
-        <a href="https://kanudosi4-sys.github.io/alika/" target="_blank" class="calc-link">🧮 სამშენებლო კალკულატორი</a>
+    <div class="calc-banner">
+        <a href="https://kanudosi4-sys.github.io/alika/" target="_blank" class="calc-link">
+            <span>🧮</span> სამშენებლო კალკულატორი - გამოთვალე ხარჯები მარტივად! <span>🏗️</span>
+        </a>
+    </div>
 
+    <div class="search-bar">
+        <select class="filter-select" id="fCity" onchange="filter()">
+            <option value="ყველა">📍 ყველა ქალაქი</option>
+            <option value="თბილისი">თბილისი</option>
+            <option value="ბათუმი">ბათუმი</option>
+            <option value="რუსთავი">რუსთავი</option>
+            <option value="ქუთაისი">ქუთაისი</option>
+            <option value="გორი">გორი</option>
+            <option value="თელავი">თელავი</option>
+            <option value="ზუგდიდი">ზუგდიდი</option>
+            <option value="ფოთი">ფოთი</option>
+        </select>
+        <select class="filter-select" id="fCat" onchange="filter()">
+            <option value="ყველა">📂 ყველა სფერო</option>
+            <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
+            <option value="კვება / რესტორანი">კვება / რესტორანი</option>
+            <option value="IT / პროგრამირება">IT / პროგრამირება</option>
+            <option value="ლოგისტიკა / ტრანსპორტი">ლოგისტიკა / ტრანსპორტი</option>
+            <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
+        </select>
+        <input type="password" class="admin-in" placeholder="Pass" oninput="showAdmin(this.value)">
+    </div>
+
+    <div class="container">
         <div class="reg-card">
             <h3>📝 განცხადების დამატება</h3>
             <form id="regForm">
                 <div class="form-grid">
-                    <input type="text" id="name" placeholder="სახელი / კომპანია" required class="full-row">
+                    <input type="text" id="name" placeholder="სახელი და გვარი / კომპანია" required class="full-row">
                     <select id="city">
                         <option value="თბილისი">თბილისი</option>
                         <option value="ბათუმი">ბათუმი</option>
-                        <option value="ქუთაისი">ქუთაისი</option>
                         <option value="რუსთავი">რუსთავი</option>
+                        <option value="ქუთაისი">ქუთაისი</option>
                         <option value="გორი">გორი</option>
                         <option value="თელავი">თელავი</option>
-                        <option value="ზუგდიდი">ზუგდიდი</option>
-                        <option value="ფოთი">ფოთი</option>
                     </select>
                     <select id="cat">
                         <option value="მშენებლობა / რემონტი">მშენებლობა / რემონტი</option>
                         <option value="კვება / რესტორანი">კვება / რესტორანი</option>
-                        <option value="ხელოვნება / გართობა">ხელოვნება / გართობა</option>
-                        <option value="ტურიზმი / სასტუმრო">ტურიზმი / სასტუმრო</option>
                         <option value="IT / პროგრამირება">IT / პროგრამირება</option>
-                        <option value="სხვა">სხვა პროფესია</option>
+                        <option value="სხვა">სხვა</option>
                     </select>
-                    <input type="text" id="salary" placeholder="💰 ანაზღაურება" class="full-row">
+                    <input type="text" id="salary" placeholder="💰 ანაზღაურება (მაგ: 1500₾)" class="full-row">
                     <textarea id="desc" placeholder="აღწერეთ პირობები..." rows="3" class="full-row"></textarea>
+                    <input type="file" id="file" accept="image/*,.pdf" class="full-row">
                     <input type="tel" id="phone" placeholder="ტელეფონის ნომერი" required class="full-row">
                     <button type="submit" class="btn-submit" id="submitBtn">გამოქვეყნება</button>
                 </div>
@@ -185,72 +337,82 @@
         <div id="displayBox" class="grid"></div>
     </div>
 
+    <div id="ai-chat">
+        <div class="chat-header">ასისტენტი <span style="cursor:pointer" onclick="toggleChat()">✖</span></div>
+        <div class="chat-body" id="chatBody">გამარჯობა! რით შემიძლია დაგეხმაროთ?</div>
+        <div class="chat-input"><input type="text" id="chatMsg"><button onclick="sendMsg()">➤</button></div>
+    </div>
+    <button id="ai-btn" onclick="toggleChat()">💬</button>
+
+    <div style="text-align: center; margin: 40px 0;">
+        <a href="documents.html"
+            style="background: #2c3e50; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            📄 ხელშეკრულებების ნიმუშები
+        </a>
+    </div>
+
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        const firebaseConfig = {
+        const config = {
             apiKey: "AIzaSyBfOfz9TAw8TWfVL8qNrhdHbwbc2TewMNw",
-            authDomain: "chven-aq-vart.firebaseapp.com",
             databaseURL: "https://chven-aq-vart-default-rtdb.firebaseio.com",
-            projectId: "chven-aq-vart",
-            storageBucket: "chven-aq-vart.firebasestorage.app",
-            messagingSenderId: "1067834621567",
-            appId: "1:1067834621567:web:46682b816c3bce4defc94a",
-            measurementId: "G-370R8XGGC4"
+            projectId: "chven-aq-vart"
         };
+        const db = getDatabase(initializeApp(config));
+        const toBase64 = f => f ? new Promise((res) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); }) : "";
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // ადმინის ფუნქცია
-        window.showAdmin = (v) => {
-            document.querySelectorAll('.del-btn').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none');
-        };
-
-        // წაშლის ფუნქცია
-        window.deletePost = async (id) => {
-            if (confirm("წავშალოთ?")) await deleteDoc(doc(db, "ads", id));
-        };
-
-        // ჩვენება
-        const q = query(collection(db, "ads"), orderBy("timestamp", "desc"));
-        onSnapshot(q, (snapshot) => {
-            const displayBox = document.getElementById('displayBox');
-            displayBox.innerHTML = '';
-            snapshot.forEach((snap) => {
-                const ad = snap.data();
-                displayBox.innerHTML += `
-                    <div class="card">
-                        <button class="del-btn" style="display:none; background:red; color:white; border:none; position:absolute; top:5px; right:5px; cursor:pointer;" onclick="deletePost('${snap.id}')">X</button>
-                        <h3>${ad.name}</h3>
-                        <p>📍 ${ad.city} | 📂 ${ad.cat}</p>
-                        <p>💰 ${ad.salary}</p>
-                        <p>${ad.description}</p>
-                        <a href="tel:${ad.phone}" class="call-btn">📞 დარეკვა: ${ad.phone}</a>
-                    </div>`;
+        onValue(ref(db, 'profiles'), (snapshot) => {
+            const box = document.getElementById('displayBox'); box.innerHTML = "";
+            const data = snapshot.val();
+            if (data) Object.entries(data).reverse().forEach(([id, m]) => {
+                const div = document.createElement('div');
+                div.className = 'card'; div.dataset.city = m.city; div.dataset.cat = m.cat;
+                const preview = m.img ? `<div class="preview" onclick="window.open('${m.img}')">${m.img.includes("pdf") ? '📄 CV (PDF)' : `<img src="${m.img}">`}</div>` : '';
+                div.innerHTML = `${preview}<h4>${m.name}</h4><p>📍 ${m.city} | 📂 ${m.cat}</p><p>${m.desc}</p><strong>${m.salary ? '💰 ' + m.salary : ''}</strong><a href="tel:${m.phone}" class="call-btn">📞 დარეკვა: ${m.phone}</a><button class="del-btn" onclick="deleteItem('${id}')">წაშლა</button>`;
+                box.appendChild(div);
             });
         });
 
-        // გაგზავნა
+        window.showAdmin = (v) => { document.querySelectorAll('.del-btn').forEach(b => b.style.display = (v === '1234') ? 'block' : 'none'); };
+        window.deleteItem = (id) => { if (confirm('წაშლა?')) remove(ref(db, 'profiles/' + id)); };
+        window.toggleChat = () => { const c = document.getElementById('ai-chat'); c.style.display = (c.style.display === 'block') ? 'none' : 'block'; };
+
+        window.sendMsg = () => {
+            const input = document.getElementById('chatMsg');
+            const body = document.getElementById('chatBody');
+            if (input.value) {
+                body.innerHTML += `<div style="margin-top:10px; color:blue;"><b>თქვენ:</b> ${input.value}</div>`;
+                body.innerHTML += `<div style="margin-top:5px; color:green;"><b>AI:</b> გმადლობთ კითხვისთვის!</div>`;
+                input.value = ""; body.scrollTop = body.scrollHeight;
+            }
+        };
+
+        window.filter = () => {
+            const city = document.getElementById('fCity').value;
+            const cat = document.getElementById('fCat').value;
+            document.querySelectorAll('.card').forEach(c => {
+                const mCity = city === 'ყველა' || c.dataset.city === city;
+                const mCat = cat === 'ყველა' || c.dataset.cat === cat;
+                c.style.display = (mCity && mCat) ? 'flex' : 'none';
+            });
+        };
+
         document.getElementById('regForm').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "იგზავნება...";
-            try {
-                await addDoc(collection(db, "ads"), {
-                    name: document.getElementById('name').value,
-                    city: document.getElementById('city').value,
-                    cat: document.getElementById('cat').value,
-                    salary: document.getElementById('salary').value,
-                    description: document.getElementById('desc').value,
-                    phone: document.getElementById('phone').value,
-                    timestamp: new Date()
-                });
-                alert("წარმატებით აიტვირთა!");
-                e.target.reset();
-            } catch (err) { alert("შეცდომაა!"); }
-            finally { btn.disabled = false; btn.innerText = "გამოქვეყნება"; }
+            const btn = document.getElementById('submitBtn'); btn.disabled = true;
+            const imgData = await toBase64(document.getElementById('file').files[0]);
+            await push(ref(db, 'profiles'), {
+                name: document.getElementById('name').value,
+                city: document.getElementById('city').value,
+                cat: document.getElementById('cat').value,
+                salary: document.getElementById('salary').value,
+                desc: document.getElementById('desc').value,
+                phone: document.getElementById('phone').value,
+                img: imgData
+            });
+            location.reload();
         };
     </script>
 </body>
