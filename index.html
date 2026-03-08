@@ -417,25 +417,39 @@
 
         // ჩატი
         const API_KEY = "AIzaSyArHUNLMjwT6-Cnbikgx1wpPlP_PgQZVmw";
-        window.toggleChat = () => { const c = document.getElementById('ai-chat'); c.style.display = (c.style.display === 'block') ? 'none' : 'block'; };
+        window.toggleChat = () => {
+            const c = document.getElementById('ai-chat');
+            c.style.display = (c.style.display === 'block') ? 'none' : 'block';
+        };
 
         document.getElementById('sendChatBtn').onclick = async () => {
             const input = document.getElementById('chatMsg'), body = document.getElementById('chatBody'), val = input.value.trim();
             if (!val) return;
+
             body.innerHTML += `<div style="margin-top:10px; color:blue;"><b>თქვენ:</b> ${val}</div>`;
             input.value = "";
+            body.scrollTop = body.scrollHeight;
+
             try {
                 const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: "POST", headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: `შენ ხარ ალიკას ასისტენტი. უპასუხე მოკლედ ქართულად. კითხვა: ${val}` }] }] })
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `შენ ხარ ალიკას დამხმარე ასისტენტი. უპასუხე მოკლედ და მეგობრულად ქართულ ენაზე. კითხვა: ${val}` }] }]
+                    })
                 });
+
                 const data = await res.json();
-                if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-                    body.innerHTML += `<div style="margin-top:10px; color:green;"><b>AL:</b> ${data.candidates[0].content.parts[0].text}</div>`;
+
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    const aiMsg = data.candidates[0].content.parts[0].text;
+                    body.innerHTML += `<div style="margin-top:10px; color:green;"><b>AL:</b> ${aiMsg}</div>`;
                 } else {
-                    body.innerHTML += `<div style="color:red;">Google-ის პასუხი ცარიელია.</div>`;
+                    body.innerHTML += `<div style="color:red; font-size:12px;">Google-ის პასუხი ვერ მოვიდა.</div>`;
                 }
-            } catch (e) { body.innerHTML += `<div style="color:red;">კავშირის შეცდომაა.</div>`; }
+            } catch (e) {
+                body.innerHTML += `<div style="color:red; font-size:12px;">შეცდომაა კავშირისას.</div>`;
+            }
             body.scrollTop = body.scrollHeight;
         };
     </script>
